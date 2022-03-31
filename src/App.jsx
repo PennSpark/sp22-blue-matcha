@@ -24,10 +24,10 @@ function App() {
     <div className="container bg-matcha text-3xl w-screen h-screen">
       <NavBar />
       <Routes>
-        <Route path="/login" component={Login} />
-        <Route path="/survey" component={Survey} />
-        <Route path="/gallery" component={Gallery} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/survey" element={<Survey />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   )

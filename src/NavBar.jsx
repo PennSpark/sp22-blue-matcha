@@ -5,10 +5,11 @@ import { Link } from 'react-router-dom'
 import logo from './imgs/logo-placeholder.gif'
 
 const NavBar = () => (
-  <nav className="container flex items-center py-4 mt-4 sm:mt-12">
-    <div className="py-1">
-      <img src={logo} alt="" className="w-20 h-20" />
-      <ul className="hidden sm:flex flex-1 justify-end items-center gap-15 text-darkmatcha uppercase text-sm" />
+  <nav className="container flex items-center py-4 px-4">
+    <div className="py-1 ml-3">
+      <img src={logo} alt="" className="w -20 h-20" />
+    </div>
+    <ul className="hidden sm:flex flex-1 justify-center items-center gap-20 pr-10 text-darkmatcha uppercase text-sm font-semibold">
       <li>
         <Link to="/login">Login</Link>
       </li>
@@ -21,7 +22,7 @@ const NavBar = () => (
       <li>
         <Link to="/profile">Profile</Link>
       </li>
-    </div>
+    </ul>
   </nav>
 )
 
