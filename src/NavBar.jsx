@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import logo from './imgs/logo-placeholder.gif'
 
 const NavBar = () => (
-  <nav className="flex items-center py-4 px-4 shadow-sm bg-light_greentea">
+  <nav className="flex items-center py-4 px-4 shadow-sm bg-light_greentea rounded-b-2xl font-mono">
     <div className="py-1 ml-3">
       <img src={logo} alt="" className="w-20 h-20 rounded-full shadow-md hover:shadow-xl bg-light_lemon" />
     </div>
@@ -17,7 +17,7 @@ const NavBar = () => (
         <Link to="/survey" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Survey</Link>
       </li>
       <li>
-        <Link to="/" className="hover:bg-matcha hover:shadow-md border-2 border-dotted border-matcha py-3 px-8 rounded-xl">Home</Link>
+        <Link to="/" className="hover:bg-matcha hover:shadow-md border-x-4 border-dotted border-matcha py-3 px-8 rounded-xl">Home</Link>
       </li>
       <li>
         <Link to="/gallery" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Gallery</Link>
