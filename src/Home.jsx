@@ -6,6 +6,7 @@ import {
 
 // Routes
 import Login from './Login'
+import Signup from './Signup'
 import Survey from './Survey'
 import Profile from './Profile'
 import Gallery from './Gallery'
@@ -19,6 +20,7 @@ const Home = () => {
       <NavBar />
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/survey" element={<Survey />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/profile" element={<Profile />} />
