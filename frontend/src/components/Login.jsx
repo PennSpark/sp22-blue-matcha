@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import pouring_tea from './imgs/content-placeholder.gif'
+import pouring_tea from '../imgs/content-placeholder.gif'
 
 const Login = () => {
   const [email, setEmail] = useState('')

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // logo
-import logo from './imgs/logo-placeholder.gif'
+import logo from '../imgs/logo-placeholder.gif'
 
 const NavBar = () => (
   <nav className="flex items-center py-4 px-4 shadow-sm bg-light_greentea rounded-b-2xl font-mono">

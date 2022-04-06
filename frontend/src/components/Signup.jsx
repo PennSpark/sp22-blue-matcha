@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import pouring_tea from './imgs/content-placeholder.gif'
+import pouring_tea from '../imgs/content-placeholder.gif'
 
 const Login = () => {
   const [username, setUsername] = useState('')

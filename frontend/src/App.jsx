@@ -2,7 +2,7 @@ import React from 'react'
 
 import './styles/index.css'
 
-import Home from './Home'
+import Home from './components/Home'
 
 // images
 import logo from './imgs/logo-placeholder.gif'
