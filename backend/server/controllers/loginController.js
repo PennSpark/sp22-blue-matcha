@@ -3,7 +3,27 @@ var LocalStrategy = require('passport-local');
 var bcrypt = require('bcryptjs');
 var Login = require('../models/login'); 
 
+createdAccount = (req) => {
+  User.find({'userLogin': req.user.username})
+  .exec(function (err, user_list) {
+    if (err) { return next(err); }
+    //Successful, so render
+    if (user_list.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+}
+
 exports.sign_up = function(req, res, next) {
+  Login.find({'username:' : req.body.username})
+  .exec(function (err, u_list) {
+    if (err) { return next(err); }
+    if (u_list.length > 0) {
+      res.send('User already exists');
+    }
+  });
   const user = new Login();
   //add failure mode where if user has the same user as before then make them do new acct
   user.username = req.body.username;

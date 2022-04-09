@@ -11,7 +11,7 @@ var userController = require('../controllers/userController');
 // router.post('/:id/update', userController.update_user);
 
 //view user information dashboard
-router.get('/:id', userController.get_user_info); 
+router.get('/account/:id', userController.get_user_info); 
 
 //create user item 
 router.get('/create', userController.get_create_user); 
