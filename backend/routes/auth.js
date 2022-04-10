@@ -13,6 +13,8 @@ router.post('/password', loginController.password_authenticate);
 //sign up form 
 router.get('/sign-up', loginController.get_sign_up); 
 
+router.get('/username', loginController.get_username); 
+
 router.post('/sign-up', loginController.sign_up);
 
 router.get('/log-out', loginController.log_out);
