@@ -1,16 +1,29 @@
 import React from 'react'
 
 import './styles/index.css'
+import {
+  Routes,
+  Route,
+} from 'react-router-dom'
 
-import Home from './Home'
-
-// images
-import logo from './imgs/logo-placeholder.gif'
-import ocha from './imgs/content-placeholder.gif'
+// Routes
+import Login from './components/Login'
+import Signup from './components/Signup'
+import Survey from './components/Survey'
+import Profile from './components/Profile'
+import Gallery from './components/Gallery'
+import Home from './components/Home'
 
 function App() {
   return (
-    <Home />
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/survey" element={<Survey />} />
+      <Route path="/gallery" element={<Gallery />} />
+      <Route path="/profile" element={<Profile />} />
+    </Routes>
   )
 }
 
