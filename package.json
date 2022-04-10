@@ -14,7 +14,7 @@
   },
   "scripts": {
     "frontend": "yarn workspace frontend start",
-    "backend": "yarn workspace frontend start",
+    "backend": "yarn workspace backend start",
     "start": "concurrently --kill-others-on-fail \"yarn backend\"  \"yarn frontend\""
   },
   "browserslist": {
