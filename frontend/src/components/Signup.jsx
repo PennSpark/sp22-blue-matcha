@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import axios from 'axios'
 
-import pouring_tea from '../imgs/content-placeholder.gif'
+import pouring_tea from '../imgs/logowords.png'
 
 const Login = () => {
   const [username, setUsername] = useState('')

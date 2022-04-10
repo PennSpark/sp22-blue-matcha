@@ -5,7 +5,7 @@ import axios from 'axios'
 
 import NavBar from './NavBar'
 
-import pouring_tea from '../imgs/content-placeholder.gif'
+import pouring_tea from '../imgs/logowords.png'
 
 const Login = () => {
   const [email, setEmail] = useState('')

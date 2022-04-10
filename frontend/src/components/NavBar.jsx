@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
  
 // logo
-import logo from '../imgs/logo-placeholder.gif'
+import logo from '../imgs/logo.png'
  
 const NavBar = ({ loggedIn = true }) => {
   const [user, setUser] = useState('')
