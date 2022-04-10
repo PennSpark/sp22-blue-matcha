@@ -3,12 +3,13 @@ var router = express.Router();
 var userController = require('../controllers/userController');
 
 //delete a user 
-// router.get('/:id/delete', userController.get_delete_user);
-// router.post('/:id/delete', userController.post_delete_user);
+router.get('/delete', userController.get_delete_user);
+router.post('/delete', userController.post_delete_user);
+//figure out a way to verify to delete your account. 
 
 // //update a user
-// router.get('/:id/update', userController.update_user);
-// router.post('/:id/update', userController.update_user);
+router.get('/account/:id/update', userController.get_update_user);
+router.post('/account/update', userController.post_update_user);
 
 //view user information dashboard
 router.get('/account/:id', userController.get_user_info); 
