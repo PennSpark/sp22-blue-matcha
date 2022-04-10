@@ -6,8 +6,9 @@ import axios from 'axios'
 // logo
 import logo from '../imgs/logo.png'
  
-const NavBar = ({ loggedIn = false }) => {
+const NavBar = () => {
   const [user, setUser] = useState('')
+  const [loggedIn, setLoggedIn] = useState(false)
 
   const logout = async () => {
     await axios.get('/log-out')
@@ -19,7 +20,11 @@ const NavBar = ({ loggedIn = false }) => {
   useEffect(() => {
     const getUsername = async () => {
       const { data } = (await axios.get('/username'))
-      setUser(data) 
+      console.log(data)
+      if (data !== 'Not signed in') {
+        setLoggedIn(true)
+        setUser(data) 
+      }
     }
 
     getUsername()
