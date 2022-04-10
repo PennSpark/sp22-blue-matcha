@@ -6,20 +6,23 @@ import axios from 'axios'
 // logo
 import logo from '../imgs/logo.png'
  
-const NavBar = ({ loggedIn = true }) => {
+const NavBar = ({ loggedIn = false }) => {
   const [user, setUser] = useState('')
 
   const logout = async () => {
-    await axios.post('/log-out')
+    await axios.get('/log-out')
       .catch(error => {
         alert(`${error.response.data}`)
       })
   }
 
   useEffect(() => {
-    const checkLoginStatus = async () => {
-      (await axios.get('/account/status'))
+    const getUsername = async () => {
+      const { data } = (await axios.get('/username'))
+      setUser(data) 
     }
+
+    getUsername()
   }, [])
 
   return (
@@ -43,7 +46,7 @@ const NavBar = ({ loggedIn = true }) => {
           <div className="basis-1/3 flex-none self-center text-dark_matcha text-xl">
             {loggedIn && (
               <div className="text-right mr-3">
-                <span>Hi rajiv! </span>
+                <span>Hi {user}! </span>
                 <button onClick={e => logout()} type='submit'>Logout</button>
               </div>
             )}
