@@ -1,30 +1,17 @@
 import React from 'react'
-import {
-  Routes,
-  Route,
-} from 'react-router-dom'
 
 // Routes
-import Login from './Login'
-import Signup from './Signup'
-import Survey from './Survey'
-import Profile from './Profile'
-import Gallery from './Gallery'
 import NavBar from './NavBar'
 
 const Home = () => {
   const placeholder = 0
 
   return (
-    <div className="bg-white text-3xl">
+    <div className="bg-white text-3xl font-mono">
       <NavBar />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/survey" element={<Survey />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
+      <div className="flex justify-center">
+        <h1 className='mt-20 text-dark_matcha'>Welcome Home</h1>
+      </div>
     </div>
   )
 }
