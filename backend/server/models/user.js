@@ -22,7 +22,7 @@ userSchema.virtual('clean_date_created').get(function() {
 
 //virtual for author's URL 
 userSchema.virtual('url').get(function() {
-    return '/user/' + this._id;
+    return '/user/account/' + this._id;
 });
 
 //export model 

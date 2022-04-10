@@ -2,20 +2,30 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var bcrypt = require('bcryptjs');
 var Login = require('../models/login'); 
+var User = require('../models/user');
+var userController = require('../controllers/userController');
 
 exports.sign_up = function(req, res, next) {
-  const user = new Login();
-  //add failure mode where if user has the same user as before then make them do new acct
-  user.username = req.body.username;
-  bcrypt.hash(req.body.password, 10, (err, hash) => {
-      user.password = hash;
-      user.save(err => {
-        if (err) { 
-          return next(err);
-        }
-        res.redirect("/");
-      });
-    });
+  Login.find({ username : req.body.username})
+  .exec(function (err, u_list) {
+    if (err) { return next(err); }
+    if (u_list.length > 0) {
+      res.render('sign-up-form', {message: "User already exists, try again!"});
+    } else { 
+      const user = new Login();
+      //add failure mode where if user has the same user as before then make them do new acct
+      user.username = req.body.username;
+      bcrypt.hash(req.body.password, 10, (err, hash) => {
+          user.password = hash;
+          user.save(err => {
+            if (err) { 
+              return next(err);
+            }
+            res.redirect("/");
+          });
+      })
+    }
+  })
 };
 
 passport.use(new LocalStrategy(function verify(username, password, done) {
@@ -51,7 +61,19 @@ passport.deserializeUser(function(user, cb) {
 });
 
 exports.get_log_in = function(req, res, next) {
-  res.render('index', { user: req.user, failure: false, userDetail: null});
+  if (req.user) {
+    User.findOne({'userLogin': req.user.username}).exec(function (err, user_list) {
+      if (err) { return next(err); }
+      //Successful, so render
+      if (user_list) {
+        res.render('index', { user: req.user, failure: false, userDetail: user_list});
+      } else {
+        res.render('index', { user: req.user, failure: false, userDetail: null});
+      }
+    });
+  } else {
+    res.render('index', { user: req.user, failure: false, userDetail: null});
+  }
 }; 
 
 exports.get_log_in_fail = function(req, res, next) {

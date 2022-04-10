@@ -17,6 +17,8 @@
         <% if (userDetail) {%>
             <h2>Your name is <%= userDetail.first_name%> <%= userDetail.last_name%></h2>
             <h2>Your email is <%= userDetail.email%>.</h1>
+            <a href="/user/delete">Delete Your User Account</a>
+            <a href= <%= userDetail.url + "/update" %> >Update Your User Account</a>
          <% } else { %>
             <a href="/user/create">Create Your User Account</a>
             <a href="/log-out">LOG OUT</a>
