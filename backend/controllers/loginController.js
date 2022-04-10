@@ -84,6 +84,14 @@ exports.get_sign_up = function(req, res) {
   res.render('sign-up-form')
 };
 
+exports.get_username = function(req, res) {
+  if (req.user) {
+    res.send(req.user.username)
+  } else {
+    res.send("Not signed in")
+  }
+};
+
 exports.password_authenticate = passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/failure',
