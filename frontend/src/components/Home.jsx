@@ -1,30 +1,41 @@
-import React from 'react'
-import {
-  Routes,
-  Route,
-} from 'react-router-dom'
+import React, { useState } from 'react'
+
+import { Link } from 'react-router-dom'
 
 // Routes
-import Login from './Login'
-import Signup from './Signup'
-import Survey from './Survey'
-import Profile from './Profile'
-import Gallery from './Gallery'
 import NavBar from './NavBar'
 
 const Home = () => {
+  const [loggedIn, setLoggedIn] = useState(true)
+  const [surveyed, setSurveyed] = useState(false)
+  const [matched, setMatched] = useState('')
+
+  const Display = () => {
+    if (!loggedIn) {
+      return (
+        <Link to="/login" className="text-2xl">But go login!</Link>
+      )
+    } else if (!surveyed) {
+      return (
+        <Link to="/survey" className="text-2xl">Ok..hurry and go take the survey mf!</Link>
+      )
+    } else {
+      return (
+        <div className="text-dark_matcha">You are matched with lol:</div>
+      )
+    }
+  }
+
   const placeholder = 0
 
   return (
-    <div className="bg-white text-3xl">
+    <div className="bg-white text-3xl font-mono">
       <NavBar />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/survey" element={<Survey />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
+      <div className="flex justify-center items-center h-screen">
+        <div className="text-dark_matcha underline">
+          <Display />
+        </div>
+      </div>
     </div>
   )
 }
