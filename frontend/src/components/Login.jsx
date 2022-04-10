@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate()
 
   const login = async () => {
-    await axios.post('/account/login', { username, password })
+    await axios.post('/account/login', { email, password })
       .then(() => {
         navigate('/')
       })
