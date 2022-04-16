@@ -10,4 +10,4 @@ var quesSchema = new Schema(
 );
 
 //export model 
-module.exports = mongoose.model('Question', quesSchema); 
+module.exports = mongoose.model('Question', quesSchema);
