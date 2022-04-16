@@ -6,12 +6,6 @@
     "frontend",
     "backend"
   ],
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "scripts": {
     "frontend": "yarn workspace frontend start",
     "backend": "yarn workspace backend start",

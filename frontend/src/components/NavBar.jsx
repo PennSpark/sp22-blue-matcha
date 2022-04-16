@@ -23,7 +23,6 @@ const NavBar = () => {
   useEffect(() => {
     const getUsername = async () => {
       const { data } = (await axios.get('/username'))
-      console.log(data)
       if (data !== 'Not signed in') {
         setLoggedIn(true)
         setUser(data) 
