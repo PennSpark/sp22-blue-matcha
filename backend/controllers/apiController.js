@@ -3,6 +3,8 @@ var LocalStrategy = require('passport-local');
 var bcrypt = require('bcryptjs');
 var Login = require('../models/login'); 
 var User = require('../models/user');
+var FormSend = require('../models/formSend');
+
 const { body,validationResult } = require('express-validator');
 
   passport.use(new LocalStrategy(function verify(username, password, done) {
@@ -203,7 +205,38 @@ exports.get_user_info = function(req, res, next) {
                 //change to user url 
                 res.status(400).send({message: "Invalid credentials to view user details."})
             } else {
-                res.status(200).render(result);
+                res.status(200).send(result);
             }
     });
+}
+
+//render the form information 
+
+exports.post_form = function(req, res, next) {
+    var formQuestion = new FormSend(
+        {
+            question: req.body.question, 
+            type: req.body.type, 
+            options: req.body.options, 
+            form_number: req.body.form_number,
+        });
+    formQuestion.save(function (err) {
+        if (err) { return next(err); }
+        // Successful - redirect to new author record.
+        res.status(200).send(formQuestion);
+    });
+}
+
+exports.get_form = function(req, res, next) {
+    var formNum = req.body.form_number
+    FormSend.find({'form_number': formNum}).exec(
+        function (err, result) {
+            if (err) {return next(err); }
+            if (result == null) {
+                res.status(400).send({message: "Form doesn't exist."})
+            } else {
+                res.status(200).send(result); 
+            }
+        }
+    )
 }
