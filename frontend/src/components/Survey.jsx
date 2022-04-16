@@ -1,40 +1,49 @@
 import React, { useState, useEffect } from 'react'
 import NavBar from './NavBar'
+import Answer from './Answer'
 
 import axios from 'axios'
 
 const Survey = () => {
-  const [questions, setQuestions] = useState([{question: 'Your favorite animal?', options: ['dog', 'cat', 'whale', 'fish'], choice : ''},
-                                              {question: 'Your faovrite dining hall?', options: ['bruh', 'hill', 'commons', 'kceh'], choice : ''},
-                                              {question: 'Your favorite tea?', options: ['tea', 'matcha', 'blacktea', 'bruh'], choice : ''}])
+  const [initialized, setInitialized] = useState(false)
+
+  const [questions, setQuestions] = useState([])
   const [currIndex, setCurrIndex] = useState(0)
+  const [currType, setCurrType] = useState('')
   const [currQuestion, setCurrQuestion] = useState()
   const [currOptions, setCurrOptions] = useState([])
-  
-  useEffect(() => {
-    const { question, options } = questions[currIndex]
-    setCurrQuestion(question)
-    setCurrOptions(options)
-  }, [currIndex])
 
-  const getQuestions = async () => {
-    await axios.get('/form', {form_number: 1})
-    .then(response => {
-      setQuestions(response)
-    })
-    .catch(error => {
-      alert(`${error.response.data}`)
-    })
-  }
+  useEffect(() => {
+    const getQuestions = async () => {
+      const { data } = (await axios.get('/form/1'))
+      setQuestions(data)
+      const { question, options, type } = data[currIndex]
+      setCurrType(type)
+      setCurrOptions(options)
+      setCurrQuestion(question)
+      setInitialized(true)
+    }
+    getQuestions()
+  }, [])
+
+  useEffect(() => {
+    if (initialized) {
+      const { question, options, type } = questions[currIndex]
+      setCurrType(type)
+      setCurrOptions(options)
+      setCurrQuestion(question)
+    }
+  }, [currIndex])
 
   const lastQuestion = () => {
     if (currIndex <= 0) {
       return
     }
     setCurrIndex(currIndex - 1)
-    const { question, options } = questions[currIndex]
-    setCurrQuestion(question)
+    const { question, options, type } = questions[currIndex]
+    setCurrType(type)
     setCurrOptions(options)
+    setCurrQuestion(question)
   }
 
   const nextQuestion = () => {
@@ -42,17 +51,10 @@ const Survey = () => {
       return
     }
     setCurrIndex(currIndex + 1)
-    const { question, options } = questions[currIndex]
-    setCurrQuestion(question)
+    const { question, options, type } = questions[currIndex]
+    setCurrType(type)
     setCurrOptions(options)
-  }
-
-  const Choice = ({option}) => {
-    return (
-      <button type="button" className="w-full bg-white rounded-xl py-5 px-12 text-left focus:bg-lemon">
-        &gt; {option}
-      </button>
-    )
+    setCurrQuestion(question)
   }
 
   const Left = () => {
@@ -71,6 +73,19 @@ const Survey = () => {
     )
   }
 
+  const markChoice = index => {
+    questions[currIndex].selected = index
+  }
+
+  const AnswerBlock = () => {
+    if (initialized) {
+      console.log(currOptions)
+      return <Answer type={currType} options={currOptions} markChoice={markChoice} />
+    } else {
+      return <></>
+    }
+  }
+
   return (
     <>
       <NavBar />
@@ -81,14 +96,14 @@ const Survey = () => {
             <div>
               <h1 className="ml-5 mb-10 text-2xl">{currQuestion}</h1>
               <div className="flex flex-col gap-5">
-                {currOptions.map((option, index) => <Choice option={option} key={index} />)}
+                <AnswerBlock />
               </div>
             </div>
           </div>
           <Right />
         </div>
       </div>
-    </> 
+    </>
   )
 }
 
