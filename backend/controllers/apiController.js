@@ -4,6 +4,7 @@ var bcrypt = require('bcryptjs');
 var Login = require('../models/login'); 
 var User = require('../models/user');
 var FormSend = require('../models/formSend');
+var FormResponses = require('../models/formResponses');
 
 const { body,validationResult } = require('express-validator');
 
@@ -211,6 +212,22 @@ exports.get_user_info = function(req, res, next) {
 }
 
 //render the form information 
+exports.post_form_response = function(req, res, next) {
+    var formQuestion = new FormSend(
+        {
+            username: req.body.username, 
+            selected: req.body.selected,
+            question: req.body.question, 
+            type: req.body.type, 
+            options: req.body.options, 
+            form_number: req.body.form_number,
+        });
+    formQuestion.save(function (err) {
+        if (err) { return next(err); }
+        // Successful - redirect to new author record.
+        res.status(200).send(formQuestion);
+    });
+}
 
 exports.post_form = function(req, res, next) {
     var formQuestion = new FormSend(
