@@ -245,7 +245,7 @@ exports.post_form = function(req, res, next) {
 }
 
 exports.get_form = function(req, res, next) {
-    var formNum = req.param.form_number
+    var formNum = req.params.form_number
     FormSend.find({'form_number': formNum}).exec(
         function (err, result) {
             if (err) {return next(err); }

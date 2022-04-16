@@ -28,6 +28,6 @@ router.get('/user/details', apiController.get_user_info);
 
 //get form 
 router.post('/addform', apiController.post_form);
-router.get('/form', apiController.get_form);
+router.get('/form/:form_number', apiController.get_form);
 
 module.exports = router;
