@@ -11,7 +11,10 @@ const NavBar = () => {
   const [loggedIn, setLoggedIn] = useState(false)
 
   const logout = async () => {
-    await axios.get('/log-out')
+    await axios.post('/logout')
+      .then(() => {
+        setLoggedIn(false)
+      })
       .catch(error => {
         alert(`${error.response.data}`)
       })

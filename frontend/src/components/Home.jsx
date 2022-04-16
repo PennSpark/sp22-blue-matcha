@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 // Routes
 import NavBar from './NavBar'
@@ -12,14 +13,30 @@ import right from '../imgs/matcha.gif'
 import words from '../imgs/words.gif'
 
 const Home = () => {
-  const [loggedIn, setLoggedIn] = useState(true)
+  const [loggedIn, setLoggedIn] = useState(false)
   const [surveyed, setSurveyed] = useState(false)
   const [matched, setMatched] = useState('')
+
+  useEffect(() => {
+    const getUsername = async () => {
+      const { data } = (await axios.get('/username'))
+      console.log(data)
+      if (data !== 'Not signed in') {
+        setLoggedIn(true)
+        setUser(data) 
+      }
+      console.log(loggedIn)
+    }
+    getUsername()
+  }, [])
 
   const Display = () => {
     if (!loggedIn) {
       return (
-        <Link to="/login" className="text-2xl">But go login!</Link>
+        <div className="flex flex-col justify-center items-center mb-40">
+          <img src={angry} className="h-56 w-56 rounded-2xl" />
+          <Link to="/login" className="text-2xl">Go login!</Link>
+        </div>
       )
     } else if (!surveyed) {
       return (

@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate()
 
   const login = async () => {
-    await axios.post('/password', { username: email, password })
+    await axios.post('/login', { username: email, password })
       .then(() => {
         navigate('/')
       })
@@ -33,7 +33,7 @@ const Login = () => {
             <Link to="/signup" className="text-2xl text-black inline"> sign up</Link>
           </h2>
           <div className="mb-4">
-            <input onChange={e => setEmail(e.target.value)} value={email} className="w-80 shadow border rounded-xl py-4 px-3 mt-16 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="email" type="text" placeholder="Email" />
+            <input onChange={e => setEmail(e.target.value)} value={email} className="w-80 shadow border rounded-xl py-4 px-3 mt-16 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="email" type="text" placeholder="Username" />
           </div>
           <div className="mb-4">
             <input onChange={e => setPassword(e.target.value)} value={password} className="w-80 shadow border rounded-xl py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="password" type="password" placeholder="Password" />

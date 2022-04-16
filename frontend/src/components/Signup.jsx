@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate()
 
   const createUser = async () => {
-    await axios.post('/sign-up', { username: email, password })
+    await axios.post('/sign-up', { username, password })
       .then(() => {
         navigate('/')
       })
