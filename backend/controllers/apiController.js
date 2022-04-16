@@ -225,7 +225,7 @@ exports.post_form_response = function(req, res, next) {
     formQuestion.save(function (err) {
         if (err) { return next(err); }
         // Successful - redirect to new author record.
-        res.status(200).send(formQuestion);
+        res.status(200).json(formQuestion);
     });
 }
 
@@ -240,7 +240,7 @@ exports.post_form = function(req, res, next) {
     formQuestion.save(function (err) {
         if (err) { return next(err); }
         // Successful - redirect to new author record.
-        res.status(200).send(formQuestion);
+        res.status(200).json(formQuestion);
     });
 }
 
@@ -250,9 +250,9 @@ exports.get_form = function(req, res, next) {
         function (err, result) {
             if (err) {return next(err); }
             if (result == null) {
-                res.status(400).send({message: "Form doesn't exist."})
+                res.status(400).json({message: "Form doesn't exist."})
             } else {
-                res.status(200).send(result); 
+                res.status(200).json(result); 
             }
         }
     )
