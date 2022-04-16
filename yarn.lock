@@ -2372,7 +2372,7 @@
     "core-js" "^2.4.0"
     "regenerator-runtime" "^0.10.0"
 
-"backend@file:/Users/claire/Desktop/matcha/backend":
+"backend@file:/Users/alyssanie/Documents/GitHub/sp22-blue-matchamaker/backend":
   "resolved" "file:backend"
   "version" "0.0.0"
   dependencies:
@@ -2381,6 +2381,7 @@
     "connect-sqlite3" "^0.9.13"
     "cookie-parser" "~1.4.4"
     "debug" "~2.6.9"
+    "edmonds-blossom" "^1.0.0"
     "ejs-lint" "^1.2.1"
     "express" "~4.16.1"
     "express-session" "^1.17.2"
@@ -3481,6 +3482,11 @@
     "jsbn" "~0.1.0"
     "safer-buffer" "^2.1.0"
 
+"edmonds-blossom@^1.0.0":
+  "integrity" "sha1-6TcnO9PL4ScQtmhG4eW1CGvfH5c="
+  "resolved" "https://registry.npmjs.org/edmonds-blossom/-/edmonds-blossom-1.0.0.tgz"
+  "version" "1.0.0"
+
 "ee-first@1.1.1":
   "version" "1.1.1"
 
@@ -4243,7 +4249,7 @@
 "fresh@0.5.2":
   "version" "0.5.2"
 
-"frontend@file:/Users/claire/Desktop/matcha/frontend":
+"frontend@file:/Users/alyssanie/Documents/GitHub/sp22-blue-matchamaker/frontend":
   "resolved" "file:frontend"
   "version" "1.0.0"
   dependencies:
