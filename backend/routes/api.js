@@ -36,5 +36,6 @@ router.get('/form/:form_number', apiController.get_form);
 router.post('/change_participating_status', apiController.change_chat_status); 
 router.get('/all_users', apiController.get_all_users); 
 
+router.post('/run_algorithm', apiController.post_run_algorithm);
 
 module.exports = router;

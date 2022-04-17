@@ -5,6 +5,7 @@ var Login = require('../models/login');
 var User = require('../models/user');
 var FormSend = require('../models/formSend');
 var FormResponses = require('../models/formResponses');
+var algorithmController = require('../algorithm/edmonds');
 
 const { body,validationResult } = require('express-validator');
 
@@ -267,15 +268,24 @@ exports.post_form_response = function(req, res, next) {
     var formResponse = new FormResponses(
         {
             username: req.body.username, 
+            form_number: req.body.form_number,
             responses: req.body.responses,
         });
-    formResponse.save(function (err) {
-        if (err) { return next(err); }
-        // Successful - redirect to new author record.
-        res.status(200).json(formResponse);
-    });
+    FormResponses.findOne({'username': req.body.username}).exec(
+        function(err, found_response) {
+            if (err) { return next(err); }
+            if (found_response) {
+                res.status(400).json({message: 'Already filled out form.'})
+            } else {
+                formResponse.save(function (err) {
+                    if (err) { return next(err); }
+                    // Successful - redirect to new author record.
+                    res.status(200).json(formResponse);
+                });
+            }
+        }
+    )
 }
-
 exports.post_form = function(req, res, next) {
     var formQuestion = new FormSend(
         {
@@ -324,6 +334,7 @@ exports.update_user_chatted = function (req, res, next) {
         }
     )
 }
+exports.post_run_algorithm = algorithmController.edmonds_algorithm
 
 exports.get_all_users = function(req, res, next) {
     User.find({}).select({first_name: 1, last_name: 1, userLogin: 1, _id: 0}).exec(

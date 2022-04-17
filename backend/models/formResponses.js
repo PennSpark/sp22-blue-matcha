@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var formresponsesSchema = new Schema(
     {
         username: {type: String}, 
+        form_number: {type: Number},
         responses: [{
             question: {type: String, required: true}, 
             type: {
