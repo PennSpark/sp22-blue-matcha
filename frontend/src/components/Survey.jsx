@@ -7,39 +7,76 @@ import axios from 'axios'
 const Survey = () => {
   const [initialized, setInitialized] = useState(false)
 
+  const [user, setUser] = useState('')
+
   const [questions, setQuestions] = useState([])
   const [currIndex, setCurrIndex] = useState(0)
   const [currType, setCurrType] = useState('')
   const [currQuestion, setCurrQuestion] = useState()
   const [currOptions, setCurrOptions] = useState([])
+  const [currSelected, setCurrSelected] = useState(-1)
 
   useEffect(() => {
     const getQuestions = async () => {
       const { data } = (await axios.get('/form/1'))
       setQuestions(data)
-      const { question, options, type } = data[currIndex]
+      const { question, options, type, selected } = data[currIndex]
       setCurrType(type)
       setCurrOptions(options)
       setCurrQuestion(question)
+      if (selected) {
+        setCurrSelected(selected)
+      }
       setInitialized(true)
     }
+
+    const getUsername = async () => {
+      const { data } = (await axios.get('/username'))
+      if (data !== 'Not signed in') {
+        setUser(data)
+      }
+    }
+
     getQuestions()
+    getUsername()
   }, [])
 
   useEffect(() => {
     if (initialized) {
-      const { question, options, type } = questions[currIndex]
+      const { question, options, type, selected } = questions[currIndex]
       setCurrType(type)
       setCurrOptions(options)
       setCurrQuestion(question)
+      if (selected) {
+        setCurrSelected(selected)
+      }
     }
   }, [currIndex])
+
+  const onSubmitForm = async () => {
+    await axios.post('/form_submit', { username: user, responses: questions })
+    .then(res => {
+      console.log(res)
+    })
+    .catch(error => {
+      alert(error.message)
+    })
+  }
+
+  const markChoice = index => {
+    questions[currIndex].selected = index
+  }
 
   const lastQuestion = () => {
     if (currIndex <= 0) {
       return
     }
-    setCurrIndex(currIndex - 1)
+    if (currIndex === questions.length - 1) {
+      setCurrIndex(currIndex - 1)
+    } else {
+      setCurrIndex(currIndex - 1)
+    }
+    setCurrSelected(-1)
     const { question, options, type } = questions[currIndex]
     setCurrType(type)
     setCurrOptions(options)
@@ -48,8 +85,11 @@ const Survey = () => {
 
   const nextQuestion = () => {
     if (currIndex >= questions.length - 1) {
+      setCurrQuestion('Time to Submit :PP')
+      setCurrType('submit')
       return
     }
+    setCurrSelected(-1)
     setCurrIndex(currIndex + 1)
     const { question, options, type } = questions[currIndex]
     setCurrType(type)
@@ -73,14 +113,9 @@ const Survey = () => {
     )
   }
 
-  const markChoice = index => {
-    questions[currIndex].selected = index
-  }
-
   const AnswerBlock = () => {
     if (initialized) {
-      console.log(currOptions)
-      return <Answer type={currType} options={currOptions} markChoice={markChoice} />
+      return <Answer type={currType} options={currOptions} markChoice={markChoice} selected={currSelected} onSubmitForm={onSubmitForm}/>
     } else {
       return <></>
     }

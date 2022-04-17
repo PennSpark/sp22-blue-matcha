@@ -19,7 +19,7 @@ const Signup = () => {
         navigate('/')
       })
       .catch(error => {
-        alert(`${error.response.data}`)
+        alert(error.message)
       })
   }
 

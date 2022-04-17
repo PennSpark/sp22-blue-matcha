@@ -22,9 +22,7 @@ const Home = () => {
       const { data } = (await axios.get('/username'))
       if (data !== 'Not signed in') {
         setLoggedIn(true)
-        setUser(data) 
       }
-      console.log(loggedIn)
     }
     getUsername()
   }, [])
@@ -57,9 +55,7 @@ const Home = () => {
       )
     }
   }
-
-  const placeholder = 0
-
+  
   return (
     <div className="bg-white text-3xl font-mono">
       <NavBar />
