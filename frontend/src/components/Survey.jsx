@@ -16,6 +16,8 @@ const Survey = () => {
   const [currOptions, setCurrOptions] = useState([])
   const [currSelected, setCurrSelected] = useState(-1)
 
+  console.log(questions)
+
   useEffect(() => {
     const getQuestions = async () => {
       const { data } = (await axios.get('/form/1'))
@@ -65,6 +67,7 @@ const Survey = () => {
 
   const markChoice = index => {
     questions[currIndex].selected = index
+    setCurrSelected(index)
   }
 
   const lastQuestion = () => {
@@ -84,6 +87,10 @@ const Survey = () => {
   }
 
   const nextQuestion = () => {
+    if (currSelected === -1) {
+      alert('Select a choice first')
+      return
+    }
     if (currIndex >= questions.length - 1) {
       setCurrQuestion('Time to Submit :PP')
       setCurrType('submit')
