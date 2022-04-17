@@ -4,6 +4,8 @@ import Answer from './Answer'
 
 import axios from 'axios'
 
+const FORM_NUMBER = 1
+
 const Survey = () => {
   const [initialized, setInitialized] = useState(false)
 
@@ -16,11 +18,9 @@ const Survey = () => {
   const [currOptions, setCurrOptions] = useState([])
   const [currSelected, setCurrSelected] = useState(-1)
 
-  console.log(questions)
-
   useEffect(() => {
     const getQuestions = async () => {
-      const { data } = (await axios.get('/form/1'))
+      const { data } = (await axios.get(`/form/${FORM_NUMBER}`))
       setQuestions(data)
       const { question, options, type, selected } = data[currIndex]
       setCurrType(type)
@@ -45,18 +45,15 @@ const Survey = () => {
 
   useEffect(() => {
     if (initialized) {
-      const { question, options, type, selected } = questions[currIndex]
+      const { question, options, type } = questions[currIndex]
       setCurrType(type)
       setCurrOptions(options)
       setCurrQuestion(question)
-      if (selected) {
-        setCurrSelected(selected)
-      }
     }
   }, [currIndex])
 
   const onSubmitForm = async () => {
-    await axios.post('/form_submit', { username: user, responses: questions })
+    await axios.post('/form_submit', { username: user, responses: questions, form_number: FORM_NUMBER })
     .then(res => {
       console.log(res)
     })
@@ -74,12 +71,17 @@ const Survey = () => {
     if (currIndex <= 0) {
       return
     }
+    const { selected } = questions[currIndex - 1]
     if (currIndex === questions.length - 1) {
       setCurrIndex(currIndex - 1)
     } else {
       setCurrIndex(currIndex - 1)
     }
-    setCurrSelected(-1)
+    if (selected) {
+      setCurrSelected(selected)
+    } else {
+      setCurrSelected(-1)
+    }
     const { question, options, type } = questions[currIndex]
     setCurrType(type)
     setCurrOptions(options)
@@ -96,7 +98,12 @@ const Survey = () => {
       setCurrType('submit')
       return
     }
-    setCurrSelected(-1)
+    const { selected } = questions[currIndex + 1]
+    if (selected) {
+      setCurrSelected(selected)
+    } else {
+      setCurrSelected(-1)
+    }
     setCurrIndex(currIndex + 1)
     const { question, options, type } = questions[currIndex]
     setCurrType(type)
