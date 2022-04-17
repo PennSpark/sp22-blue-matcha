@@ -12,7 +12,15 @@ var userSchema = new Schema(
         year_of_grad: {type: Number, required: true, min: 2000, max: 2050}, 
         email: {type: String, required: true, minLength: 1}, 
         date_created_account: {type: Date}, 
-        userLogin: {type: String, required: true}
+        userLogin: {type: String, required: true}, 
+        phone_number: {type: Number}, 
+        gender: {type: String, required: true, enum: ['Female', 'Male', 'Other']}, 
+        major: {type: String}, 
+        year_joined_spark: {type: String}, 
+        spark_role: {type: String}, 
+        chat_participating: {type: Boolean, required: true}, 
+        users_chatted: [String], 
+        users_blocked: [String]
     }
 );
 

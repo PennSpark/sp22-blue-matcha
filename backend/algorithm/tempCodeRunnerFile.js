@@ -1,1 +1,1 @@
-var blossom = require('edmonds-blossom');
+      return results.toArray(); 

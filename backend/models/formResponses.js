@@ -6,14 +6,16 @@ var Schema = mongoose.Schema;
 var formresponsesSchema = new Schema(
     {
         username: {type: String}, 
-        question: {type: String, required: true}, 
-        type: {
-            type: String, 
-            required: true, 
-            enum: ['MC', 'Short', 'Long']}, 
-        options: [String], 
-        form_number: {type: Number, required: true}, 
-        selected: {type: String}, 
+        responses: [{
+            question: {type: String, required: true}, 
+            type: {
+                type: String, 
+                required: true, 
+                enum: ['MC', 'Short', 'Long']}, 
+            options: [String], 
+            form_number: {type: Number, required: true}, 
+            selected: {type: Number}
+        }]
     }
 );
 

@@ -11,7 +11,7 @@ var formsendSchema = new Schema(
             enum: ['MC', 'Short', 'Long']}, 
         options: [String], 
         form_number: {type: Number, required: true}, 
-        selected: {type: String}
+        selected: {type: Number}
     }
 );
 

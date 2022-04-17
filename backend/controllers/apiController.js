@@ -125,8 +125,16 @@ exports.post_create_user = function(req, res, next) {
             last_name: req.body.last_name,
             year_of_grad: req.body.year_of_grad,
             email: req.body.email,
+            phone_number: req.body.phone_number, 
+            gender: req.body.gender, 
+            major: req.body.major, 
+            year_joined_spark: req.body.year_joined_spark, 
+            spark_role: req.body.spark_role, 
+            chat_participating: false,
             date_created_account: new Date(), 
-            userLogin: req.user.username
+            userLogin: req.user.username, 
+            users_chatted: req.body.users_chatted, 
+            users_blocked: req.body.users_blocked
         });
     user.save(function (err) {
         if (err) { return next(err); }
@@ -158,17 +166,19 @@ exports.post_update_user = [
                       last_name: req.body.last_name, 
                       email: req.body.email,
                       year_of_grad: req.body.year_of_grad,
+                      phone_number: req.body.phone_number, 
+                      gender: req.body.gender, 
+                      major: req.body.major, 
+                      year_joined_spark: req.body.year_joined_spark, 
+                      spark_role: req.body.spark_role, 
+                      users_chatted: req.body.users_chatted, 
+                      users_blocked: req.body.users_blocked,
                       _id: oldID //This is required, or a new ID will be assigned!
                      });
                 if (!errors.isEmpty()) {
                         // There are errors. Render form again with sanitized values/error messages.
                         // Get all authors and genres for form.
-                        res.render('user', { title: 'Update Account', 
-                        first_name: results.first_name, 
-                        last_name: results.last_name, 
-                        year_of_grad: results.year_of_grad,
-                        email: results.email, errors: errors.array()
-                        });
+                        res.status(400).json(errors);
                         return;
                     } else {
                         // Data from form is valid. Update the record.
@@ -192,21 +202,62 @@ exports.post_delete_user = function (req, res, next) {
     res.status(200).json({message: "Successfully deleted"});
 }
 
+exports.change_chat_status = function(req, res, next) {
+    User.findOne({'userLogin': req.user.username}).exec(
+        function(err, results) {
+            if (err) {return next(err); }
+            if (results==null) { // No results.
+                res.status(400).json({message: "User doesn't have account."})
+            }
+            var update = { 'chat_participating': req.body.status}
+            User.findOneAndUpdate({'userLogin': req.user.username}, update, {}, 
+            function (err, account) {
+                if (err) { return next(err); }
+                   // Successful - redirect to book detail page.
+                   res.status(200).json({ 
+                       message: "success!"});
+                }
+            )
+
+        }
+    )
+}
+
+
 //view user information in dashboard 
-exports.get_user_info = function(req, res, next) {
+exports.get_user_by_link = function(req, res, next) {
     //check whether or not the request is from the correct user 
     //const {user} = req.user;
     User.findById(req.params.id)
         .exec(function (err, result) {
             if (err) { return next(err); }
             if (result==null) { // No results.
-                res.status(400).send({message: "User not found."})
+                res.status(400).json({message: "User not found."})
             }
             if (result.userLogin !== req.user.username) {
                 //change to user url 
-                res.status(400).send({message: "Invalid credentials to view user details."})
+                res.status(400).json({message: "Invalid credentials to view user details."})
             } else {
-                res.status(200).send(result);
+                res.status(200).json(result);
+            }
+    });
+}
+
+//view user information in dashboard 
+exports.get_user_by_username = function(req, res, next) {
+    //check whether or not the request is from the correct user 
+    //const {user} = req.user;
+    User.findOne({'userLogin': req.body.username})
+        .exec(function (err, result) {
+            if (err) { return next(err); }
+            if (result==null) { // No results.
+                res.status(400).json({message: "User not found."})
+            }
+            if (result.userLogin !== req.user.username) {
+                //change to user url 
+                res.status(400).json({message: "Invalid credentials to view user details."})
+            } else {
+                res.status(200).json(result);
             }
     });
 }
@@ -216,11 +267,7 @@ exports.post_form_response = function(req, res, next) {
     var formQuestion = new FormSend(
         {
             username: req.body.username, 
-            selected: req.body.selected,
-            question: req.body.question, 
-            type: req.body.type, 
-            options: req.body.options, 
-            form_number: req.body.form_number,
+            responses: req.body.responses,
         });
     formQuestion.save(function (err) {
         if (err) { return next(err); }
@@ -257,3 +304,33 @@ exports.get_form = function(req, res, next) {
         }
     )
 }
+/* user must be logged in, req should have body with chattedUser
+*/
+exports.update_user_chatted = function (req, res, next) {
+    User.findOne({"userLogin": req.user.username}).exec(
+        function (err, result) {
+            if (err) {return next(err); }
+            var usersChatted = result.usersChatted
+            usersChatted.push(req.body.chattedUser)
+            var update = { users_chatted: usersChatted }
+            User.findOneAndUpdate({'userLogin': req.user.username}, update, {}, 
+            function (err, result) {
+                if (err) { return next(err); }
+                   // Successful - redirect to book detail page.
+                   res.status(200).json({ 
+                       message: "success!"});
+                }
+            )
+        }
+    )
+}
+
+exports.get_all_users = function(req, res, next) {
+    User.find({}).select({first_name: 1, last_name: 1, userLogin: 1, _id: 0}).exec(
+        function(err, result) {
+            if (err) {return next(err); }
+            res.status(200).json(result)
+        }
+    )
+}
+

@@ -24,10 +24,17 @@ router.post('/updateaccount', apiController.post_update_user);
 router.post('/deleteuser', apiController.post_delete_user); 
 
 //if success (status 200) returns an object with user details. 
-router.get('/user/details', apiController.get_user_info); 
+router.get('/user/:id', apiController.get_user_by_link); 
+router.get('/user/details', apiController.get_user_by_username); 
 
 //get form 
+router.post('/form_submit', apiController.post_form_response);
 router.post('/addform', apiController.post_form);
 router.get('/form/:form_number', apiController.get_form);
+
+//coffee chat participating status 
+router.post('/change_participating_status', apiController.change_chat_status); 
+router.get('/all_users', apiController.get_all_users); 
+
 
 module.exports = router;

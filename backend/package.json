@@ -10,6 +10,7 @@
   "dependencies": {
     "async": "^3.2.3",
     "bcryptjs": "^2.4.3",
+    "bs-platform": "^7.3.2",
     "connect-sqlite3": "^0.9.13",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
