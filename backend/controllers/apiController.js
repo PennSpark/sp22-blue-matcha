@@ -264,15 +264,15 @@ exports.get_user_by_username = function(req, res, next) {
 
 //render the form information 
 exports.post_form_response = function(req, res, next) {
-    var formQuestion = new FormSend(
+    var formResponse = new FormResponses(
         {
             username: req.body.username, 
             responses: req.body.responses,
         });
-    formQuestion.save(function (err) {
+    formResponse.save(function (err) {
         if (err) { return next(err); }
         // Successful - redirect to new author record.
-        res.status(200).json(formQuestion);
+        res.status(200).json(formResponse);
     });
 }
 
