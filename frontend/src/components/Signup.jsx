@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import pouring_tea from '../imgs/logowords.png'
 
-const Login = () => {
+const Signup = () => {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -51,4 +51,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Signup
