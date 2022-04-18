@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 // Routes
@@ -16,15 +16,32 @@ const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [surveyed, setSurveyed] = useState(false)
   const [matched, setMatched] = useState('')
+  const navigate = useNavigate()
 
   useEffect(() => {
-    const getUsername = async () => {
-      const { data } = (await axios.get('/username'))
-      if (data !== 'Not signed in') {
-        setLoggedIn(true)
-      }
+    setLoggedIn(true)
+    // const getUsername = async () => {
+    //   const { data } = (await axios.get('/username'))
+    //   if (data !== 'Not signed in') {
+    //     setLoggedIn(true)
+    //   }
+    // }
+    // getUsername()
+    const getUserdetails = async () => {
+      const { data } = (await axios.get('/details')
+        .catch(err => {
+          if (err.response) {
+            console.log(err.response.status)
+            if (err.response.status === 406) {
+              navigate('/create_user') //user account doesn't eixst
+            } else if (err.response.status === 400) {
+              navigate('/') //user isn't logged in
+            }
+          }
+          console.log(err)
+        }))
     }
-    getUsername()
+    getUserdetails()
   }, [])
 
   const Display = () => {

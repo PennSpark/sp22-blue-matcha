@@ -25,7 +25,7 @@ router.post('/deleteuser', apiController.post_delete_user);
 
 //if success (status 200) returns an object with user details. 
 router.get('/user/:id', apiController.get_user_by_link); 
-router.get('/user/details', apiController.get_user_by_username); 
+router.get('/details', apiController.get_user_by_username); 
 
 //get form 
 router.post('/form_submit', apiController.post_form_response);

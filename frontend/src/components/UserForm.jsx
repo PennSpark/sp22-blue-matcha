@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 import Dropdown from './Dropdown'
 import Checkbox from './Checkbox'
 import axios from 'axios'
+//import * as yup from 'yup';
 
 const CURR_YEAR = 2022
 const SPARK_ROLES = ['Red Developer', 'Red Designer', 'Blue Developer', 'Blue Designer', 'Blue Instructor', 'Executive Board']
@@ -25,15 +26,22 @@ const UserForm = () => {
 
     const navigate = useNavigate()
     const submit = async () => {
-        await axios.post('/createaccount', { first_name, last_name, year_of_grad, email, phone_number,
-        gender, major, year_joined_spark, spark_role, users_chatted, users_blocked })
-        .then(() => {
-            navigate('/profile')
-        })
+        // const schema = yup.object().shape({
+        //     first_name: yup.string().required().min(1, 'Please enter a name.'), 
+        //     last_name: yup.string().required().min(1, 'Please enter a last name.'), 
+        //     year_of_grad: yup.required().min(1, 'Please enter your grad year.'),
+        //     email: yup.string().required()
+        // })
+        const data = { first_name, last_name, year_of_grad, email, phone_number,
+            gender, major, year_joined_spark, spark_role, users_chatted, users_blocked }
+        // schema.validate(data).then(data => console.log(data)).catch(err => console.log(err))
+        await axios.post('/createaccount', data)
+        .then(() => navigate('/home'))
         .catch(error => {
-            alert(error.message)
+            console.log(error.message)
         })
     }
+
     useEffect(() => {
         const getUsers = async () => {
             const { data } = (await axios.get('/all_users'))
@@ -46,7 +54,6 @@ const UserForm = () => {
         
     return (
         <div>
-            <NavBar />
             <div className="flex justify-center mt-20 mb-20">
             <div className="grid grid-cols-5 bg-light_matcha w-3/4 h-5/6 p-20 rounded-3xl shadow-lg">
                 <div className="col-span-full flex flex-col justify-center items-center">

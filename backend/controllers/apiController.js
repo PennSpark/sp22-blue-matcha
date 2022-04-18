@@ -111,37 +111,41 @@ exports.post_sign_up = function(req, res, next) {
 
 /*figure it you want to santize the data later*/ 
 exports.post_create_user = function(req, res, next) {
-    User.find({'userLogin': req.user.username})
-    .exec(function (err, user_list) {
-      if (err) { return next(err); }
-      //Successful, so render
-      if (user_list.length > 0) {
-        res.status(400).json({message: "User already created."})
-        return;
-      };
-    });
-    var user = new User(
-        {
-            first_name: req.body.first_name,
-            last_name: req.body.last_name,
-            year_of_grad: req.body.year_of_grad,
-            email: req.body.email,
-            phone_number: req.body.phone_number, 
-            gender: req.body.gender, 
-            major: req.body.major, 
-            year_joined_spark: req.body.year_joined_spark, 
-            spark_role: req.body.spark_role, 
-            chat_participating: false,
-            date_created_account: new Date(), 
-            userLogin: req.user.username, 
-            users_chatted: req.body.users_chatted, 
-            users_blocked: req.body.users_blocked
-        });
-    user.save(function (err) {
+    if (!res.user) {
+        res.status(400).json({message: "Please log in."})
+    } else {
+        User.find({'userLogin': req.user.username})
+        .exec(function (err, user_list) {
         if (err) { return next(err); }
-        // Successful - redirect to new author record.
-        res.status(200).json(user);
-    });
+        //Successful, so render
+        if (user_list.length > 0) {
+            res.status(400).json({message: "User already created."})
+            return;
+        };
+        });
+        var user = new User(
+            {
+                first_name: req.body.first_name,
+                last_name: req.body.last_name,
+                year_of_grad: req.body.year_of_grad,
+                email: req.body.email,
+                phone_number: req.body.phone_number, 
+                gender: req.body.gender, 
+                major: req.body.major, 
+                year_joined_spark: req.body.year_joined_spark, 
+                spark_role: req.body.spark_role, 
+                chat_participating: false,
+                date_created_account: new Date(), 
+                userLogin: req.user.username, 
+                users_chatted: req.body.users_chatted, 
+                users_blocked: req.body.users_blocked
+            });
+        user.save(function (err) {
+            if (err) { return next(err); }
+            // Successful - redirect to new author record.
+            res.status(200).json(user);
+        });
+    }
 }
 
 exports.post_update_user = [
@@ -225,6 +229,7 @@ exports.change_chat_status = function(req, res, next) {
 }
 
 
+
 //view user information in dashboard 
 exports.get_user_by_link = function(req, res, next) {
     //check whether or not the request is from the correct user 
@@ -248,19 +253,23 @@ exports.get_user_by_link = function(req, res, next) {
 exports.get_user_by_username = function(req, res, next) {
     //check whether or not the request is from the correct user 
     //const {user} = req.user;
-    User.findOne({'userLogin': req.body.username})
+    if (!req.user) {
+        res.status(400).json({message: "Not logged in."})
+    } else {
+        User.findOne({'userLogin': req.user.username})
         .exec(function (err, result) {
             if (err) { return next(err); }
-            if (result==null) { // No results.
-                res.status(400).json({message: "User not found."})
-            }
-            if (result.userLogin !== req.user.username) {
+            if (!result) { // No results.
+                res.status(406).json({message: "User not found."})
+            } else if (result.userLogin !== req.user.username) {
                 //change to user url 
                 res.status(400).json({message: "Invalid credentials to view user details."})
             } else {
                 res.status(200).json(result);
             }
-    });
+        });
+    }
+    
 }
 
 //render the form information 

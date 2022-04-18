@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
  
 import axios from 'axios'
  
@@ -9,26 +10,26 @@ import logo from '../imgs/logo.png'
 const NavBar = () => {
   const [user, setUser] = useState('')
   const [loggedIn, setLoggedIn] = useState(false)
+  const navigate = useNavigate()
 
   const logout = async () => {
     await axios.post('/logout')
       .then(() => {
         setLoggedIn(false)
+        navigate('/')
       })
       .catch(error => {
         alert(`${error.response.data}`)
       })
   }
-
   useEffect(() => {
     const getUsername = async () => {
-      const { data } = (await axios.get('/username'))
-      if (data !== 'Not signed in') {
+      const {data} = (await axios.get('/username').catch(err => navigate('/')))
+      if (data.message !== 'Not signed in') {
         setLoggedIn(true)
         setUser(data) 
-      }
+      } 
     }
-
     getUsername()
   }, [])
 
