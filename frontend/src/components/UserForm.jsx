@@ -87,7 +87,7 @@ const UserForm = () => {
                     </div>
                     <div className="mb-4">
                         <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1" for="year_joined_spark">year joined spark:</label>
-                        <Dropdown items={Array.from(new Array(4), (x, i) => i - 4 + CURR_YEAR)} setSelected={setYear_joined_spark} selected={year_joined_spark} fieldName={'Year Joined Spark'} />
+                        <Dropdown items={Array.from(new Array(5), (x, i) => i - 4 + CURR_YEAR)} setSelected={setYear_joined_spark} selected={year_joined_spark} fieldName={'Year Joined Spark'} />
                     </div>
                 </div>
                 <div className="mb-10" >
