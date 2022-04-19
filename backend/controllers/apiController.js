@@ -111,20 +111,18 @@ exports.post_sign_up = function(req, res, next) {
 
 /*figure it you want to santize the data later*/ 
 exports.post_create_user = function(req, res, next) {
-    if (!res.user) {
+    if (!req.user) {
         res.status(400).json({message: "Please log in."})
     } else {
         User.find({'userLogin': req.user.username})
         .exec(function (err, user_list) {
-        if (err) { return next(err); }
+            if (err) { return next(err); }
         //Successful, so render
-        if (user_list.length > 0) {
-            res.status(400).json({message: "User already created."})
-            return;
-        };
-        });
-        var user = new User(
-            {
+            if (user_list.length > 0) {
+                res.status(409).json({message: "User already created."})
+                return;
+            }
+            var user = new User({
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
                 year_of_grad: req.body.year_of_grad,
@@ -139,12 +137,13 @@ exports.post_create_user = function(req, res, next) {
                 userLogin: req.user.username, 
                 users_chatted: req.body.users_chatted, 
                 users_blocked: req.body.users_blocked
-            });
-        user.save(function (err) {
-            if (err) { return next(err); }
-            // Successful - redirect to new author record.
-            res.status(200).json(user);
-        });
+            })
+            user.save(function (err) {
+                if (err) { return next(err); }
+                // Successful - redirect to new author record.
+                res.status(200).json(user);
+            })
+        })
     }
 }
 

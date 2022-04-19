@@ -1,7 +1,11 @@
 import React from 'react'
 
+// Routes
+import NavBar from './NavBar'
+
 const Gallery = () => (
-  <div className="py-10">
+  <div>
+    <NavBar />
     <h1 className="text-center text-dark_matcha"> Welcome to the Gallery! </h1>
   </div>
 )

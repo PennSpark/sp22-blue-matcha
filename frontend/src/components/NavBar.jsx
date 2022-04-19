@@ -24,7 +24,14 @@ const NavBar = () => {
   }
   useEffect(() => {
     const getUsername = async () => {
-      const {data} = (await axios.get('/username').catch(err => navigate('/')))
+      const {data} = (await axios.get('/username').catch(err => {
+        if (err.response) {
+          console.log(err.response)
+          if (err.response.status === 406) {
+            navigate('/') //user not logged in
+          } 
+        }
+      }))
       if (data.message !== 'Not signed in') {
         setLoggedIn(true)
         setUser(data) 
@@ -45,7 +52,7 @@ const NavBar = () => {
               <Link to="/gallery" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Gallery</Link>
             </li>
             <li>
-              <Link to="/" className="hover:bg-matcha hover:shadow-md border-x-4 border-dotted border-matcha py-3 px-8 rounded-xl">Home</Link>
+              <Link to="/home" className="hover:bg-matcha hover:shadow-md border-x-4 border-dotted border-matcha py-3 px-8 rounded-xl">Home</Link>
             </li>
             <li>
               <Link to="/profile" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Profile</Link>

@@ -5,6 +5,7 @@ import axios from 'axios'
 
 // Routes
 import NavBar from './NavBar'
+import Schedule from './Schedule'
 
 //images
 import angry from '../imgs/angrymatcha.gif'
@@ -34,8 +35,6 @@ const Home = () => {
             console.log(err.response.status)
             if (err.response.status === 406) {
               navigate('/create_user') //user account doesn't eixst
-            } else if (err.response.status === 400) {
-              navigate('/') //user isn't logged in
             }
           }
           console.log(err)
@@ -57,6 +56,7 @@ const Home = () => {
         <div className="flex flex-col justify-center items-center mb-40">
           <img src={angry} className="h-56 w-56 rounded-2xl" />
           <Link to="/survey" className="text-2xl">Ok..hurry and go take the survey mf!</Link>
+          
         </div>
       )
     } else {
@@ -76,11 +76,12 @@ const Home = () => {
   return (
     <div className="bg-white text-3xl font-mono">
       <NavBar />
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex flex-col justify-center items-center mb-20">
         <div className="text-dark_matcha underline">
           <Display />
         </div>
-      </div>
+          <div className="w-3/4">< Schedule /></div>
+        </div>
     </div>
   )
 }
