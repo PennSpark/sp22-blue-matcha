@@ -7,10 +7,11 @@ var blossom = require("edmonds-blossom");
 const FORM_NUMBER = 1; 
 const STARTING_UTILITY_POINTS = 5; 
 
-//results: [2,-1,0];
 /**
- * todo: specific a param for req.number for which form to run 
+ * todo: specific a param for req.body.number for which form to run 
  * the algorithm on. 
+ * create a true for 1) allowing users to "match-make", 2) allowing users to request. 
+ * match-making increases compatibility function & users can request 
  */
 exports.edmonds_algorithm = function(req, res, next) {
   //Matches.find() if there exists a match alr generated for that week. 
@@ -47,6 +48,7 @@ exports.edmonds_algorithm = function(req, res, next) {
     let userQueue = user_list
     let edmondArray = []
     user_list.forEach((user) => {
+      //run a BFS search to construct edges. 
       userQueue = userQueue.filter(e => e.userLogin != user.userLogin)
       userQueue.forEach( (other) => {
         if (!user.blockList.includes(other.userLogin) && 
@@ -58,6 +60,7 @@ exports.edmonds_algorithm = function(req, res, next) {
       })
     })
     var results = blossom(edmondArray);
+    //save the results into a schema 
     var translatedResults = []
     results.forEach((x, index) => {
       const item = {

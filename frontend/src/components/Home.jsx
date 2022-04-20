@@ -6,6 +6,7 @@ import axios from 'axios'
 // Routes
 import NavBar from './NavBar'
 import Schedule from './Schedule'
+import UserDetails from './UserDetails'
 
 //images
 import angry from '../imgs/angrymatcha.gif'
@@ -17,6 +18,8 @@ const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false)
   const [surveyed, setSurveyed] = useState(false)
   const [matched, setMatched] = useState('')
+  const [createdAccount, setCreatedAccount] = useState(false)
+  const [userInformation, setUserInformation] = useState(null)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -29,18 +32,25 @@ const Home = () => {
     // }
     // getUsername()
     const getUserdetails = async () => {
-      const { data } = (await axios.get('/details')
+      const {data} = (await axios.get('/details')
         .catch(err => {
           if (err.response) {
             console.log(err.response.status)
             if (err.response.status === 406) {
-              navigate('/create_user') //user account doesn't eixst
+              setCreatedAccount(false)
+              //make sure to make them fill out personal information
             }
           }
-          console.log(err)
-        }))
+          //console.log(err)
+       }))
+      if (data) {
+        setUserInformation(data)
+        setCreatedAccount(true)
+      }
+      console.log(data)
     }
     getUserdetails()
+    
   }, [])
 
   const Display = () => {
@@ -77,11 +87,10 @@ const Home = () => {
     <div className="bg-white text-3xl font-mono">
       <NavBar />
       <div className="flex flex-col justify-center items-center mb-20">
-        <div className="text-dark_matcha underline">
-          <Display />
-        </div>
-          <div className="w-3/4">< Schedule /></div>
-        </div>
+        <div className="text-dark_matcha underline"><Display /></div>
+        <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div>
+        <div className="w-3/4">< Schedule /></div>
+      </div>
     </div>
   )
 }

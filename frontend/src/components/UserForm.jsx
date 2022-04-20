@@ -23,6 +23,7 @@ const UserForm = () => {
     const [users_blocked, setUsers_blocked] = useState([])
     const [all_users, setAll_users] = useState([])
     const [retrieved_users, setRetrieved_users] = useState(false)
+    const [created_account, setCreated_account] = useState(false)
 
     const navigate = useNavigate()
     const submit = async () => {
@@ -35,7 +36,7 @@ const UserForm = () => {
         const data = { first_name, last_name, year_of_grad, email, phone_number,
             gender, major, year_joined_spark, spark_role, users_chatted, users_blocked }
         // schema.validate(data).then(data => console.log(data)).catch(err => console.log(err))
-        await (axios.post('/createaccount', data).catch(error => {
+        await (axios.post(created_account ? '/updateaccount' : '/createaccount', data).catch(error => {
             console.log(data) //test
             console.log(error) //test
         }))
@@ -49,8 +50,48 @@ const UserForm = () => {
             setAll_users(data)
             setRetrieved_users(true)
         }
+        const getUserdetails = async () => {
+            const { data } = (await axios.get('/details')
+              .catch(err => console.log(err)))
+            if (data) {
+                setFirst_name(data.first_name)
+                setLast_name(data.last_name)
+                setYear_of_grad(data.year_of_grad)
+                setEmail(data.email)
+                setPhone_number(data.phone_number)
+                setGender(data.gender)
+                setMajor(data.major)
+                setSpark_role(data.spark_role)
+                setYear_joined_spark(data.year_joined_spark)
+                setUsers_chatted(data.users_chatted)
+                setUsers_blocked(data.users_blocked)
+                setCreated_account(true)
+            }
+          }
         getUsers()
+        getUserdetails()
     }, [])
+
+    const RenderShortAnswer = ({value, setValue, placeholder, label}) => (
+        <div className="mb-4">
+            <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1"> {label} </label>
+            <input onChange={e => setValue(e.target.value)} value={value} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={placeholder} />
+        </div>
+    )
+
+    const RenderDropdown = ({items, value, setValue, placeholder, label}) => (
+        <div className="mb-4">
+            <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1"> {label} </label>
+            <Dropdown items={items} setSelected={setValue} selected={value} fieldName={placeholder} />
+        </div>
+    )
+
+    const RenderCheckbox = ({all_users, users_selected, setUsers_selected, label}) => (
+        <div className="mb-10" >
+            <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1 mb-5">{label}</label>
+            {retrieved_users && <Checkbox all_users={all_users} users_checked={users_selected} setUsers_checked={setUsers_selected} />}
+        </div>
+    )
         
     return (
         <div>
@@ -60,53 +101,34 @@ const UserForm = () => {
                 <h1 className="text-dark_matcha font-semibold text-6xl font-mono mb-8 mt-8">update info</h1>
                 <div className = "grid grid-cols-2 gap-4 ">
                     <div className="mb-4">
-                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1">first name:</label>
-                        <input onChange={e => setFirst_name(e.target.value)} value={first_name} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="first_name" type="text" placeholder="First Name" />
+                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1"> {'first name:'} </label>
+                        <input onChange={e => setLast_name(e.target.value)} value={first_name} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'first name'} />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1">last name:</label>
-                        <input onChange={e => setLast_name(e.target.value)} value={last_name} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="last_name" type="text" placeholder="Last Name" />
+                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1"> {'last name:'} </label>
+                        <input onChange={e => setLast_name(e.target.value)} value={last_name} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'last name'} />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1">phone:</label>
-                        <input onChange={e => setPhone_number(e.target.value)} value={phone_number} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="phone_number" type="number" placeholder="Phone Number" />
+                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1"> {'phone number:'} </label>
+                        <input onChange={e => setPhone_number(e.target.value)} value={phone_number} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'phone number'} />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1">email:</label>
-                        <input onChange={e => setEmail(e.target.value)} value={email} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="email" type="email" placeholder="Email" />
+                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1"> {'email:'} </label>
+                        <input onChange={e => setEmail(e.target.value)} value={email} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'email'} />
                     </div>
+                    <RenderDropdown items={['Female', 'Male', 'Other']} value={gender} setValue={setGender} placeholder={'Gender'} label={'gender:'} />
+                    <RenderDropdown items={Array.from(new Array(7), (x, i) => i + CURR_YEAR)} value={year_of_grad} setValue={setYear_of_grad} placeholder={'Graduating Year'} label={'graduating year:'} />
                     <div className="mb-4">
-                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1">gender:</label>
-                        <Dropdown items={['Female', 'Male', 'Other']} setSelected={setGender} selected={gender} fieldName={'Gender'} />
+                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1"> {'major:'} </label>
+                        <input onChange={e => setMajor(e.target.value)} value={major} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'major'} />
                     </div>
-                    <div className="mb-4">
-                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1" >graduating year:</label>
-                        <Dropdown items={Array.from(new Array(7), (x, i) => i + CURR_YEAR)} setSelected={setYear_of_grad} selected={year_of_grad} fieldName={'Graduating Year'} />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1">major:</label>
-                        <input onChange={e => setMajor(e.target.value)} value={major} className="w-80 shadow border rounded-lg py-4 px-3 
-                        mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="major" type="major" placeholder="Major" />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1" >spark role:</label>
-                        <Dropdown items={SPARK_ROLES} setSelected={setSpark_role} selected={spark_role} fieldName={'Spark Role'} />
-                    </div>
-                    <div className="mb-4">
-                        <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1" >year joined spark:</label>
-                        <Dropdown items={Array.from(new Array(5), (x, i) => i - 4 + CURR_YEAR)} setSelected={setYear_joined_spark} selected={year_joined_spark} fieldName={'Year Joined Spark'} />
-                    </div>
+                    <RenderDropdown items={SPARK_ROLES} value={spark_role} setValue={setSpark_role} placeholder={'Spark Role'} label={'spark role:'} />
+                    <RenderDropdown items={Array.from(new Array(5), (x, i) => i - 4 + CURR_YEAR)} value={year_joined_spark} setValue={setYear_joined_spark} placeholder={'Year Joined Spark'} label={'year joined spark:'} />
                 </div>
-                <div className="mb-10" >
-                <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1 mb-5">select people you've chatted:</label>
-                    {retrieved_users && <Checkbox all_users={all_users} users_chatted={users_chatted} setUsers_chatted={setUsers_chatted} />}
-                </div>
-                <div className="mb-10 mt-5">
-                <label className="block text-dark_matcha font-semibold font-mono text-2xl mt-1 mb-5">people you do not want to pair with:</label>
-                    {retrieved_users && <Checkbox all_users={all_users} users_chatted={users_blocked} setUsers_chatted={setUsers_blocked} />}
-                </div>
+                <RenderCheckbox all_users={all_users} users_selected={users_chatted} setUsers_selected={setUsers_chatted} label={'people you already chatted with:'}/>
+                <RenderCheckbox all_users={all_users} users_selected={users_blocked} setUsers_selected={setUsers_blocked} label={'people you do not wish to coffee chat'}/>
                 <button onClick={e => submit()} type="submit" className="w-60 shadow appearance-none border rounded-lg py-4 px-3 mt-2 text-orange-700 bg-orange-200 text-lg leading-tight">
-                    Complete!
+                    {created_account ? `Update!` : `Complete!`}
                 </button>
                 </div>
             </div>

@@ -136,7 +136,7 @@ exports.post_create_user = function(req, res, next) {
                 date_created_account: new Date(), 
                 userLogin: req.user.username, 
                 users_chatted: req.body.users_chatted, 
-                users_blocked: req.body.users_blocked
+                users_blocked: req.body.users_blocked, 
             })
             user.save(function (err) {
                 if (err) { return next(err); }
