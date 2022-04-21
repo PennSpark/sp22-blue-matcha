@@ -3,12 +3,13 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-// Routes
+// Components
 import NavBar from './NavBar'
 import Schedule from './Schedule'
 import UserDetails from './UserDetails'
+import ProfileCard from './ProfileCard'
 
-//images
+// images
 import angry from '../imgs/angrymatcha.gif'
 import left from '../imgs/sleepmatcha.gif'
 import right from '../imgs/matcha.gif'
@@ -86,6 +87,7 @@ const Home = () => {
   return (
     <div className="bg-white text-3xl font-mono">
       <NavBar />
+      {/* <ProfileCard /> */}
       <div className="flex flex-col justify-center items-center mb-20">
         <div className="text-dark_matcha underline"><Display /></div>
         <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div>

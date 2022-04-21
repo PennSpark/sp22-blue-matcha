@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-
 const UserDetails = ({data}) => {
     const [isChatting, setIsChatting] = useState(data.chat_participating)
+
     const refresh = () => {
         window.location.reload(false)
     }
+
     const login = async () => {
         await axios.post('/login', { username: email, password })
           .then(() => {
@@ -17,10 +18,12 @@ const UserDetails = ({data}) => {
             alert(error.message)
           })
       }
+
     const changeChatting = async () => {
         await axios.post('/change_participating_status', {status: !data.chat_participating}).then(setIsChatting(!isChatting))
         .catch(err => console.log(err))
     }
+    
     return (
         <>
         <div className="grid bg-light_matcha rounded-3xl shadow-lg">

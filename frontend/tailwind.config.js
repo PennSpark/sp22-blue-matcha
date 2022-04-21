@@ -17,6 +17,10 @@ module.exports = {
         darkchoco: '#543D28',
         lightchoco: '#fee7cb',
       },
+      dropShadow: {
+        'light-glow': '0 5px 5px rgba(255, 255, 255, 0.65)',
+        glow: '0 5px 5px rgba(255, 255, 255, 1.0)',
+      },
     },
   },
   // plugins: [require("@tailwindcss/forms")],

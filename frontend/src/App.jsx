@@ -10,7 +10,6 @@ import {
 import Login from './components/Login'
 import Signup from './components/Signup'
 import Survey from './components/Survey'
-import Profile from './components/Profile'
 import Gallery from './components/Gallery'
 import Home from './components/Home'
 import UserForm from './components/UserForm'
@@ -23,7 +22,6 @@ function App() {
       <Route path="/signup" element={<Signup />} />
       <Route path="/survey" element={<Survey />} />
       <Route path="/gallery" element={<Gallery />} />
-      <Route path="/profile" element={<Profile />} />
       <Route path="/create_user" element={<UserForm />} />
     </Routes>
   )
