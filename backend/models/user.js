@@ -20,7 +20,8 @@ var userSchema = new Schema(
         spark_role: {type: String}, 
         chat_participating: {type: Boolean, required: true}, 
         users_chatted: [String], 
-        users_blocked: [String]
+        users_blocked: [String], 
+        admin: {type: Boolean}
     }
 );
 

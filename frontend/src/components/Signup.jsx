@@ -31,7 +31,7 @@ const Signup = () => {
           <h1 className="text-dark_matcha font-semibold text-6xl font-mono mb-2 mt-8">Signup</h1>
           <h2 className="text-greentea text-2xl inline">
             already have an account?
-            <Link to="/login" className="text-2xl text-black inline"> login</Link>
+            <Link to="/" className="text-2xl text-black inline"> login</Link>
           </h2>
           <div className="mb-4">
             <input onChange={e => setUsername(e.target.value)} value={username} className="w-80 shadow border rounded-lg py-4 px-3 mt-16 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="username" type="text" placeholder="Username" />

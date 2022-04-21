@@ -25,7 +25,7 @@ router.post('/deleteuser', apiController.post_delete_user);
 
 //if success (status 200) returns an object with user details. 
 router.get('/user/:id', apiController.get_user_by_link); 
-router.get('/user/details', apiController.get_user_by_username); 
+router.get('/details', apiController.get_user_by_username); 
 
 //get form 
 router.post('/form_submit', apiController.post_form_response);
@@ -36,5 +36,6 @@ router.get('/form/:form_number', apiController.get_form);
 router.post('/change_participating_status', apiController.change_chat_status); 
 router.get('/all_users', apiController.get_all_users); 
 
+router.post('/run_algorithm', apiController.post_run_algorithm);
 
 module.exports = router;

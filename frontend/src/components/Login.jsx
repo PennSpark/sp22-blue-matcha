@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
@@ -10,21 +10,28 @@ import pouring_tea from '../imgs/logowords.png'
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
   const navigate = useNavigate()
 
   const login = async () => {
     await axios.post('/login', { username: email, password })
       .then(() => {
-        navigate('/')
+        navigate('/home')
       })
       .catch(error => {
         alert(error.message)
       })
   }
-
+  useEffect(() => {
+    const getUsername = async () => {
+      const { data } = (await axios.get('/username'))
+      if (data !== 'Not signed in') {
+        navigate('/home')
+      }
+    }
+    getUsername()
+  }, [])
   return (
-    <div className="flex justify-center mt-20">
+    <div className="flex justify-center mt-20 mb-20">
       <div className="grid grid-cols-5 bg-light_matcha w-3/4 h-4/6 p-20 pl-10 rounded-3xl shadow-lg">
         <div className="col-span-2 flex flex-col justify-center items-center">
           <h1 className="text-dark_matcha font-semibold text-7xl font-mono mb-2 mt-8">Welcome!</h1>
