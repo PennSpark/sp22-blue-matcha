@@ -12,6 +12,8 @@ import ProfileModal from './ProfileModal'
 
 const CURR_YEAR = 2022
 const SPARK_ROLES = ['Red Developer', 'Red Designer', 'Blue Developer', 'Blue Designer', 'Blue Instructor', 'Executive Board']
+const ACTIVITIES = ['swipe them in', 'boba & chill', 'get swiped in', 'center city', 'go on walk', 
+  'eat out', 'coffee shop', 'ACME / groceries', 'froyo / ice cream', 'shop / thrifting', 'study sesh']
 
 const pfpPlaceholder = 'http://kmvkf2hvhfn2vj9tl8e6ps7v-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/default-img.png'
 
@@ -29,6 +31,7 @@ const UserForm = () => {
     const [users_chatted, setUsers_chatted] = useState([])
     const [users_blocked, setUsers_blocked] = useState([])
     const [all_users, setAll_users] = useState([])
+    const [activities, setActivities] = useState([])
     const [retrieved_users, setRetrieved_users] = useState(false)
     const [created_account, setCreated_account] = useState(false)
 
@@ -43,7 +46,7 @@ const UserForm = () => {
         //     email: yup.string().required()
         // })
         const data = { first_name, last_name, year_of_grad, email, phone_number,
-            gender, major, year_joined_spark, spark_role, users_chatted, users_blocked }
+            gender, major, year_joined_spark, spark_role, users_chatted, users_blocked, activities }
         // schema.validate(data).then(data => console.log(data)).catch(err => console.log(err))
         await (axios.post(created_account ? '/updateaccount' : '/createaccount', data).catch(error => {
             console.log(data) //test
@@ -76,6 +79,7 @@ const UserForm = () => {
                 setUsers_chatted(data.users_chatted)
                 setUsers_blocked(data.users_blocked)
                 setCreated_account(true)
+                setActivities(data.activities)
             }
           }
         getUsers()
@@ -96,12 +100,27 @@ const UserForm = () => {
         </div>
     )
 
-    const RenderCheckbox = ({all_users, users_selected, setUsers_selected, label}) => (
+    const RenderCheckbox = ({items, item_labels, items_checked, setItems_checked, label}) => (
         <div className="mb-10" >
             <label className="block text-dark_matcha text-2xl p-8 border-t-4 border-dotted border-dark_matcha">{label}</label>
-            {retrieved_users && <Checkbox all_users={all_users} users_checked={users_selected} setUsers_checked={setUsers_selected} />}
+            {retrieved_users && <Checkbox items={items} item_labels={item_labels} items_checked={items_checked} setItems_checked={setItems_checked} />}
         </div>
     )
+
+    const RenderUserCheckboxes = ({all_users, users_selected, setUsers_selected, label}) => {
+      const userLogins = []
+      const labels = []
+      all_users.map(u => {
+        userLogins.push(u.userLogin)
+        labels.push(`${u.first_name} ${u.last_name}`)
+      })
+      return (
+      <div className="mb-10" >
+        <label className="block text-dark_matcha text-2xl p-8 border-t-4 border-dotted border-dark_matcha">{label}</label>
+        {retrieved_users && <Checkbox items={userLogins} item_labels={labels} items_checked={users_selected} setItems_checked={setUsers_selected}/>}
+      </div>
+      )
+    }
 
     const PfpModal = () => {
       if (pfpModalVisible) {
@@ -149,8 +168,9 @@ const UserForm = () => {
                 <RenderDropdown items={SPARK_ROLES} value={spark_role} setValue={setSpark_role} placeholder={'Spark Role'} label={'spark role:'} />
                 <RenderDropdown items={Array.from(new Array(5), (x, i) => i - 4 + CURR_YEAR)} value={year_joined_spark} setValue={setYear_joined_spark} placeholder={'Year Joined Spark'} label={'year joined spark:'} />
               </div>
-              <RenderCheckbox all_users={all_users} users_selected={users_chatted} setUsers_selected={setUsers_chatted} label={'People you already chatted with:'}/>
-              <RenderCheckbox all_users={all_users} users_selected={users_blocked} setUsers_selected={setUsers_blocked} label={'People you do not wish to coffee chat'}/>
+              <RenderUserCheckboxes all_users={all_users} users_selected={users_chatted} setUsers_selected={setUsers_chatted} label={'People you already chatted with:'}/>
+              <RenderUserCheckboxes all_users={all_users} users_selected={users_blocked} setUsers_selected={setUsers_blocked} label={'People you do not wish to coffee chat'}/>
+              <RenderCheckbox items={ACTIVITIES} item_labels={ACTIVITIES} items_checked={activities} setItems_checked={setActivities} label={'select fun activities you want to do in your chat!'}/>
               <button onClick={e => submit()} type="submit" className="w-60 shadow appearance-none border rounded-lg py-4 px-3 mt-2 text-orange-700 bg-orange-200 text-lg leading-tight">
                   {created_account ? `Update!` : `Complete!`}
               </button>

@@ -21,6 +21,7 @@ var userSchema = new Schema(
         chat_participating: {type: Boolean, required: true}, 
         users_chatted: [String], 
         users_blocked: [String], 
+        activities: [String],
         admin: {type: Boolean}
     }
 );

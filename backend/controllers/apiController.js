@@ -136,6 +136,7 @@ exports.post_create_user = function(req, res, next) {
                 date_created_account: new Date(), 
                 userLogin: req.user.username, 
                 users_chatted: req.body.users_chatted, 
+                activities: req.body.activities,
                 users_blocked: req.body.users_blocked, 
             })
             user.save(function (err) {
@@ -177,6 +178,7 @@ exports.post_update_user = [
                       spark_role: req.body.spark_role, 
                       users_chatted: req.body.users_chatted, 
                       users_blocked: req.body.users_blocked,
+                      activities: req.body.activities,
                       _id: oldID //This is required, or a new ID will be assigned!
                      });
                 if (!errors.isEmpty()) {
