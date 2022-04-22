@@ -5,10 +5,9 @@ var Login = require('../models/login');
 var User = require('../models/user');
 var FormSend = require('../models/formSend');
 var FormResponses = require('../models/formResponses');
-var algorithmController = require('../algorithm/edmonds');
+//var algorithmController = require('./edmonds');
 
 const { body,validationResult } = require('express-validator');
-
   passport.use(new LocalStrategy(function verify(username, password, done) {
     Login.findOne({ username: username }, (err, user) => {
         if (err) { 
@@ -66,48 +65,48 @@ exports.post_sign_up = function(req, res, next) {
     })
   };
 
-  exports.get_log_in = function(req, res, next) {
+exports.get_log_in = function(req, res, next) {
     if (req.user) {
-      User.findOne({'userLogin': req.user.username}).exec(function (err, user_list) {
+        User.findOne({'userLogin': req.user.username}).exec(function (err, user_list) {
         if (err) { return next(err); }
         //Successful, so render
         if (user_list) {
-          res.status(200).json({ user: req.user, userDetail: user_list});
+            res.status(200).json({ user: req.user, userDetail: user_list});
         } else {
-          res.status(200).json({ user: req.user });
+            res.status(200).json({ user: req.user });
         }
-      });
+        });
     } else {
-      res.status(404).json({message: "User account doesn't exist."});
+        res.status(404).json({message: "User account doesn't exist."});
     }
-  }; 
+}; 
   
-  exports.get_username = function(req, res) {
+exports.get_username = function(req, res) {
     if (req.user) {
-      res.json(req.user.username)
+        res.json(req.user.username)
     } else {
-      res.status(406).json({message: "Not signed in"})
+        res.status(406).json({message: "Not signed in"})
     }
-  };
+};
 
-  exports.password_authenticate = passport.authenticate('local', {
-      successRedirect: '/login/success',
-      failureRedirect: '/login/failure',
-      failureMessage: false
-  });
+exports.password_authenticate = passport.authenticate('local', {
+    successRedirect: '/login/success',
+    failureRedirect: '/login/failure',
+    failureMessage: false
+});
 
-  exports.success_login = function(req, res) {
-      res.status(200).json({message: "Success! You're logged in."});
-  }
-  
-  exports.failure_login = function(req, res) {
-      res.status(401).json({message: "Invalid password or user."});
-  }
+exports.success_login = function(req, res) {
+    res.status(200).json({message: "Success! You're logged in."});
+}
 
-  exports.log_out = function(req, res, next) {
+exports.failure_login = function(req, res) {
+    res.status(401).json({message: "Invalid password or user."});
+}
+
+exports.log_out = function(req, res, next) {
     req.logout();
     res.status(200).json({message: "Successfully logged out."});
-  }
+}
 
 /*figure it you want to santize the data later*/ 
 exports.post_create_user = function(req, res, next) {
@@ -228,9 +227,6 @@ exports.change_chat_status = function(req, res, next) {
         }
     )
 }
-
-
-
 //view user information in dashboard 
 exports.get_user_by_link = function(req, res, next) {
     //check whether or not the request is from the correct user 
@@ -272,7 +268,6 @@ exports.get_user_by_username = function(req, res, next) {
     }
     
 }
-
 //render the form information 
 exports.post_form_response = function(req, res, next) {
     var formResponse = new FormResponses(
@@ -296,6 +291,18 @@ exports.post_form_response = function(req, res, next) {
         }
     )
 }
+
+exports.get_profile_card = function (req, res, next) {
+    User.findOne({'userLogin': req.body.username}).select({first_name: 1, last_name: 1, _id: 0}).exec({
+        //firstname, lastname, schedule, activities they want to do 
+        //add schedule & usercard + details 
+        function(err, result) {
+            if (err) {return next(err); }
+            res.status(200).json(result)
+        }
+    })
+}
+
 exports.post_form = function(req, res, next) {
     var formQuestion = new FormSend(
         {
@@ -344,7 +351,6 @@ exports.update_user_chatted = function (req, res, next) {
         }
     )
 }
-exports.post_run_algorithm = algorithmController.edmonds_algorithm
 
 exports.get_all_users = function(req, res, next) {
     User.find({}).select({first_name: 1, last_name: 1, userLogin: 1, _id: 0}).exec(

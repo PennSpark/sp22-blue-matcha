@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var apiController = require('../controllers/apiController');
+var adminController = require('../controllers/adminController')
+var galleryController = require('../controllers/galleryController')
 
 //sign up for an account - return 200 if successful, 406 if not
 router.post('/sign-up', apiController.post_sign_up);
@@ -36,6 +38,9 @@ router.get('/form/:form_number', apiController.get_form);
 router.post('/change_participating_status', apiController.change_chat_status); 
 router.get('/all_users', apiController.get_all_users); 
 
-router.post('/run_algorithm', apiController.post_run_algorithm);
+//admin routes 
+router.post('/generatematches', adminController.post_run_algorithm)
+router.post('/push_matches', adminController.post_push_matchings)
+router.get('/matchedwith', adminController.get_receive_matchings)
 
 module.exports = router;

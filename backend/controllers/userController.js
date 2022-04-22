@@ -2,7 +2,6 @@ var User = require('../models/user');
 var Login = require('../models/login');
 const { body,validationResult } = require('express-validator');
 
-
 exports.created_account = (req) => {
     User.find({'userLogin': req.user.username})
     .exec(function (err, user_list) {
