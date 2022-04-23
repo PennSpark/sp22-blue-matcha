@@ -79,7 +79,8 @@ exports.edmonds_algorithm = function(req, res, next) {
         date: new Date(), 
         form_used: FORM_NUMBER, 
         matches_generated: translatedResults,
-        currently_on: false
+        currently_on: false, 
+        pushed_in_past: false
       })
     match.save(function (err) {
       if (err) { return next(err);}

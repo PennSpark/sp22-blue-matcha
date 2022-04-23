@@ -44,6 +44,8 @@ router.post('/generatematches', adminController.post_run_algorithm)
 router.post('/push_matches', adminController.post_push_matchings)
 router.get('/matchedwith', adminController.get_receive_matchings)
 router.get('/allmatches',  adminController.get_all_pairings)
-
+router.get('/pendingmatches', adminController.get_pending_pairing)
+router.get('/pastmatches', adminController.get_past_matchings)
+router.post('/updatepending', adminController.save_pending_pairing)
 
 module.exports = router;
