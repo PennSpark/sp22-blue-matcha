@@ -3,10 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-// Routes
+// Components
 import NavBar from './NavBar'
 import Schedule from './Schedule'
 import UserDetails from './UserDetails'
+import ProfileCard from './ProfileCard'
 
 //images
 import angry from '../imgs/angrymatcha.gif'
@@ -17,7 +18,7 @@ import words from '../imgs/words.gif'
 
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(false)
-  const [surveyed, setSurveyed] = useState(false)
+  const [surveyed, setSurveyed] = useState(false) 
   const [matched, setMatched] = useState('')
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
@@ -92,23 +93,21 @@ const Home = () => {
           <Display />
           <div>{!createdAccount && <Link to="/create_user" className="text-2xl">also, make account!</Link>}</div>
         </div>
-        <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div>
-        <h1 className="text-4xl font-semibold text-dark_matcha mb-10">
+        {/* <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div> */}
+        <h1 className="relative top-6 text-5xl drop-shadow capitalize font-semibold text-dark_matcha">
           You matcha-d with
         </h1>
-        <div className="flex justify-center">
-          <img>
-
-          </img>
-          <h2>
-            {matched}
+        <div className="flex justify-center mb-10">
+          <img src={left} className="w-60 h-60 rounded-3xl" />
+          <h2 className='relative top-36 mx-10'>
+            AndrUWU{matched}
           </h2>
-          <img>
-
-          </img>
+          <img src={right} className="w-60 h-60 rounded-3xl"/>
         </div>
 
-        <div className="flex justify-center gap-20">
+        <ProfileCard />
+
+        <div className="flex justify-center gap-20 relative left-6">
           <Link to="/create_user">
             <button className="w-full px-6 py-4 rounded-xl shadow-lg bg-matcha text-2xl text-dark_matcha">
               update info
