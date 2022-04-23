@@ -6,7 +6,7 @@ import NavBar from './NavBar'
 const Gallery = () => (
   <div>
     <NavBar />
-    <h1 className="text-center text-dark_matcha"> Welcome to the Gallery! </h1>
+    <h1 className="text-center text-dark_matcha"> Coffee Chat Gallery </h1>
   </div>
 )
 

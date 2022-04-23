@@ -93,7 +93,39 @@ const Home = () => {
           <div>{!createdAccount && <Link to="/create_user" className="text-2xl">also, make account!</Link>}</div>
         </div>
         <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div>
-        <div className="w-3/4">< Schedule /></div>
+        <h1 className="text-4xl font-semibold text-dark_matcha mb-10">
+          You matcha-d with
+        </h1>
+        <div className="flex justify-center">
+          <img>
+
+          </img>
+          <h2>
+            {matched}
+          </h2>
+          <img>
+
+          </img>
+        </div>
+
+        <div className="flex justify-center gap-20">
+          <Link to="/create_user">
+            <button className="w-full px-6 py-4 rounded-xl shadow-lg bg-matcha text-2xl text-dark_matcha">
+              update info
+            </button>
+          </Link>
+          <Link to="/availability">
+            <button className="w-full px-6 py-4 rounded-xl shadow-lg bg-matcha text-2xl text-dark_matcha">
+              availability
+            </button>
+          </Link>
+          <Link to="/survey">
+            <button className="w-full px-6 py-4 rounded-xl shadow-lg bg-matcha text-2xl text-dark_matcha">
+              take the survey
+            </button>
+          </Link>
+        </div>
+        {/* <div className="w-3/4">< Schedule /></div> */}
       </div>
     </div>
   )

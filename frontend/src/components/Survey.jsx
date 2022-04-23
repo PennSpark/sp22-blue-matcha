@@ -137,9 +137,8 @@ const Survey = () => {
 
   return (
     <>
-      <NavBar />
-      <div className="w-screen h-screen py-10 bg-greentea font-mono text-dark_matcha">
-        <div className="flex justify-center">
+      <div className="flex justify-center items-center w-screen h-screen py-10 bg-greentea font-mono text-dark_matcha">
+        <div className="flex justify-center items-center w-screen">
           <Left />
           <div className="bg-light_matcha w-3/4 h-4/6 p-14 rounded-3xl shadow-lg">
             <div>
