@@ -37,10 +37,13 @@ router.get('/form/:form_number', apiController.get_form);
 //coffee chat participating status 
 router.post('/change_participating_status', apiController.change_chat_status); 
 router.get('/all_users', apiController.get_all_users); 
+router.get('/all_users_participating', apiController.get_all_users_with_participating)
 
 //admin routes 
 router.post('/generatematches', adminController.post_run_algorithm)
 router.post('/push_matches', adminController.post_push_matchings)
 router.get('/matchedwith', adminController.get_receive_matchings)
+router.get('/allmatches',  adminController.get_all_pairings)
+
 
 module.exports = router;

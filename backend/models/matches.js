@@ -11,6 +11,7 @@ const matchSchema = new Schema({
         matched_with: {type: String}
       }
   ],
+  pushed_in_past: {type: Boolean},
   currently_on: {type: Boolean, required: true}
 });
 

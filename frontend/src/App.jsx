@@ -13,6 +13,7 @@ import Survey from './components/Survey'
 import Gallery from './components/Gallery'
 import Home from './components/Home'
 import UserForm from './components/UserForm'
+import Admin from './components/Admin'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
       <Route path="/survey" element={<Survey />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/create_user" element={<UserForm />} />
+      <Route path="/admin" element={<Admin />} />
     </Routes>
   )
 }

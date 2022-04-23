@@ -361,3 +361,11 @@ exports.get_all_users = function(req, res, next) {
     )
 }
 
+exports.get_all_users_with_participating = function(req, res, next) {
+    User.find({}).select({first_name: 1, last_name: 1, userLogin: 1, chat_participating: 1, _id: 0}).exec(
+        function(err, result) {
+            if (err) {return next(err); }
+            res.status(200).json(result)
+        }
+    )
+}

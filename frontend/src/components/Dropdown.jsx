@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 
 /**
  * options: all the potential things to choose from 
- * @param {*} param0 
  */
 const Dropdown = ({items, setSelected, selected, fieldName}) => {
     const [isOpen, setOpen] = useState(false)

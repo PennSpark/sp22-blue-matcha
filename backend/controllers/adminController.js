@@ -20,10 +20,16 @@ exports.get_receive_matchings = function(req, res, next) {
             }
         }
     )
-    //first find the user logged in 
-    //checks if they have a matching this week. 
-    //if not they should return send w/ message they they do not have a matching 
-    // else. return 1) profile card 2) chat card that they can fill out 
+}
+
+//need to gatekeep non admin users later 
+exports.get_all_pairings = function (req, res, next) {
+    Matches.findOne({'currently_on': true}).exec(
+        function (err, result) {
+            if (result) { res.status(200).json(result)}
+            else { res.status(400).json({message: 'no current pairings!'})}
+        }
+    )
 }
 
 //gets a generated amount of matchings 
@@ -53,11 +59,11 @@ exports.post_push_matchings = function (req, res, next) {
             if (!account.admin) {
                 res.status(400).json({message: 'Not an admin'})
             } else {
-                var updated_match = new Matches(req.body)
-                Matches.updateMany({'currently_on': true}, {'currently_on': false}, function (err, docs) {
+                var updated_match = req.body
+                Matches.updateMany({'currently_on': true}, {'currently_on': false, 'pushed_in_past': true}, function (err, docs) {
                     if (err) {return next(err)}
                 })
-                Matches.findOneAndUpdate({'_id': updated_match._id}, {'currently_on': true}, function (err, doc) {
+                Matches.findOneAndUpdate({'_id': updated_match._id}, updated_match, function (err, doc) {
                     if (err) { return next(err) }
                     res.status(200).json(doc)
                 })

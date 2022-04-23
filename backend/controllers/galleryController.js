@@ -1,7 +1,7 @@
 var User = require('../models/user');
 var Gallery = require('../models/gallery')
 exports.get_gallery_items = function(req, res, next) {
-    Gallery.find('').exec(
+    Gallery.find({'complete': true}).exec(
         function (err, list) {
             if (err) { return next(err); }
             if (list.length > 0) {
@@ -25,7 +25,8 @@ exports.post_chat_card = function (req, res, next) {
                         submitted_by: req.user.username, 
                         chatted_with: req.body.chatted_with, 
                         matching_id: req.body.match_id, 
-                        chat_card: req.body.chat_card
+                        chat_card: req.body.chat_card, 
+                        complete: false
                     })
                     card.save(
                         function (err) {
@@ -49,6 +50,7 @@ exports.update_chat_card = function (req, res, next) {
                 const oldID = result._id;
                 let updated_chat = new Gallery({
                     chat_card: req.body.chat_card, 
+                    complete: req.body.complete,
                     _id: oldID
                 })
                 Gallery.findOneAndUpdate({'_id': oldID}, updated_chat, {}, function (err, updated_card) {
