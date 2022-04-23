@@ -16,11 +16,16 @@ const Admin = () => {
     const [allUsers, setAllUsers] = useState([])
     const [onView, setOnView] = useState('Current')
 
+    
+
     useEffect(() => {
         const getCurrMatches = async () => {
-            const { data } = await axios.get('/allmatches')
-            setCurrMatchings(data)
-            setReceivedMatches(true)
+            await axios.get('/allmatches').then(response => {
+                if (response.status === 200) {
+                    setCurrMatchings(response.data)
+                    setReceivedMatches(true)
+                }
+            })
         }
         const getPendingMatches = async () => {
             await axios.get('/pendingmatches').then(response => {
@@ -33,30 +38,28 @@ const Admin = () => {
             )
         }
         const grabAllUsers = async () => {
-            const { data }  = (await axios.get('/all_users_participating'))
+            let { data }  = (await axios.get('/all_users_participating'))
             const participating = []
-            data.map(o => o.chat_participating && participating.push(o.userLogin))
+            data = data.map(obj => ({ ...obj, fullname: `${obj.first_name} ${obj.last_name}` }))
+            data.map(o => o.chat_participating && participating.push(o.fullname))
             setAllUsers(data)
+            console.log(data)
             setUsersOptedIn(participating)
         }
         getCurrMatches()
         getPendingMatches()
         grabAllUsers()
     }, [])
-
     const generateMatchings = async () => {
-        //push to generate the matchings 
-        const matchings = await axios.post('/generatematches')
-        .catch(error => {
-            console.log(data) //test
-            console.log(error) //test
-        })
-        if (matchings) {
-            setRetrievedPending(true)
-            setPendingMatches(matchings)
-        }
+        await axios.post('/generatematches').then(response => {
+            if (response.status === 200) {
+                setPendingMatches(response.data)
+                setRetrievedPending(true)
+            }
+        }).catch(
+            err => console.log(err)
+        )
     }
-
     const DisplayMembers = ({all_users}) => {
         const NotChatting =  ({user}) => (
             <div className='bg-red-300 hover:shadow-md py-3 px-8 rounded-xl'>{user}</div>
@@ -92,18 +95,59 @@ const Admin = () => {
         return (
             <div className="flex flex-col justify-center items-center p-5 m-20 bg-light_matcha rounded-3xl shadow-lg">
                 <div className="text-dark_matcha text-2xl mb-5"> {title} </div>
-                {matchings.map(m => m.received_match ? <MatchedTrue user={m.user} matched_with={m.matched_with}/> : <MatchedFalse user={m.user}/>)}
+                {matchings.map(m => m.received_match ? <MatchedTrue user={m.user} matched_with={m.matched_with}/> : <MatchedFalse user={m.user}/> )}
             </div>
         )
     }
+    const usernameToFullname = (all_users, matchings) => {
+        let beforeitems = matchings 
+        const getFullName = username => {
+            const obj = all_users.find(x => x.userLogin === username)
+            return obj.fullname
+        }
+        const editMatch = obj => {
+            obj.user = getFullName(obj.user)
+            if (obj.received_match) {
+                obj.matched_with = getFullName(obj.matched_with)
+            }
+            return obj
+        }
+        const x = beforeitems.map(obj => editMatch(obj))
+        console.log(x)
+        return x
+    }
+    const fullnameToUsername = (all_users, matchings) => {
+        let afteritems = matchings 
+        const getUserLogin = full_name => {
+            const obj = all_users.find(x => x.fullname === full_name)
+            //console.log(obj.userLogin)
+            return obj.userLogin
+        }
+        const changeMatch = obj => {
+            obj.user = getUserLogin(obj.user)
+            if (obj.received_match) {
+                obj.matched_with = getUserLogin(obj.matched_with)
+            }
+            console.log(obj.user)
+            return obj
+        }
+        return afteritems.map(obj => changeMatch(obj))
+    }
     const PendingMatches = ({pendingMatches, setPendingMatches}) => { 
-        console.log(pendingMatches)
-        const [matches, setMatches] = useState(pendingMatches.matches_generated) 
+        const convertToFull = usernameToFullname(allUsers, pendingMatches.matches_generated)
+        console.log(convertToFull)
+        const [matches, setMatches] = useState(convertToFull) 
         const [error, setError] = useState('')
         const handleMatches = value => {
-            setMatches(value) 
+            setMatches(value)
+            console.log('this is value')
+            console.log(value)
+            const convertToUsers = fullnameToUsername(allUsers, value)
+            console.log('this is converted')
+            console.log(convertToUsers)
             const item = pendingMatches
-            item.matches_generated = value
+            item.matches_generated = convertToUsers
+            console.log(convertToUsers)
             setPendingMatches(item)
             console.log('this is the pending matches updated: ')
             console.log(pendingMatches)
@@ -114,11 +158,19 @@ const Admin = () => {
                 <button onClick={e => pushMatchings(setError)} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight"> {'Push Matches'}
                 </button>
                 <div>{error}</div>
+                <button onClick={e => savePendingMatches()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">
+                        {`Save Pending Matchings`}
+                </button>
             </div>
         )
     }
-
-    //add async
+    const savePendingMatches = async () => {
+        const dataToPush = pendingMatches 
+        await (axios.post('updatepending', dataToPush).catch(error => {
+            //console.log(data) //test
+            console.log(error) //test
+        }))
+    }
     const pushMatchings = async setError => {
         const dataToPush = pendingMatches 
         const matches = pendingMatches.matches_generated 
@@ -134,7 +186,6 @@ const Admin = () => {
             setError('invalid matchings!')
         }
     }
-
     const checkPendingMatchValidity = matchings => {
         //for each person, make sure that the person being matched to has that person mapped back 
         let valid = true
@@ -149,19 +200,19 @@ const Admin = () => {
         matchings.forEach(e => isValid(e))
         return valid
     }
-
     const changeView = () => {
         setOnView(onView === 'Current' ? 'Pending' : 'Current')
     }
-
     return (
         <div>
             <NavBar />
             <div className="flex flex-justify-center"> 
                 <div> 
-                    { receivedMatches && onView === 'Current' && <DisplayMatches fullMatchings={currMatchings} title={'Current Matchings'}/>}
-                    { retrievedPending && onView === 'Pending' && 
-                     <PendingMatches pendingMatches={pendingMatches} setPendingMatches={setPendingMatches} />
+                    { receivedMatches ? onView === 'Current' && <DisplayMatches fullMatchings={currMatchings} title={'Current Matchings'}/> : 
+                        <div>{'There are no current pairings!'}</div>}
+                    { retrievedPending ? onView === 'Pending' && 
+                     <PendingMatches pendingMatches={pendingMatches} setPendingMatches={setPendingMatches} /> : 
+                     <div>{'Generate pending matches!'}</div>
                      } 
                     <div className='flex flex-row justify-center items-center w-1/2'>
                         <button onClick={e => changeView()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">

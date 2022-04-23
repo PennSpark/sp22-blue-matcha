@@ -145,7 +145,7 @@ const UserForm = () => {
                 </button>
                 <div className="mb-4">
                   <label className="block text-dark_matcha text-2xl mt-1"> {'first name:'} </label>
-                  <input onChange={e => setLast_name(e.target.value)} value={first_name} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'first name'} />
+                  <input onChange={e => setFirst_name(e.target.value)} value={first_name} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'first name'} />
                 </div>
                 <div className="mb-4">
                   <label className="block text-dark_matcha text-2xl mt-1"> {'last name:'} </label>
