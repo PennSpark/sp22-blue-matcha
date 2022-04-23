@@ -15,11 +15,10 @@ import left from '../imgs/sleepmatcha.gif'
 import right from '../imgs/matcha.gif'
 import words from '../imgs/words.gif'
 
-
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(true)
   const [surveyed, setSurveyed] = useState(true) 
-  const [hasMatched, setHasMatched] = useState(true)
+  const [hasMatched, setHasMatched] = useState(false)
   const [matchedPartner, setMatchedPartner] = useState('')
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
@@ -34,8 +33,25 @@ const Home = () => {
     //   }
     // }
     // getUsername()
+    const getUsermatching = async () => {
+      await axios.get('/matchedwith').then(response => {
+        if (response.status === 200) {
+          const data = response.data
+          if (data.received_match) {
+            setHasMatched(true)
+            setMatchedPartner(data.matched_with)
+          } else {
+            //you didn't receive a matching this week. 
+          }
+        } else if (response.status === 400) {
+          //they didn't have a matching this week (they didn't opt in for a coffee chat)
+        } else {
+          //there are no current matchings out. 
+        }
+      })
+    }
     const getUserdetails = async () => {
-      const {data} = (await axios.get('/details')
+      const {data} = await axios.get('/details')
         .catch(err => {
           if (err.response) {
             console.log(err.response.status)
@@ -45,7 +61,7 @@ const Home = () => {
             }
           }
           //console.log(err)
-       }))
+       })
       if (data) {
         setUserInformation(data)
         setCreatedAccount(true)
@@ -53,7 +69,7 @@ const Home = () => {
       console.log(data)
     }
     getUserdetails()
-    
+    getUsermatching()
   }, [])
 
   const Display = () => {
@@ -82,12 +98,11 @@ const Home = () => {
             <div className="flex justify-center mb-10">
               <img src={left} className="w-60 h-60 rounded-3xl" />
               <h2 className='relative top-36 mx-10'>
-                AndrUWU {matchedPartner}
+                {matchedPartner /*make this part of the profile card*/} 
               </h2>
               <img src={right} className="w-60 h-60 rounded-3xl"/>
             </div>
-
-            <ProfileCard />
+            {<ProfileCard user_matched_with={matchedPartner}/>}
           </>
         )
       }

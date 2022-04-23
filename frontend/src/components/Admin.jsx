@@ -156,6 +156,7 @@ const Admin = () => {
 
     return (
         <div>
+            <NavBar />
             <div className="flex flex-justify-center"> 
                 <div> 
                     { receivedMatches && onView === 'Current' && <DisplayMatches fullMatchings={currMatchings} title={'Current Matchings'}/>}

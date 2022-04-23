@@ -13,7 +13,7 @@ exports.get_receive_matchings = function(req, res, next) {
                 const pairing = results.matches_generated.find(match => 
                     match.user === req.user.username)
                 if (!pairing) {
-                    res.status(200).json({chat: false, message: 'You didn\'t opt in for a coffee chat this week!'})
+                    res.status(400).json({chat: false, message: 'You didn\'t opt in for a coffee chat this week!'})
                 } else {
                     res.status(200).json(pairing)
                 }

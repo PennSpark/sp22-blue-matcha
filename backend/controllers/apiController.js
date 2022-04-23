@@ -293,14 +293,18 @@ exports.post_form_response = function(req, res, next) {
 }
 
 exports.get_profile_card = function (req, res, next) {
-    User.findOne({'userLogin': req.body.username}).select({first_name: 1, last_name: 1, _id: 0}).exec({
+    User.findOne({'userLogin': req.body.username}).select({first_name: 1, last_name: 1, activities: 1, _id: 0}).exec(
         //firstname, lastname, schedule, activities they want to do 
         //add schedule & usercard + details 
         function(err, result) {
             if (err) {return next(err); }
-            res.status(200).json(result)
+            if (result) { 
+                res.status(200).json(result)
+            } else {
+                res.status(400)
+            }
         }
-    })
+    )
 }
 
 exports.post_form = function(req, res, next) {
