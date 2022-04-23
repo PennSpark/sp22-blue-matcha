@@ -106,24 +106,6 @@ const Home = () => {
         </div>
 
         <ProfileCard />
-
-        <div className="flex justify-center gap-20 relative left-6">
-          <Link to="/create_user">
-            <button className="w-full px-6 py-4 rounded-xl shadow-lg bg-matcha text-2xl text-dark_matcha">
-              update info
-            </button>
-          </Link>
-          <Link to="/availability">
-            <button className="w-full px-6 py-4 rounded-xl shadow-lg bg-matcha text-2xl text-dark_matcha">
-              availability
-            </button>
-          </Link>
-          <Link to="/survey">
-            <button className="w-full px-6 py-4 rounded-xl shadow-lg bg-matcha text-2xl text-dark_matcha">
-              take the survey
-            </button>
-          </Link>
-        </div>
         {/* <div className="w-3/4">< Schedule /></div> */}
       </div>
     </div>
