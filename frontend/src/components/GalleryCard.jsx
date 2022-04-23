@@ -1,47 +1,33 @@
 import React from 'react'
 
-const GalleryCard = ({ picture, pairName, date, description }) => (
-  <div className="flex flex-col justify-center w-5/12 mt-10 mb-20 p-10 px-16 pb-12 bg-matcha shadow-xl rounded-xl lowercase">
-    <img src={picture} alt="" className="object-cover self-center w-52 h-52 mb-4 rounded-full shadow-md hover:shadow-lg" />
+const GalleryCard = ({ picture, pairName, date, facts }) => (
+  <div className="flex flex-col justify-center mt-10 p-10 px-16 pb-12 bg-light_matcha shadow-xl rounded-3xl text-2xl lowercase">
+    <img src={picture} alt="" className="object-cover self-center w-full h-full mb-2 rounded-2xl shadow-md hover:shadow-lg" />
     <div className='mt-8'>
       <h2 className="text-dark_matcha inline font-bold">
-        name:&nbsp;
+        chat pair:&nbsp;
       </h2>
       <div className="text-dark_greentea inline">
-        {userRealName}
+        {pairName}
       </div>
     </div>
     <div className='mt-5'>
       <h2 className="text-dark_matcha inline font-bold">
-        about:&nbsp;
+        date:&nbsp;
       </h2>
       <div className="text-dark_greentea inline">
-        {userAbout}
+        {date}
       </div>
     </div>
     <div className='mt-5'>
       <h2 className="text-dark_matcha inline font-bold">
-        availability:&nbsp;
+        interesting fax:&nbsp;
       </h2>
       <div className="flex flex-col text-dark_greentea">
-        {userAvailabilities.map((availability, index) => {
+        {facts.map((fact, index) => {
           return (
             <div>
-              &gt; {availability}
-            </div>
-          )
-        })}
-      </div>
-    </div>
-    <div className='mt-5'>
-      <h2 className="text-dark_matcha inline font-bold">
-        preferred locations:&nbsp;
-      </h2>
-      <div className="text-dark_greentea inline">
-        {userPreferredLocations.map((location, index) => {
-          return (
-            <div>
-              &gt; {location}
+              &gt; {fact}
             </div>
           )
         })}
