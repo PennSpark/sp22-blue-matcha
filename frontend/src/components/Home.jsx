@@ -17,9 +17,10 @@ import words from '../imgs/words.gif'
 
 
 const Home = () => {
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [surveyed, setSurveyed] = useState(false) 
-  const [matched, setMatched] = useState('')
+  const [loggedIn, setLoggedIn] = useState(true)
+  const [surveyed, setSurveyed] = useState(true) 
+  const [hasMatched, setHasMatched] = useState(true)
+  const [matchedPartner, setMatchedPartner] = useState('')
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
   const navigate = useNavigate()
@@ -72,15 +73,37 @@ const Home = () => {
         </div>
       )
     } else {
+      if (hasMatched) {
+        return (
+          <>
+            <h1 className="relative top-6 text-5xl drop-shadow capitalize font-semibold text-dark_matcha">
+              You matcha-d with
+            </h1>
+            <div className="flex justify-center mb-10">
+              <img src={left} className="w-60 h-60 rounded-3xl" />
+              <h2 className='relative top-36 mx-10'>
+                AndrUWU {matchedPartner}
+              </h2>
+              <img src={right} className="w-60 h-60 rounded-3xl"/>
+            </div>
+
+            <ProfileCard />
+          </>
+        )
+      }
       return (
-        <div className="flex flex-col justify-center items-center mb-40">
-          <img src={words} className="h-20 w-100"/>
-          <div className="flex flex-row justify-center items-center">
-            <img src={left} className="h-48 w-48 px-3"/>
-            <div className="text-dark_matcha">andruwu jiang</div>
-            <img src={right} className="h-48 w-48 px-3"/>
+        <>
+          <h1 className="relative top-6 mt-40 text-5xl drop-shadow capitalize font-semibold text-dark_matcha">
+            Wait to be match-d :)
+          </h1>
+          <div className="flex justify-center mb-10">
+            <img src={left} className="w-60 h-60 rounded-3xl" />
+            <h2 className='relative top-36 mx-10'>
+              Patience!
+            </h2>
+            <img src={right} className="w-60 h-60 rounded-3xl"/>
           </div>
-        </div>
+        </>
       )
     }
   }
@@ -88,24 +111,14 @@ const Home = () => {
   return (
     <div className="bg-white text-3xl font-mono">
       <NavBar />
-      <div className="flex flex-col justify-center items-center mb-20">
+      <div className="flex flex-col justify-center items-center mb-20 pt-20">
         <div className="text-dark_matcha underline">
-          <Display />
+          {/* <Display /> */}
           <div>{!createdAccount && <Link to="/create_user" className="text-2xl">also, make account!</Link>}</div>
         </div>
         {/* <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div> */}
-        <h1 className="relative top-6 text-5xl drop-shadow capitalize font-semibold text-dark_matcha">
-          You matcha-d with
-        </h1>
-        <div className="flex justify-center mb-10">
-          <img src={left} className="w-60 h-60 rounded-3xl" />
-          <h2 className='relative top-36 mx-10'>
-            AndrUWU{matched}
-          </h2>
-          <img src={right} className="w-60 h-60 rounded-3xl"/>
-        </div>
-
-        <ProfileCard />
+      
+        <Display />
         {/* <div className="w-3/4">< Schedule /></div> */}
       </div>
     </div>
