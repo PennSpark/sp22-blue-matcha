@@ -16,8 +16,6 @@ const Admin = () => {
     const [allUsers, setAllUsers] = useState([])
     const [onView, setOnView] = useState('Current')
 
-    
-
     useEffect(() => {
         const getCurrMatches = async () => {
             await axios.get('/allmatches').then(response => {
@@ -50,6 +48,37 @@ const Admin = () => {
         getPendingMatches()
         grabAllUsers()
     }, [])
+
+    const usernameToFullname = (all_users, matchings) => {
+        const beforeitems = matchings 
+        const getFullName = username => {
+            const obj = all_users.find(x => x.userLogin === username)
+            return obj.fullname
+        }
+        return beforeitems.map(obj => {
+            if (obj.matched_with) {
+                return {...obj, matched_with: getFullName(obj.matched_with), user: getFullName(obj.user)}
+            } else {
+                return {...obj, user: getFullName(obj.user)}
+            }
+        })
+    }
+    const fullnameToUsername = (all_users, matchings) => {
+        //console.log(matchings)
+        const afteritems = matchings 
+        const getUserLogin = full_name => {
+            const obj = all_users.find(x => x.fullname === full_name)
+            //console.log(full_name)
+            return obj.userLogin
+        }
+        return afteritems.map(obj => {
+            if (obj.matched_with) {
+                return {...obj, matched_with: getUserLogin(obj.matched_with), user: getUserLogin(obj.user)}
+            } else {
+                return {...obj, user: getUserLogin(obj.user)}
+            }
+        })
+    }
     const generateMatchings = async () => {
         await axios.post('/generatematches').then(response => {
             if (response.status === 200) {
@@ -76,8 +105,7 @@ const Admin = () => {
     }
     const DisplayMatches = ({fullMatchings, title}) => {
         const matches = fullMatchings
-        const [matchings, setMatchings] = useState(matches.matches_generated)
-        console.log(matchings)
+        const [matchings, setMatchings] = useState(allUsers.length > 0 ? usernameToFullname(allUsers, matches.matches_generated): matches.matches_generated)
         const MatchedTrue = ({user, matched_with}) => (
             <div className='flex justify-items-stretch flex-row m-3 gap-5'>
                 <div className='bg-white hover:shadow-md py-3 px-8 rounded-xl'>{user}</div>
@@ -99,40 +127,7 @@ const Admin = () => {
             </div>
         )
     }
-    const usernameToFullname = (all_users, matchings) => {
-        let beforeitems = matchings 
-        const getFullName = username => {
-            const obj = all_users.find(x => x.userLogin === username)
-            return obj.fullname
-        }
-        const editMatch = obj => {
-            obj.user = getFullName(obj.user)
-            if (obj.received_match) {
-                obj.matched_with = getFullName(obj.matched_with)
-            }
-            return obj
-        }
-        const x = beforeitems.map(obj => editMatch(obj))
-        console.log(x)
-        return x
-    }
-    const fullnameToUsername = (all_users, matchings) => {
-        let afteritems = matchings 
-        const getUserLogin = full_name => {
-            const obj = all_users.find(x => x.fullname === full_name)
-            //console.log(obj.userLogin)
-            return obj.userLogin
-        }
-        const changeMatch = obj => {
-            obj.user = getUserLogin(obj.user)
-            if (obj.received_match) {
-                obj.matched_with = getUserLogin(obj.matched_with)
-            }
-            console.log(obj.user)
-            return obj
-        }
-        return afteritems.map(obj => changeMatch(obj))
-    }
+    
     const PendingMatches = ({pendingMatches, setPendingMatches}) => { 
         const convertToFull = usernameToFullname(allUsers, pendingMatches.matches_generated)
         console.log(convertToFull)
@@ -140,11 +135,7 @@ const Admin = () => {
         const [error, setError] = useState('')
         const handleMatches = value => {
             setMatches(value)
-            console.log('this is value')
-            console.log(value)
             const convertToUsers = fullnameToUsername(allUsers, value)
-            console.log('this is converted')
-            console.log(convertToUsers)
             const item = pendingMatches
             item.matches_generated = convertToUsers
             console.log(convertToUsers)
