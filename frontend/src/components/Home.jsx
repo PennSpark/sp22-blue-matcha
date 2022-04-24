@@ -109,14 +109,7 @@ const Home = () => {
     <div className="bg-white text-3xl font-mono">
       <NavBar />
       <div className="flex flex-col justify-center items-center mb-20 pt-20">
-        <div className="text-dark_matcha underline">
-          {/* <Display /> */}
-          <div>{!createdAccount && <Link to="/create_user" className="text-2xl">also, make account!</Link>}</div>
-        </div>
-        <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div>
-      
         <Display />
-        {/* <div className="w-3/4">< Schedule /></div> */}
       </div>
     </div>
   )
