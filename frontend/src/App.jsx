@@ -11,6 +11,7 @@ import Login from './components/Login'
 import Signup from './components/Signup'
 import Survey from './components/Survey'
 import Gallery from './components/Gallery'
+import Schedule from './components/Schedule'
 import Home from './components/Home'
 import UserForm from './components/UserForm'
 import Admin from './components/Admin'
@@ -25,6 +26,7 @@ function App() {
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/create_user" element={<UserForm />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/schedule" element={<Schedule />} />
     </Routes>
   )
 }

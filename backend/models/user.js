@@ -22,7 +22,8 @@ var userSchema = new Schema(
         users_chatted: [String], 
         users_blocked: [String], 
         activities: [String],
-        admin: {type: Boolean}
+        admin: {type: Boolean}, 
+        dates_blocked: [Date]
     }
 );
 
