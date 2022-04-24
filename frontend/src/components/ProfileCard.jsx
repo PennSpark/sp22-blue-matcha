@@ -11,6 +11,9 @@ const ProfileCard = ({ user_matched_with }) => {
   const [userRealName, setUserRealName] = useState('')
   const [userPfp, setUserPfp] = useState('https://64.media.tumblr.com/f0d2656c72487c49a86f98a3233aaebc/261af0ebd07e5fd1-8a/s500x750/e7fffcbdb0c21fbcdea53730a364e63fb142cec7.jpg')
   const [userAbout, setUserAbout] = useState('')
+  const [userPhone, setUserPhone] = useState('')
+  const [userMajor, setUserMajor] = useState('')
+  const [userYear, setUserYear] = useState('')
   const [userAvailabilities, setUserAvailabilities] = useState(['Tuesday 7pm', 'Thursday 12pm', 'Friday 6pm', 'Saturday 12pm'])
   const [userPreferredLocations, setUserPreferredLocations] = useState([])
 
@@ -68,6 +71,30 @@ const ProfileCard = ({ user_matched_with }) => {
           </h2>
           <div className="text-dark_greentea inline">
             {userRealName}
+          </div>
+        </div>
+        <div className='mt-5'>
+          <h2 className="text-dark_matcha inline font-bold">
+            phone:&nbsp;
+          </h2>
+          <div className="text-dark_greentea inline">
+            {userPhone}
+          </div>
+        </div>
+        <div className='mt-5'>
+          <h2 className="text-dark_matcha inline font-bold">
+            major:&nbsp;
+          </h2>
+          <div className="text-dark_greentea inline">
+            {userMajor}
+          </div>
+        </div>
+        <div className='mt-5'>
+          <h2 className="text-dark_matcha inline font-bold">
+            class:&nbsp;
+          </h2>
+          <div className="text-dark_greentea inline">
+            {userYear}
           </div>
         </div>
         <div className='mt-5'>
