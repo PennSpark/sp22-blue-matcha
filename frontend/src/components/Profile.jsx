@@ -18,7 +18,7 @@ const Profile = () => {
   
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
-  const [receivedRequest, setReceivedRequest] = userState(false)
+  const [receivedRequest, setReceivedRequest] = useState(false)
 
   const [isChatting, setIsChatting] = useState(false)
   const [allUsers, setAllUsers] = useState(null) 
@@ -56,7 +56,7 @@ const Profile = () => {
   }, [])
 
   // Upload the about information to backend 
-  const updateAbout = () => {
+  const updateAbout = async () => {
     const about = myAbout
       await axios.post('updateabout', {about}).then(console.log('success')).catch(error => {
           console.log(error) //test
