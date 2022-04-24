@@ -88,6 +88,10 @@ const Profile = () => {
       .catch(err => console.log(err))
   }
 
+  const changeAbout = event => {
+    setMyAbout(event.target.value)
+  }
+
   const PfpModal = () => {
     if (pfpModalVisible) {
       if (myPfp === pfpPlaceholder) {
@@ -105,9 +109,23 @@ const Profile = () => {
           <h3 className="text-darkchoco drop-shadow text-4xl text-center mb-5">
             about
           </h3>
-          <div className="h-5/6 shadow bg-white rounded-2xl">
+          <form onSubmit={e => updateAbout()}>
+            <div className="flex center h-5/6 shadow bg-white rounded-2xl">
+              <label>
+                <textarea value={myAbout} onChange={e => changeAbout(e)} />
+              </label>
+            </div>
+            <input className="shadow-sm mb-5 text-2xl text-center px-6 py-4 rounded-2xl 
+            bg-dark_matcha font-semibold text-white" type="submit" value="Submit" />
+          </form>
+
+          {/* <input className="h-5/6 shadow bg-white rounded-2xl" type="text" value={myAbout} onChange={changeAbout} />
+          <button onClick={e => updateAbout()} className="shadow-sm mb-5 text-2xl text-center px-6 py-4 rounded-2xl bg-dark_matcha font-semibold text-white">
+            update about
+          </button>
+          {/* <div className="h-5/6 shadow bg-white rounded-2xl">
             {myAbout}
-          </div>
+          </div> */} 
         </div>
         <div className="basis-1/2 mb-10">
           <h3 className="text-darkchoco drop-shadow text-4xl text-center mb-5">
