@@ -44,10 +44,10 @@ const NavBar = () => {
     <>
       <nav className="shadow-sm bg-light_greentea rounded-b-2xl font-mono">
         <div className="flex flex-row justify-between align-center py-4 px-4">
-          <div className="basis-1/3 flex-none">
+          <div className="basis-1/6 flex-none">
             <img src={logo} alt="" className="justify-self-start w-20 h-20 py-1 ml-3 rounded-full shadow-md hover:shadow-xl bg-light_lemon" />
           </div>
-          <ul className="basis-1/3 flex justify-self-center justify-center items-center gap-12 text-dark_matcha text-xl font-semibold">
+          <ul className="basis-1/6 flex justify-self-center justify-center items-center gap-12 text-dark_matcha text-xl font-semibold">
             <li>
               <Link to="/gallery" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Gallery</Link>
             </li>
@@ -58,7 +58,7 @@ const NavBar = () => {
               <Link to="/create_user" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Settings</Link>
             </li>
           </ul>
-          <div className="basis-1/3 flex-none self-center text-dark_matcha text-2xl">
+          <div className="basis-1/6 flex-none self-center text-dark_matcha text-2xl">
             {loggedIn && (
               <div className="text-right mr-3">
                 <span>Hi {user}! </span>

@@ -14,6 +14,7 @@ import Gallery from './components/Gallery'
 import Home from './components/Home'
 import UserForm from './components/UserForm'
 import Admin from './components/Admin'
+import Profile from './components/Profile'
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/create_user" element={<UserForm />} />
       <Route path="/admin" element={<Admin />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   )
 }

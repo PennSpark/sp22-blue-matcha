@@ -2912,12 +2912,13 @@
     "core-js" "^2.4.0"
     "regenerator-runtime" "^0.10.0"
 
-"backend@file:C:\\College\\spark\\sp22-blue-matchamaker\\backend":
+"backend@file:/Users/dhatri/Documents/GitHub/sp22-blue-matchamaker/backend":
   "resolved" "file:backend"
   "version" "0.0.0"
   dependencies:
     "async" "^3.2.3"
     "bcryptjs" "^2.4.3"
+    "bs-platform" "^7.3.2"
     "connect-sqlite3" "^0.9.13"
     "cookie-parser" "~1.4.4"
     "debug" "~2.6.9"
@@ -5248,11 +5249,12 @@
   "resolved" "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz"
   "version" "0.5.2"
 
-"frontend@file:C:\\College\\spark\\sp22-blue-matchamaker\\frontend":
+"frontend@file:/Users/dhatri/Documents/GitHub/sp22-blue-matchamaker/frontend":
   "resolved" "file:frontend"
   "version" "1.0.0"
   dependencies:
     "@babel/eslint-parser" "^7.5.4"
+    "@tailwindcss/forms" "^0.5.0"
     "@testing-library/jest-dom" "^5.16.3"
     "@testing-library/react" "^12.1.4"
     "@testing-library/user-event" "^13.5.0"
@@ -5261,8 +5263,10 @@
     "react" "^17.0.2"
     "react-dom" "^17.0.2"
     "react-router-dom" "^6.2.2"
+    "react-schedule-selector" "^3.0.0"
     "react-scripts" "5.0.0"
     "react-triangle" "^0.3.0"
+    "styled-components" "^5.3.5"
     "web-vitals" "^2.1.4"
 
 "fs-extra@^10.0.0":
@@ -5298,6 +5302,11 @@
   "integrity" "sha1-FQStJSMVjKpA20onh8sBQRmU6k8="
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
+
+"fsevents@^2.3.2", "fsevents@~2.3.2":
+  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
+  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
+  "version" "2.3.2"
 
 "fstream@^1.0.0", "fstream@^1.0.12":
   "integrity" "sha512-WvJ193OHa0GHPEL+AycEJgxvBEwyfRkN1vhjca23OaPVMCaLCXTd5qAu82AjTcgP1UJmytkOKb63Ypde7raDIg=="
