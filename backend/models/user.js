@@ -16,6 +16,7 @@ var userSchema = new Schema(
         phone_number: {type: Number}, 
         gender: {type: String, required: true, enum: ['Female', 'Male', 'Other']}, 
         major: {type: String}, 
+        about: {type: String},
         year_joined_spark: {type: String}, 
         spark_role: {type: String}, 
         chat_participating: {type: Boolean, required: true}, 

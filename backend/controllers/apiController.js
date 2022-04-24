@@ -137,7 +137,8 @@ exports.post_create_user = function(req, res, next) {
                 users_chatted: req.body.users_chatted, 
                 activities: req.body.activities,
                 users_blocked: req.body.users_blocked, 
-                dates_blocked: []
+                dates_blocked: [], 
+                about: ''
             })
             user.save(function (err) {
                 if (err) { return next(err); }
@@ -157,6 +158,23 @@ exports.get_dates_blocked = function(req, res, next) {
             } else {
                 res.status(200).json(results)
             }
+        }
+    )
+}
+
+exports.post_update_about = function(req, res, next) {
+    User.findOne({"userLogin": req.user.username}).exec(
+        function (err, results) {
+            if (err) { return next(err)}
+            if (results == null) {
+                res.status(400).json({message: "User doesn't have account."})
+            }
+            const aboutInfo = req.body.about
+            User.findOneAndUpdate({"userLogin": req.user.username}, {'about': aboutInfo}, {}, function (err, user) {
+                if (err) { return next(err); }
+                   // Successful - redirect to book detail page.
+                   res.status(200)
+                });
         }
     )
 }

@@ -18,33 +18,49 @@ const Profile = () => {
   
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
+  const [receivedRequest, setReceivedRequest] = userState(false)
 
   const [isChatting, setIsChatting] = useState(false)
+  const [allUsers, setAllUsers] = useState(null) 
+  const [receivedUsers, setReceivedUsers] = useState(false)
 
   const [pfpModalVisible, setPfpModalVisible] = useState(false)
 
   useEffect(() => {
-    getUserdetails()
+    const getUsers = async () => {
+      await axios.get('/details').then(response => {
+        if (response.status === 200) {
+          setAllUsers(reponse.data)
+          setReceivedUsers(true) 
+        }
+      })
+    }
+    const getMyDetails = async () => {
+      await axios.get('/details').then(response => {
+        if (response.status === 200) {
+            const userData = response.data
+            setCreatedAccount(true)
+            setUserInformation(userData)
+            setReceivedRequest(true)
+            setMyAbout(userData.about)
+            setMyName(`${userData.first_name} ${userData.last_name}`)
+            setIsChatting(data.chat_participating)
+            setCompletedChats(userData.users_chatted) //this is all user logins. need to deal w later
+        } else if (response.status === 406 ) {
+          setCreatedAccount(false)
+        } 
+      })
+    }
+    getUsers()
+    getMyDetails()
   }, [])
 
-  const getUserdetails = async () => {
-    const { data } = (await axios.get('/details')
-      .catch(err => {
-        if (err.response) {
-          console.log(err.response.status)
-          if (err.response.status === 406) {
-            setCreatedAccount(false)
-            //make sure to make them fill out personal information
-          }
-        }
-        //console.log(err)
-     }))
-    if (data) {
-      setMyData(data)
-      setUserInformation(data)
-      setCreatedAccount(true)
-      setIsChatting(data.chat_participating)
-    }
+  // Upload the about information to backend 
+  const updateAbout = () => {
+    const about = myAbout
+      await axios.post('updateabout', {about}).then(console.log('success')).catch(error => {
+          console.log(error) //test
+      })
   }
 
   // TODO: more axios to get user information
@@ -129,9 +145,14 @@ const Profile = () => {
         </h3>
         <div className="w-full h-full shadow-lg px-5 py-2 bg-white rounded-2xl text-darkchoco mb-14">
           {completedChats.map(chat => {
+            let fullName = chat
+            if (receivedUsers) {
+              const user = allUsers.find(obj => obj.userLogin === chat)
+              fullName = `${user.first_name} ${user.last_name}`
+            }
             return (
               <div>
-                {chat}
+                {fullName}
               </div>
             )
           })}

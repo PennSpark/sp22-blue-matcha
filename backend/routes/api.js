@@ -52,4 +52,6 @@ router.post('/profilecard', apiController.get_profile_card)
 router.post('/updatecalendar', apiController.post_update_dates_blocked)
 router.get('/datesblocked', apiController.get_dates_blocked)
 
+router.post('/updateabout', apiController.post_update_about)
+
 module.exports = router;
