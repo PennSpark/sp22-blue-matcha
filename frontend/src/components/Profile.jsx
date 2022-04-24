@@ -109,14 +109,13 @@ const Profile = () => {
           <h3 className="text-darkchoco drop-shadow text-4xl text-center mb-5">
             about
           </h3>
-          <form onSubmit={e => updateAbout()}>
-            <div className="flex center h-5/6 shadow bg-white rounded-2xl">
+          <form onSubmit={e => updateAbout()} className="flex flex-col">
+            <div className="shadow bg-white rounded-2xl mb-4">
               <label>
-                <textarea value={myAbout} onChange={e => changeAbout(e)} />
+                <textarea value={myAbout} onChange={e => changeAbout(e)} className="p-6 w-full h-60 text-2xl rounded-2xl" />
               </label>
             </div>
-            <input className="shadow-sm mb-5 text-2xl text-center px-6 py-4 rounded-2xl 
-            bg-dark_matcha font-semibold text-white" type="submit" value="Submit" />
+            <input className="shadow-md mb-5 text-3xl text-center px-10 py-4 rounded-2xl bg-chocolate text-white cursor-pointer" type="submit" value="submit" />
           </form>
 
           {/* <input className="h-5/6 shadow bg-white rounded-2xl" type="text" value={myAbout} onChange={changeAbout} />
