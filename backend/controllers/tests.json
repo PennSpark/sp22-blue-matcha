@@ -1,0 +1,976 @@
+{
+    "user_b": [{
+        "$date": {
+            "$numberLong": "1650283200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650285000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650286800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650288600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650321000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650322800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650324600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650326400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650328200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650330000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650331800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650333600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650335400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650369600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650371400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650373200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650375000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650416400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650418200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650420000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650421800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650456000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650457800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650459600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650461400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650483000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650484800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650486600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650488400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650490200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650492000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650506400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650508200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650542400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650544200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650546000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650547800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650592800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650594600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650628800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650630600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650632400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650634200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650636000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650637800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650639600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650641400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650643200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650645000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650663000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650664800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650666600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650668400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650679200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650681000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650715200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650717000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650718800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650720600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650722400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650724200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650726000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650727800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650729600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650765600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650767400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650801600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650803400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650805200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650807000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650825000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650826800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650828600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650830400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650832200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650834000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650852000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650853800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650558600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650560400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650562200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650297600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650299400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650301200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650303000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650304800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650306600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650315600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650317400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650319200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650321000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650463200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650465000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650466800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650468600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650470400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650472200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650474000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650475800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650477600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650479400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650481200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650483000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650501000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650502800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650504600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650551400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650553200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650555000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650556800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650558600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650560400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650562200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650564000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650565800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650567600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650569400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650571200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650573000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650657600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650659400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650661200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650677400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650731400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650733200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650735000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650808800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650810600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650812400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650843000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650844800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650846600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650848400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650850200000"
+        }
+    }],
+    "user_a": [{
+        "$date": {
+            "$numberLong": "1650283200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650285000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650286800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650288600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650321000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650322800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650324600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650326400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650328200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650330000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650331800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650333600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650335400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650369600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650371400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650373200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650375000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650416400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650418200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650420000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650421800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650456000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650457800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650459600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650461400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650483000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650484800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650486600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650488400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650490200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650492000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650493800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650495600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650506400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650508200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650542400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650544200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650546000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650547800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650578400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650580200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650582000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650583800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650585600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650587400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650592800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650594600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650628800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650630600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650632400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650634200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650636000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650637800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650639600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650641400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650643200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650645000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650663000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650664800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650666600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650668400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650679200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650681000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650715200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650717000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650718800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650720600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650722400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650724200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650726000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650727800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650729600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650751200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650753000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650754800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650756600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650758400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650760200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650762000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650763800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650765600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650767400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650801600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650803400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650805200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650807000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650825000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650826800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650828600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650830400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650832200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650834000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650852000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650853800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650290400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650292200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650294000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650295800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650297600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650299400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650301200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650303000000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650304800000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650306600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650308400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650558600000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650560400000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650562200000"
+        }
+    }, {
+        "$date": {
+            "$numberLong": "1650569400000"
+        }
+    }]
+}

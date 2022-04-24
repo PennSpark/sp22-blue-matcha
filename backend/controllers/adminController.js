@@ -8,12 +8,12 @@ exports.get_receive_matchings = function(req, res, next) {
     Matches.findOne({'currently_on': true}).exec(
         function (err, results) {
             if (err) { return next(err)}
-            if (!results) { res.status(200).json({chat: false, message: 'There are no current matchings out.'})
+            if (!results) { res.status(404).json({chat: false, message: 'There are no current matchings out.'})
             } else {
                 const pairing = results.matches_generated.find(match => 
                     match.user === req.user.username)
                 if (!pairing) {
-                    res.status(200).json({chat: false, message: 'You didn\'t opt in for a coffee chat this week!'})
+                    res.status(400).json({chat: false, message: 'You didn\'t opt in for a coffee chat this week!'})
                 } else {
                     res.status(200).json(pairing)
                 }
@@ -26,8 +26,12 @@ exports.get_receive_matchings = function(req, res, next) {
 exports.get_all_pairings = function (req, res, next) {
     Matches.findOne({'currently_on': true}).exec(
         function (err, result) {
-            if (result) { res.status(200).json(result)}
-            else { res.status(400).json({message: 'no current pairings!'})}
+            if (err) {return next(err)}
+            if (result) { 
+                res.status(200).json(result)
+            } else { 
+                res.status(400).json({message: 'no current pairings!'})
+            }
         }
     )
 }
@@ -67,8 +71,9 @@ exports.get_pending_pairing = function (req, res, next) {
             if (err) {return next(err)}
             if (match.currently_on || match.pushed_in_past) {
                 res.status(404).json({message: 'No pending pairing right now.'})
+            } else {
+                res.status(200).json(result[0])
             }
-            res.status(200).json(result[0])
         }
     )
 }

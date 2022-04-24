@@ -48,4 +48,8 @@ router.get('/pendingmatches', adminController.get_pending_pairing)
 router.get('/pastmatches', adminController.get_past_matchings)
 router.post('/updatepending', adminController.save_pending_pairing)
 
+router.post('/profilecard', apiController.get_profile_card)
+router.post('/updatecalendar', apiController.post_update_dates_blocked)
+router.get('/datesblocked', apiController.get_dates_blocked)
+
 module.exports = router;
