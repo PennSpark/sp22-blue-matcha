@@ -13,16 +13,22 @@ import Survey from './components/Survey'
 import Gallery from './components/Gallery'
 import Home from './components/Home'
 import UserForm from './components/UserForm'
+import Admin from './components/Admin'
+import Profile from './components/Profile'
+import Availability from './components/Availability'
 
 function App() {
   return (
     <Routes>
-      <Route path="/home" element={<Home />} />
       <Route path="/" element={<Login />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/survey" element={<Survey />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/create_user" element={<UserForm />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/availability" element={<Availability />} />
+      <Route path="/admin" element={<Admin />} />
     </Routes>
   )
 }

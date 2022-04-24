@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var apiController = require('../controllers/apiController');
+var adminController = require('../controllers/adminController')
+var galleryController = require('../controllers/galleryController')
 
 //sign up for an account - return 200 if successful, 406 if not
 router.post('/sign-up', apiController.post_sign_up);
@@ -35,7 +37,15 @@ router.get('/form/:form_number', apiController.get_form);
 //coffee chat participating status 
 router.post('/change_participating_status', apiController.change_chat_status); 
 router.get('/all_users', apiController.get_all_users); 
+router.get('/all_users_participating', apiController.get_all_users_with_participating)
 
-router.post('/run_algorithm', apiController.post_run_algorithm);
+//admin routes 
+router.post('/generatematches', adminController.post_run_algorithm)
+router.post('/push_matches', adminController.post_push_matchings)
+router.get('/matchedwith', adminController.get_receive_matchings)
+router.get('/allmatches',  adminController.get_all_pairings)
+router.get('/pendingmatches', adminController.get_pending_pairing)
+router.get('/pastmatches', adminController.get_past_matchings)
+router.post('/updatepending', adminController.save_pending_pairing)
 
 module.exports = router;

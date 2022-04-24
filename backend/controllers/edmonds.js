@@ -1,4 +1,3 @@
-
 var User = require('../models/user');
 var FormResponses = require('../models/formResponses')
 var Matches = require('../models/matches')
@@ -76,21 +75,19 @@ exports.edmonds_algorithm = function(req, res, next) {
       item.received_match = got_match
       translatedResults.push(item)
     })
-    var match = new Matches(
-      {
+    var match = new Matches({
         date: new Date(), 
         form_used: FORM_NUMBER, 
         matches_generated: translatedResults,
-        currently_on: false
-      }
-    )
+        currently_on: false, 
+        pushed_in_past: false
+      })
     match.save(function (err) {
       if (err) { return next(err);}
       // Successful - redirect to new author record.
       res.status(200).json(match);
     })
-  }
-  )
+  })
 }
 
 /**

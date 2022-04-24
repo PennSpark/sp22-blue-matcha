@@ -8,9 +8,12 @@ const UNSELECTED_COLOR = '#C6E4BE' //light green tea
 const Schedule = () => {
     const [dates, setDates] = useState([])
     const handleChange = newSchedule => setDates(newSchedule)
+
+    // TODO: axios post the newly submitted schedule for user
+
     return (
-      <div>
-        <div className="block justify-center text-dark_matcha font-semibold font-mono text-2xl mt-1 mb-5" >
+      <div className="w-3/4">
+        <div className="flex justify-center text-dark_matcha font-semibold font-mono text-5xl mt-1 mb-14" >
           Update your blocked-off times:
         </div>
         <ScheduleSelector
@@ -26,6 +29,9 @@ const Schedule = () => {
         unselectedColor={UNSELECTED_COLOR}
         onChange={handleChange}
         />
+        <button onClick={console.log('create a new method that handles this')} type='submit' className="flex justify-center, shadow appearance-none border rounded-xl py-5 px-7 mt-8 text-dark_matcha bg-matcha text-xl leading-tight">
+          submit availability
+        </button>
       </div>
     )
 }
