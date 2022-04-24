@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import coffeecup from '../imgs/coffeecup.gif'
-import pfp from '../imgs/pfp.png'
+import pfp from '../imgs/pfp.jpg'
 import ProfileModal from './ProfileModal'
 const pfpPlaceholder = 'http://kmvkf2hvhfn2vj9tl8e6ps7v-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/default-img.png'
 
