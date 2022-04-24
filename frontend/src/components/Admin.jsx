@@ -98,7 +98,7 @@ const Admin = () => {
         )
         return (
             <div className="flex flex-col w-1/3 justify-center items-center p-5 m-20 bg-lightchoco rounded-3xl shadow-lg">
-                <div className="text-dark_matcha text-2xl mb-5 text-chocolate"> All members! </div>
+                <div className="text-2xl mb-5 text-chocolate"> All members! </div>
                 {all_users.map(m => m.chat_participating ? <IsChatting user={`${m.first_name} ${m.last_name}`}/> : <NotChatting user={`${m.first_name} ${m.last_name}`}/>)}
             </div>
         )
@@ -146,10 +146,10 @@ const Admin = () => {
         return (
             <div>
                 <Matchings matchings={matches} participating_users={usersOptedIn} setMatchings={handleMatches}/>
-                <button onClick={e => pushMatchings(setError)} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight"> {'Push Matches'}
+                <button onClick={e => pushMatchings(setError)} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha text-dark_matcha px-3 mt-6 text-lg leading-tight"> {'Push Matches'}
                 </button>
                 <div>{error}</div>
-                <button onClick={e => savePendingMatches()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">
+                <button onClick={e => savePendingMatches()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha text-dark_matcha px-3 mt-2 text-lg leading-tight">
                         {`Save Pending Matchings`}
                 </button>
             </div>
@@ -195,32 +195,32 @@ const Admin = () => {
         setOnView(onView === 'Current' ? 'Pending' : 'Current')
     }
     return (
-      <div>
+      <div className="font-mono">
         <NavBar />
         <div className="flex justify-center items-center text-center"> 
-            <div> 
-              { receivedMatches ? onView === 'Current' && <DisplayMatches fullMatchings={currMatchings} title={'Current Matchings'}/> : 
-                <div className="text-2xl mb-4">
-                  {'There are no current pairings!'}
-                </div>
-              }
-              { retrievedPending ? onView === 'Pending' && 
-                <PendingMatches pendingMatches={pendingMatches} setPendingMatches={setPendingMatches} /> : 
-                <div className="text-2xl mb-4">
-                  {'Generate pending matches!'}
-                </div>
-              } 
-              <div className='relative left-32 flex justify-center items-center w-1/2'>
-                <button onClick={e => changeView()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">
-                  {onView === 'Pending' ? `Change to current!` : `Change to pending!`}
-                </button>
+          <div className="flex-col jusitfy-center items-center"> 
+            { receivedMatches ? onView === 'Current' && <DisplayMatches fullMatchings={currMatchings} title={'Current Matchings'}/> : 
+              <div className="text-2xl mb-4">
+                {'There are no current pairings!'}
               </div>
-              <div className='relative left-32 flex flex-row justify-center items-center w-1/2'>
-                <button onClick={e => generateMatchings()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">
-                  {`Generate Pending Matchings`}
-                </button>
+            }
+            { retrievedPending ? onView === 'Pending' && 
+              <PendingMatches pendingMatches={pendingMatches} setPendingMatches={setPendingMatches} /> : 
+              <div className="text-2xl mb-4">
+                {'Generate pending matches!'}
               </div>
+            } 
+            <div className='justify-self-center'>
+              <button onClick={e => changeView()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha text-dark_matcha px-3 mt-2 text-lg leading-tight">
+                {onView === 'Pending' ? `Change to current!` : `Change to pending!`}
+              </button>
             </div>
+            <div className='justify-self-center'>
+              <button onClick={e => generateMatchings()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha text-dark_matcha px-3 mt-2 text-lg leading-tight">
+                {`Generate Pending Matchings`}
+              </button>
+            </div>
+          </div>
           { allUsers && <DisplayMembers all_users={allUsers} />}
         </div>
       </div>
