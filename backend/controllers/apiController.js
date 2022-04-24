@@ -317,6 +317,20 @@ exports.get_user_by_username = function(req, res, next) {
     }
     
 }
+
+exports.get_survey_complete = function(req, res, next) {
+    FormResponses.findOne({'username': req.user.username}).exec(
+        function(err, found_response) {
+            if (err) { return next(err); }
+            if (found_response) {
+                res.status(200).json({'filled_form': true})
+            } else {
+                res.status(200).json({'filled_form': false})
+            }
+        }
+    )
+}
+
 //render the form information 
 exports.post_form_response = function(req, res, next) {
     var formResponse = new FormResponses(

@@ -15,6 +15,7 @@ const Profile = () => {
   const [myInfo, setMyInfo] = useState([])
   const [myData, setMyData] = useState('')
   const [completedChats, setCompletedChats] = useState([])
+  const [filledForm, setFilledForm] = useState(false)
   
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
@@ -27,10 +28,19 @@ const Profile = () => {
   const [pfpModalVisible, setPfpModalVisible] = useState(false)
 
   useEffect(() => {
+    const getFilledForm = async () => {
+      await axios.get('/user_completed_form').then(response => {
+        if (response.status===200) {
+          const info = response.data
+          console.log(info)
+          setFilledForm(info.filled_form)
+        }
+      })
+    }
     const getUsers = async () => {
-      await axios.get('/details').then(response => {
+      await axios.get('/all_users').then(response => {
         if (response.status === 200) {
-          setAllUsers(reponse.data)
+          setAllUsers(response.data)
           setReceivedUsers(true) 
         }
       })
@@ -44,7 +54,7 @@ const Profile = () => {
             setReceivedRequest(true)
             setMyAbout(userData.about)
             setMyName(`${userData.first_name} ${userData.last_name}`)
-            setIsChatting(data.chat_participating)
+            setIsChatting(userData.chat_participating)
             setCompletedChats(userData.users_chatted) //this is all user logins. need to deal w later
         } else if (response.status === 406 ) {
           setCreatedAccount(false)
@@ -53,6 +63,7 @@ const Profile = () => {
     }
     getUsers()
     getMyDetails()
+    getFilledForm()
   }, [])
 
   // Upload the about information to backend 
@@ -109,9 +120,14 @@ const Profile = () => {
             <Link to="/availability" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-chocolate text-white">
               availability
             </Link>
-            <Link to="/survey" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-chocolate text-white">
+            {
+              filledForm ? <div className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-lightchoco text-white">
+                survey complete!
+              </div> : 
+              <Link to="/survey" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-chocolate text-white">
               take survey
-            </Link>
+              </Link>
+            }
             <button onClick={e => changeChatting()} type='submit' className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-chocolate text-white">
               {isChatting ? `start chatting` : `stop chatting`}
             </button>

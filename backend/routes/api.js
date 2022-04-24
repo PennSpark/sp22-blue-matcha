@@ -33,6 +33,7 @@ router.get('/details', apiController.get_user_by_username);
 router.post('/form_submit', apiController.post_form_response);
 router.post('/addform', apiController.post_form);
 router.get('/form/:form_number', apiController.get_form);
+router.get('/user_completed_form', apiController.get_survey_complete)
 
 //coffee chat participating status 
 router.post('/change_participating_status', apiController.change_chat_status); 

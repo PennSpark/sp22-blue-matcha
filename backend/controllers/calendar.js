@@ -1,19 +1,10 @@
 const times = require('./dates.json');
 const test = require('./tests.json');
-var User = require('../models/user');
 
 const STARTINGDATE = new Date('2022-04-18T12:00:00.000+00:00')
 const ALLTIMES = times.dates_blocked 
 const NUMINTERVALS = 24
 const DAYSOFWEEK = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-
-const doFunction = () => {
-    User.findOne({'userLogin': 'alyssan'}).selected({dates_blocked: 1, _id: 0}).exec(
-        function (err, results) {
-            console.log(results)
-        }
-    )
-}
 
 doFunction()
 
@@ -28,7 +19,7 @@ const generateAvailability = (personA, personB) => {
     let block = []
     let firstTime = null
     for (let i = 1; i < sortTimes.length; i++) {
-        let length = sortTimes[i].$date.$numberLong - sortTimes[i - 1].$date.$numberLong
+        let length = sortTimes[i].getTime()- sortTimes[i - 1].getTime()
         if (toMinutes(length) < 35) {
             block.push(sortTimes[i])
         } else {
@@ -46,10 +37,6 @@ const timesToString = slicedArray => {
     const times = []
     slicedArray.forEach(obj => {
         if (obj.length > 2) {
-            console.log(obj[0].$date.$numberLong)
-            const obj1 = (new Date(obj[0].$date.$numberLong))
-            const obj2 = (new Date(obj.at(-1).$date.$numberLong))
-            console.log(obj1)
             times.push(`${dateToString(obj1)} - ${dateToString(obj2)}`)
         }
     })
