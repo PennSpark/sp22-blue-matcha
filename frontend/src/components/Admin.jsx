@@ -94,7 +94,7 @@ const Admin = () => {
             <div className='bg-red-300 hover:shadow-md py-3 px-8 rounded-xl'>{user}</div>
         )
         const IsChatting =  ({user}) => (
-            <div className='bg-green-200 hover:shadow-md py-3 px-8 rounded-xl'>{user}</div>
+            <div className='bg-matcha hover:shadow-md py-3 px-8 rounded-xl'>{user}</div>
         )
         return (
             <div className="flex flex-col w-1/3 justify-center items-center p-5 m-20 bg-light_matcha rounded-3xl shadow-lg">
@@ -195,31 +195,31 @@ const Admin = () => {
         setOnView(onView === 'Current' ? 'Pending' : 'Current')
     }
     return (
-        <div>
-            <NavBar />
-            <div className="flex flex-justify-center"> 
-                <div> 
-                    { receivedMatches ? onView === 'Current' && <DisplayMatches fullMatchings={currMatchings} title={'Current Matchings'}/> : 
-                        <div>{'There are no current pairings!'}</div>}
-                    { retrievedPending ? onView === 'Pending' && 
-                     <PendingMatches pendingMatches={pendingMatches} setPendingMatches={setPendingMatches} /> : 
-                     <div>{'Generate pending matches!'}</div>
-                     } 
-                    <div className='flex flex-row justify-center items-center w-1/2'>
-                        <button onClick={e => changeView()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">
-                        {onView === 'Pending' ? `Change to current!` : `Change to pending!`}
-                        </button>
-                    </div>
-                    <div className='flex flex-row justify-center items-center w-1/2'>
-                        <button onClick={e => generateMatchings()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">
-                        {`Generate Pending Matchings`}
-                        </button>
-                    </div>
-                </div>
-                { allUsers && <DisplayMembers all_users={allUsers} />}
+      <div>
+        <NavBar />
+        <div className="flex flex-justify-center"> 
+            <div> 
+              { receivedMatches ? onView === 'Current' && <DisplayMatches fullMatchings={currMatchings} title={'Current Matchings'}/> : 
+                  <div>{'There are no current pairings!'}</div>}
+              { retrievedPending ? onView === 'Pending' && 
+                <PendingMatches pendingMatches={pendingMatches} setPendingMatches={setPendingMatches} /> : 
+                <div>{'Generate pending matches!'}</div>
+                } 
+              <div className='flex flex-row justify-center items-center w-1/2'>
+                  <button onClick={e => changeView()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">
+                  {onView === 'Pending' ? `Change to current!` : `Change to pending!`}
+                  </button>
+              </div>
+              <div className='flex flex-row justify-center items-center w-1/2'>
+                  <button onClick={e => generateMatchings()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">
+                  {`Generate Pending Matchings`}
+                  </button>
+              </div>
             </div>
+          { allUsers && <DisplayMembers all_users={allUsers} />}
         </div>
-    )
+      </div>
+  )
 }
 
 export default Admin
