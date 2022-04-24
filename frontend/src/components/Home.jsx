@@ -72,6 +72,11 @@ const Home = () => {
     getUsermatching()
   }, [])
 
+  // TODO: axios post that chat is completed
+  const submitCompletedChat = () => {
+    
+  }
+
   const Display = () => {
     if (!loggedIn) {
       return (
@@ -124,8 +129,13 @@ const Home = () => {
   return (
     <div className="bg-white text-3xl font-mono">
       <NavBar />
-      <div className="flex flex-col justify-center items-center mb-20 pt-20">
+      <div className="flex flex-col justify-center items-center pt-20">
         <Display />
+      </div>
+      <div className="flex justify-center mb-16">
+        <button onClick={e => submitCompletedChat()} className="shadow-sm mb-5 text-3xl text-center px-6 py-4 rounded-2xl bg-dark_matcha font-semibold text-white">
+          completed chat
+        </button>
       </div>
     </div>
   )
