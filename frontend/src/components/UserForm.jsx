@@ -15,10 +15,7 @@ const SPARK_ROLES = ['Red Developer', 'Red Designer', 'Blue Developer', 'Blue De
 const ACTIVITIES = ['swipe them in', 'boba & chill', 'get swiped in', 'center city', 'go on walk', 
   'eat out', 'coffee shop', 'ACME / groceries', 'froyo / ice cream', 'shop / thrifting', 'study sesh']
 
-const pfpPlaceholder = 'http://kmvkf2hvhfn2vj9tl8e6ps7v-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/default-img.png'
-
 const UserForm = () => {
-    const [userPfp, setUserPfp] = useState(pfpPlaceholder)
     const [first_name, setFirst_name] = useState('')
     const [last_name, setLast_name] = useState('')
     const [year_of_grad, setYear_of_grad] = useState(CURR_YEAR)
@@ -34,8 +31,6 @@ const UserForm = () => {
     const [activities, setActivities] = useState([])
     const [retrieved_users, setRetrieved_users] = useState(false)
     const [created_account, setCreated_account] = useState(false)
-
-    const [pfpModalVisible, setPfpModalVisible] = useState(false)
 
     const navigate = useNavigate()
     const submit = async () => {
@@ -121,28 +116,14 @@ const UserForm = () => {
       </div>
       )
     }
-
-    const PfpModal = () => {
-      if (pfpModalVisible) {
-        if (userPfp === pfpPlaceholder) {
-          return <ProfileModal setModalVisible={setPfpModalVisible} setPfp={setUserPfp} oldImage="" />
-        }
-        return <ProfileModal setModalVisible={setPfpModalVisible} setPfp={setUserPfp}oldImage={userPfp} />
-      }
-      return <></>
-    }
   
     return (
       <div>
-        <PfpModal />
         <div className="flex justify-center mt-20 mb-20 font-mono">
           <div className="grid grid-cols-5 bg-light_matcha w-3/4 h-5/6 p-20 rounded-3xl shadow-lg">
             <div className="col-span-full flex flex-col justify-center items-center">
               <h1 className="text-dark_matcha font-semibold text-6xl mb-8 mt-8">Update Your User Info</h1>
               <div className = "grid grid-cols-2 place-items-center font-medium gap-x-12 mb-12">
-                <button onClick={e => setPfpModalVisible(true)} type='button' className="col-span-2 my-5 mb-8">
-                  <img src={userPfp} alt="" className="object-cover w-52 h-52 rounded-full border-2 border-matcha shadow-md hover:shadow-lg" />
-                </button>
                 <div className="mb-4">
                   <label className="block text-dark_matcha text-2xl mt-1"> {'first name:'} </label>
                   <input onChange={e => setLast_name(e.target.value)} value={first_name} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'first name'} />

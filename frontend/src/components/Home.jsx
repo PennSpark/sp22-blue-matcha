@@ -15,7 +15,6 @@ import left from '../imgs/sleepmatcha.gif'
 import right from '../imgs/matcha.gif'
 import words from '../imgs/words.gif'
 
-
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(true)
   const [surveyed, setSurveyed] = useState(true) 
@@ -76,9 +75,7 @@ const Home = () => {
       if (hasMatched) {
         return (
           <>
-            <h1 className="relative top-6 text-5xl drop-shadow capitalize font-semibold text-dark_matcha">
-              You matcha-d with
-            </h1>
+            <img src={words} className="relative top-16 w-1/2" />
             <div className="flex justify-center mb-10">
               <img src={left} className="w-60 h-60 rounded-3xl" />
               <h2 className='relative top-36 mx-10'>
@@ -116,7 +113,7 @@ const Home = () => {
           {/* <Display /> */}
           <div>{!createdAccount && <Link to="/create_user" className="text-2xl">also, make account!</Link>}</div>
         </div>
-        {/* <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div> */}
+        <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div>
       
         <Display />
         {/* <div className="w-3/4">< Schedule /></div> */}
