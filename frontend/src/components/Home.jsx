@@ -92,9 +92,7 @@ const Home = () => {
       if (hasMatched) {
         return (
           <>
-            <h1 className="relative top-6 text-5xl drop-shadow capitalize font-semibold text-dark_matcha">
-              You matcha-d with
-            </h1>
+            <img src={words} className="relative top-16 w-1/2" />
             <div className="flex justify-center mb-10">
               <img src={left} className="w-60 h-60 rounded-3xl" />
               <h2 className='relative top-36 mx-10'>
@@ -127,14 +125,7 @@ const Home = () => {
     <div className="bg-white text-3xl font-mono">
       <NavBar />
       <div className="flex flex-col justify-center items-center mb-20 pt-20">
-        <div className="text-dark_matcha underline">
-          {/* <Display /> */}
-          <div>{!createdAccount && <Link to="/create_user" className="text-2xl">also, make account!</Link>}</div>
-        </div>
-        {/* <div className='mb-20'>{createdAccount && <UserDetails data={userInformation}/>}</div> */}
-      
         <Display />
-        {/* <div className="w-3/4">< Schedule /></div> */}
       </div>
     </div>
   )

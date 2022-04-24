@@ -53,10 +53,10 @@ const ProfileModal = ({ oldImage, setPfp, setModalVisible }) => {
                 <input onChange={e => setImageLink(e.target.value)} value={imageLink} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="question" type="text" placeholder="Link for your beautiful pfp!" />
               </div>
               <div className="flow-root">
-                <button type="submit" onClick={e => submit(e)} className="bg-light_greentea text-white font-normal h-10 py-1 px-4 text-base rounded">
+                <button type="submit" onClick={e => submit(e)} className="bg-chocolate text-white font-normal h-10 py-1 px-4 text-base rounded">
                   Submit
                 </button>
-                <button type="submit" onClick={e => cancel(e)} className="bg-matcha text-white font-normal h-10 py-1 px-4 ml-5 text-base rounded">
+                <button type="submit" onClick={e => cancel(e)} className="bg-lightchoco text-white font-normal h-10 py-1 px-4 ml-5 text-base rounded">
                   Cancel
                 </button>
               </div>
