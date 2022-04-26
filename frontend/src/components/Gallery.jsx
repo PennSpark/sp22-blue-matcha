@@ -1,21 +1,31 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 // Components
 import NavBar from './NavBar'
 import GalleryCard from './GalleryCard'
 import GalleryModal from './GalleryModal'
 
+import axios from 'axios'
+
+const DEFAULT = 'https://ca.slack-edge.com/T02BG31SB7H-U02G075615F-93330ae64fe8-512'
+
 const Gallery = () => {
   const [cards, setCards] = useState([])
   const [modalVisible, setModalVisible] = useState(false)
-  
-  // TODO, get all the previous coffee chat gallery data
-  // useEffect(() => {
-  //   const getAllCards = async () => {
-  //     const { data } = (await axios.post('/'))
-  //     setCards(data)
-  //   }
+  const [receivedCards, setReceivedCards] = useState(false)
 
+  useEffect(() => {
+    const getAllCards = async () => {
+      const response = (await axios.get('/gallery'))
+      console.log(response.status)
+      if (response.status === 200) {
+        console.log(response.data)
+        setReceivedCards(true)
+        setCards(response.data)
+      }
+    }
+    getAllCards()
+  }, [])
 
   //   // 
   //   getAllCards()
@@ -26,16 +36,11 @@ const Gallery = () => {
   //   return () => clearInterval(intervalID)
   // }, [])
   
-  const generateCardBlock = chat => {
-    // TODO: correctly fetch the data of the coffeechat card based on the object's fields
-      // TODO: automatically extracts info like the pair with the current
-      // user and their matched partner
-    const {
-      
-    } = chat
-    // TODO: hard-coded right now
-      // <GalleryCard picture={} pairName={} date={} facts={} />
-  }
+  const GalleryModel = ({allCards}) => allCards.map(card => {
+      const date = new Date(card.date)
+      let formatted_date = date.toDateString()
+      return (<GalleryCard picture={card.photo ? card.photo.image_url : DEFAULT} pairName={card.people} date={card.date ? formatted_date : ''} facts={card.facts} />)
+    })
 
   const CardModal = () => {
     if (modalVisible) {
@@ -60,7 +65,8 @@ const Gallery = () => {
       </div>
 
       <div className="grid grid-cols-3 gap-10 p-10 bg-greentea">
-        <GalleryCard picture={'https://ca.slack-edge.com/T02BG31SB7H-U02G075615F-93330ae64fe8-512'} pairName={'Andrew and Ethan'} date={'Saturday'} facts={['Ethan is cool', 'Andrew is uwu', 'Food was mid', 'Temp is nice']} />
+        {receivedCards && <GalleryModel allCards={cards}/>}
+        <GalleryCard picture={DEFAULT} pairName={'Andrew and Ethan'} date={'Saturday'} facts={['Ethan is cool', 'Andrew is uwu', 'Food was mid', 'Temp is nice']} />
         <GalleryCard picture={'https://ca.slack-edge.com/T02BG31SB7H-U02G075615F-93330ae64fe8-512'} pairName={'Andrew and Ethan'} date={'Saturday'} facts={['Ethan is cool', 'Andrew is uwu', 'Food was mid', 'Temp is nice']} />
         <GalleryCard picture={'https://ca.slack-edge.com/T02BG31SB7H-U02G075615F-93330ae64fe8-512'} pairName={'Andrew and Ethan'} date={'Saturday'} facts={['Ethan is cool', 'Andrew is uwu', 'Food was mid', 'Temp is nice']} />
         <GalleryCard picture={'https://ca.slack-edge.com/T02BG31SB7H-U02G075615F-93330ae64fe8-512'} pairName={'Andrew and Ethan'} date={'Saturday'} facts={['Ethan is cool', 'Andrew is uwu', 'Food was mid', 'Temp is nice']} />

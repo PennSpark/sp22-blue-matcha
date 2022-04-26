@@ -3,6 +3,7 @@ var router = express.Router();
 var apiController = require('../controllers/apiController');
 var adminController = require('../controllers/adminController')
 var galleryController = require('../controllers/galleryController')
+var imageController = require('../controllers/imageController')
 
 //sign up for an account - return 200 if successful, 406 if not
 router.post('/sign-up', apiController.post_sign_up);
@@ -54,6 +55,19 @@ router.post('/updatecalendar', apiController.post_update_dates_blocked)
 router.get('/datesblocked', apiController.get_dates_blocked)
 
 router.post('/updateabout', apiController.post_update_about)
+//called w/ two users to look for overlapping schedules 
 router.post('/paircalendar', apiController.post_generate_schedule)
+
+//upload images 
+router.post('/update_profile_pic', apiController.post_update_propic)
+router.get('/profilepicture', apiController.get_profile_picture)
+
+//gallery controller items 
+router.post('/uploadchatcard', galleryController.post_chat_card)
+router.post('/uploadphoto', galleryController.post_picture_without_linking)
+router.post('/updatechatcard', galleryController.update_chat_card)
+router.get('/usergallery', galleryController.get_gallery_by_user)
+router.post('/deletechatcard', galleryController.delete_chat_card)
+router.get('/gallery', galleryController.get_gallery_items)
 
 module.exports = router;

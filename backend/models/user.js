@@ -24,7 +24,8 @@ var userSchema = new Schema(
         users_blocked: [String], 
         activities: [String],
         admin: {type: Boolean}, 
-        dates_blocked: [Date]
+        dates_blocked: [Date], 
+        profile_picture: {type: Schema.Types.ObjectId}
     }
 );
 

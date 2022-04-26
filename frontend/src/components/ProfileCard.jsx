@@ -153,12 +153,10 @@ const ProfileCard = ({ user_matched_with }) => {
     </>
 
   )
-
   return (
     <>
       {receivedCard && <Details />}
     </>
   )
 }
-
 export default ProfileCard

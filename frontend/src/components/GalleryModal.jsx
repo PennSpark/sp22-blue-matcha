@@ -4,6 +4,7 @@ import axios from 'axios'
 // TODO: file image upload
 // TODO: dynamically resizable facts lists for modal
 const GalleryModal = ({ setModalVisible }) => {
+  const [people, setPeople] = useState('')
   const [image, setImage] = useState('')
   const [date, setDate] = useState('')
   const [facts, setFacts] = useState(['', '', '', '', ''])
@@ -12,11 +13,19 @@ const GalleryModal = ({ setModalVisible }) => {
   const addCard = async () => {
     // await axios.post()
     //   .then(res => {
-
-    //   })
-    //   .catch(error => {
-    //     alert(`${error.response.data}`)
-    //   })
+    const formData = new FormData()
+    formData.append('image', image)
+    const response = await axios.post('/uploadphoto', formData, {})
+    .catch(err => console.log(err))
+    const submitData = { date, people, facts }
+    if (response.status === 200) {
+      const photo = response.data
+      submitData.photo = photo
+    }
+    const formID = await axios.post('/uploadchatcard', submitData, {})
+      .catch(err => console.log(err))
+    setModalVisible(false)
+    window.location.reload(false)
   }
 
   const submit = async e => {
@@ -58,11 +67,15 @@ const GalleryModal = ({ setModalVisible }) => {
             <div className="relative p-6 flex-auto">
               <div className="mb-2">
                 <label className="ml-1">Coffee Chat Picture</label>
-                <input onChange={e => setImage(e.target.value)} value={image} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="question" type="text" placeholder="Link for your coffee chat picture :)" />
+                <input onChange={e => setImage(e.target.files[0])} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="question" type="file" name='image' type="file" placeholder="upload png or jpg file :)" />
               </div>
               <div className="mb-2">
                 <label className="ml-1">Date</label>
-                <input onChange={e => setDate(e.target.value)} value={date} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="question" type="text" placeholder="Date of your coffee chat" />
+                <input onChange={e => setDate(e.target.value)} value={date} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="question" type="date" placeholder="Date of your coffee chat" />
+              </div>
+              <div className="mb-2">
+                <label className="ml-1">People</label>
+                <input onChange={e => setPeople(e.target.value)} value={people} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="question" type="text" placeholder="people ft. in your coffee chat" />
               </div>
               <div className="mb-4">
                 <label className="ml-1">Five Interesting Facts</label>

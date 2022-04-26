@@ -9,7 +9,7 @@ import ProfileModal from './ProfileModal'
 const pfpPlaceholder = 'http://kmvkf2hvhfn2vj9tl8e6ps7v-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/default-img.png'
 
 const Profile = () => {
-  const [myPfp, setMyPfp] = useState('')
+  const [myPfp, setMyPfp] = useState(pfpPlaceholder)
   const [myName, setMyName] = useState('')
   const [myAbout, setMyAbout] = useState('')
   const [myInfo, setMyInfo] = useState([])
@@ -44,6 +44,14 @@ const Profile = () => {
         }
       })
     }
+    const getPfpImage = async () => {
+      await axios.get('/profilepicture').then(response => {
+        if (response.status === 200) {
+          const profileLink = response.data
+          setMyPfp(profileLink)
+        }
+      })
+    }
     const getMyDetails = async () => {
       await axios.get('/details').then(response => {
         if (response.status === 200) {
@@ -60,6 +68,7 @@ const Profile = () => {
         } 
       })
     }
+    getPfpImage()
     getUsers()
     getMyDetails()
     getFilledForm()
@@ -94,7 +103,7 @@ const Profile = () => {
   const PfpModal = () => {
     if (pfpModalVisible) {
       if (myPfp === pfpPlaceholder) {
-        return <ProfileModal setModalVisible={setPfpModalVisible} setPfp={setMyPFp} oldImage="" />
+        return <ProfileModal setModalVisible={setPfpModalVisible} setPfp={setMyPfp} oldImage={myPfp} />
       }
       return <ProfileModal setModalVisible={setPfpModalVisible} setPfp={setMyPfp} oldImage={myPfp} />
     }
@@ -153,7 +162,7 @@ const Profile = () => {
 
       <div className="basis-1/3 flex justify-center text-center flex-col my-10">
         <button onClick={e => setPfpModalVisible(true)} type="button" className="self-center">
-          <img src={pfp} alt="" className="object-cover w-80 h-80 mb-4 rounded-full shadow-lg hover:shadow-lg" />        
+          <img src={myPfp} alt="" className="object-cover w-80 h-80 mb-4 rounded-full shadow-lg hover:shadow-lg" />        
         </button>
         <PfpModal />
         <div className="text-darkchoco text-4xl">

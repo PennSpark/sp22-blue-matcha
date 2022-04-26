@@ -7,6 +7,8 @@ var FormSend = require('../models/formSend')
 var FormResponses = require('../models/formResponses')
 const fs = require("fs");
 var calendarAlgorithm = require('./calendar.js')
+var imageMiddleware = require('./imageController.js')
+
 //import {generateAvailability} from './calendar.js'
 
 const { body,validationResult } = require('express-validator')
@@ -111,7 +113,7 @@ exports.log_out = function(req, res, next) {
 }
 
 /*figure it you want to santize the data later*/ 
-exports.post_create_user = function(req, res, next) {
+exports.post_create_user = (req, res, next) => {
     if (!req.user) {
         res.status(400).json({message: "Please log in."})
     } else {
@@ -123,6 +125,7 @@ exports.post_create_user = function(req, res, next) {
                 res.status(409).json({message: "User already created."})
                 return;
             }
+            //check if user has a file or not. 
             var user = new User({
                 first_name: req.body.first_name,
                 last_name: req.body.last_name,
@@ -439,6 +442,50 @@ exports.get_all_users_with_participating = function(req, res, next) {
         }
     )
 }
+
+const getPictureID = (req, res, next) => {
+    User.findOne({'userLogin': req.user.username}).exec(
+        function (err, result) {
+            if (err) {
+                next (err)
+            }
+            if (result) {
+                if (result.profile_picture) {
+                    req.picture_id = result.profile_picture
+                }
+            }
+            next()
+        }
+    )
+}
+
+exports.post_update_propic = [imageMiddleware.post_upload_image, getPictureID, 
+    imageMiddleware.delete_image, (req, res, next) => {
+    User.findOne({'userLogin': req.user.username}).exec(
+        function (err, result) {
+            if (err) { return next(err) }
+            if (req.uploaded_image) {
+                const img = req.stored_image
+                User.findOneAndUpdate({"userLogin": req.user.username}, {'profile_picture': img._id}, {}, function (err, user) {
+                    if (err) { return next(err); }
+                       // Successful - redirect to book detail page.
+                       res.status(200).json(img.image_url)
+                    });
+            } else {
+                res.status(400).json({'message': 'no picture received'})
+            }
+        }
+    )
+}]
+
+
+exports.get_profile_picture = [getPictureID, imageMiddleware.get_picture, (req, res, next) => {
+    if (req.image_url) {
+        res.status(200).json(req.image_url)
+    } else {
+        res.status(400)
+    }
+}]
 
 exports.post_generate_schedule = function (req, res, next) {
     User.findOne({'userLogin': req.user.username}).select({dates_blocked: 1, _id: 0}).exec(
