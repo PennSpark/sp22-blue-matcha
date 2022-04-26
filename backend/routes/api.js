@@ -54,5 +54,6 @@ router.post('/updatecalendar', apiController.post_update_dates_blocked)
 router.get('/datesblocked', apiController.get_dates_blocked)
 
 router.post('/updateabout', apiController.post_update_about)
+router.post('/paircalendar', apiController.post_generate_schedule)
 
 module.exports = router;

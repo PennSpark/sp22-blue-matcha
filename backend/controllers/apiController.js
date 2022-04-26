@@ -1,20 +1,22 @@
-var passport = require('passport');
-var LocalStrategy = require('passport-local');
-var bcrypt = require('bcryptjs');
-var Login = require('../models/login'); 
-var User = require('../models/user');
-var FormSend = require('../models/formSend');
-var FormResponses = require('../models/formResponses');
-//var algorithmController = require('./edmonds');
+var passport = require('passport')
+var LocalStrategy = require('passport-local')
+var bcrypt = require('bcryptjs')
+var Login = require('../models/login')
+var User = require('../models/user')
+var FormSend = require('../models/formSend')
+var FormResponses = require('../models/formResponses')
+const fs = require("fs");
+var calendarAlgorithm = require('./calendar.js')
+//import {generateAvailability} from './calendar.js'
 
-const { body,validationResult } = require('express-validator');
+const { body,validationResult } = require('express-validator')
   passport.use(new LocalStrategy(function verify(username, password, done) {
     Login.findOne({ username: username }, (err, user) => {
         if (err) { 
-          return done(err);
+          return done(err)
         }
         if (!user) {
-          return done(null, false, { message: "Incorrect username" });
+          return done(null, false, { message: "Incorrect username" })
         }
         bcrypt.compare(password, user.password, (err, res) => {
             if (res) {
@@ -433,6 +435,28 @@ exports.get_all_users_with_participating = function(req, res, next) {
         function(err, result) {
             if (err) {return next(err); }
             res.status(200).json(result)
+        }
+    )
+}
+
+exports.post_generate_schedule = function (req, res, next) {
+    User.findOne({'userLogin': req.user.username}).select({dates_blocked: 1, _id: 0}).exec(
+        function (err, result) {
+            let times_a = []
+            if (err) { return next(err)}
+            if (result) {
+                times_a = result.dates_blocked
+            }
+            User.findOne({'userLogin': req.body.requested_user}).select({dates_blocked: 1, _id: 0}).exec(
+                function (err, result2) {
+                    let times_b = []
+                    if (result2) {
+                        times_b = result2.dates_blocked
+                    }
+                    let availTimes = calendarAlgorithm.generateAvailability(times_a, times_b)
+                    res.status(200).json(availTimes)
+                } 
+            )
         }
     )
 }

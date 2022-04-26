@@ -14,7 +14,7 @@ const ProfileCard = ({ user_matched_with }) => {
   const [userPhone, setUserPhone] = useState('')
   const [userMajor, setUserMajor] = useState('')
   const [userYear, setUserYear] = useState('')
-  const [userAvailabilities, setUserAvailabilities] = useState(['Tuesday 7pm', 'Thursday 12pm', 'Friday 6pm', 'Saturday 12pm'])
+  const [userAvailabilities, setUserAvailabilities] = useState([])
   const [userPreferredLocations, setUserPreferredLocations] = useState([])
 
   useEffect(() => {
@@ -33,7 +33,19 @@ const ProfileCard = ({ user_matched_with }) => {
           err => err.response ? console.log(err.response.message) : console.log(err)
       )
     }
+    const getSchedule = async () => {
+      await axios.post('/paircalendar', {requested_user: user}).then(response => {
+        console.log(response)
+        if (response.status === 200) {
+          const availability = response.data
+          setUserAvailabilities(availability)
+      }
+      }).catch(
+          err => err.response ? console.log(err.response.message) : console.log(err)
+      )
+    }
     getMatched()
+    getSchedule()
   }, [])
   // useEffect(() => {
   //   const getProfileInfo = async () => {
@@ -107,7 +119,7 @@ const ProfileCard = ({ user_matched_with }) => {
         </div>
         <div className='mt-5'>
           <h2 className="text-dark_matcha inline font-bold">
-            availability:&nbsp;
+            times you both are free:&nbsp;
           </h2>
           <div className="flex flex-col text-dark_greentea">
             {userAvailabilities.map((availability, index) => {
