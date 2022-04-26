@@ -26,6 +26,10 @@ const ProfileCard = ({ user_matched_with }) => {
             setUserCard(userdata)
             setReceivedCard(true)
             setUserRealName(`${userdata.first_name} ${userdata.last_name}`)
+            setUserAbout(userdata.about)
+            setUserPhone(userdata.phone_number)
+            setUserMajor(userdata.major)
+            setUserYear(userdata.year_of_grad)
             console.log(userRealName)
             setUserPreferredLocations(userdata.activities)
           }

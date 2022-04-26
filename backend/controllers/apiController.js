@@ -358,7 +358,8 @@ exports.post_form_response = function(req, res, next) {
 }
 
 exports.get_profile_card = function (req, res, next) {
-    User.findOne({'userLogin': req.body.username}).select({first_name: 1, last_name: 1, activities: 1, _id: 0}).exec(
+    User.findOne({'userLogin': req.body.username}).select({first_name: 1, last_name: 1, phone_number: 1, 
+        major: 1, year_of_grad: 1, about: 1, activities: 1, _id: 0}).exec(
         //firstname, lastname, schedule, activities they want to do 
         //add schedule & usercard + details 
         function(err, result) {

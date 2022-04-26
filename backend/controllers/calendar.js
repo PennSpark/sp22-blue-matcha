@@ -50,7 +50,7 @@ const dateToString = date => {
     const day = DAYSOFWEEK[date.getDay()]
     let zone = `AM`
     let time = date.getHours()
-    time >= 12 ? (time-=12, zone = `PM`) : zone = `AM`
+    time > 12 ? (time-=12, zone = `PM`) : zone = `AM`
     const minutes = date.getMinutes() > 0 ? `${date.getMinutes()}` : `${date.getMinutes()}0`
     return `${day} ${time}:${minutes} ${zone}`
 }

@@ -13,7 +13,6 @@ const Profile = () => {
   const [myName, setMyName] = useState('')
   const [myAbout, setMyAbout] = useState('')
   const [myInfo, setMyInfo] = useState([])
-  const [myData, setMyData] = useState('')
   const [completedChats, setCompletedChats] = useState([])
   const [filledForm, setFilledForm] = useState(false)
   
@@ -84,7 +83,7 @@ const Profile = () => {
   }
 
   const changeChatting = async () => {
-      await axios.post('/change_participating_status', {status: !myData.chat_participating}).then(setIsChatting(!isChatting))
+      await axios.post('/change_participating_status', {status: !userInformation.chat_participating}).then(setIsChatting(!isChatting))
       .catch(err => console.log(err))
   }
 
@@ -146,7 +145,7 @@ const Profile = () => {
               </Link>
             }
             <button onClick={e => changeChatting()} type='submit' className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-chocolate text-white">
-              {isChatting ? `start chatting` : `stop chatting`}
+              {isChatting ? `stop chatting` :  `start chatting` }
             </button>
           </div>
         </div>
