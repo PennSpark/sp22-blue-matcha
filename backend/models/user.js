@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var Image = require("../models/image")
 const { DateTime } = require("luxon");
 
 var Schema = mongoose.Schema; 
@@ -25,7 +26,7 @@ var userSchema = new Schema(
         activities: [String],
         admin: {type: Boolean}, 
         dates_blocked: [Date], 
-        profile_picture: {type: Schema.Types.ObjectId}
+        profile_picture: {type: Schema.Types.ObjectId, ref: 'Image'}
     }
 );
 

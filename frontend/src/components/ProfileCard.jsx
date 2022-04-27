@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import NavBar from './NavBar'
 
 import axios from 'axios'
+const DEFAULT_PROPIC = 'https://64.media.tumblr.com/f0d2656c72487c49a86f98a3233aaebc/261af0ebd07e5fd1-8a/s500x750/e7fffcbdb0c21fbcdea53730a364e63fb142cec7.jpg'
 
 const ProfileCard = ({ user_matched_with }) => {
   const user = user_matched_with
@@ -9,7 +10,7 @@ const ProfileCard = ({ user_matched_with }) => {
   const [userCard, setUserCard] = useState(null)
   const [receivedCard, setReceivedCard] = useState(false)
   const [userRealName, setUserRealName] = useState('')
-  const [userPfp, setUserPfp] = useState('https://64.media.tumblr.com/f0d2656c72487c49a86f98a3233aaebc/261af0ebd07e5fd1-8a/s500x750/e7fffcbdb0c21fbcdea53730a364e63fb142cec7.jpg')
+  const [userPfp, setUserPfp] = useState(DEFAULT_PROPIC)
   const [userAbout, setUserAbout] = useState('')
   const [userPhone, setUserPhone] = useState('')
   const [userMajor, setUserMajor] = useState('')
@@ -32,6 +33,10 @@ const ProfileCard = ({ user_matched_with }) => {
             setUserYear(userdata.year_of_grad)
             console.log(userRealName)
             setUserPreferredLocations(userdata.activities)
+            const propic = userdata.profile_picture
+            if (propic) {
+              setUserPfp(propic.image_url)
+            }
           }
       }).catch(
           err => err.response ? console.log(err.response.message) : console.log(err)

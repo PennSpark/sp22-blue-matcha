@@ -3,6 +3,7 @@ var LocalStrategy = require('passport-local')
 var bcrypt = require('bcryptjs')
 var Login = require('../models/login')
 var User = require('../models/user')
+var Image = require('../models/image')
 var FormSend = require('../models/formSend')
 var FormResponses = require('../models/formResponses')
 const fs = require("fs");
@@ -361,8 +362,9 @@ exports.post_form_response = function(req, res, next) {
 }
 
 exports.get_profile_card = function (req, res, next) {
-    User.findOne({'userLogin': req.body.username}).select({first_name: 1, last_name: 1, phone_number: 1, 
-        major: 1, year_of_grad: 1, about: 1, activities: 1, _id: 0}).exec(
+    //populate('profile_picture').
+    User.findOne({'userLogin': req.body.username}).populate('profile_picture', { image_url: 1 }).select({first_name: 1, last_name: 1, phone_number: 1, 
+        major: 1, year_of_grad: 1, about: 1, profile_picture: 1, activities: 1, _id: 0}).exec(
         //firstname, lastname, schedule, activities they want to do 
         //add schedule & usercard + details 
         function(err, result) {
