@@ -32,6 +32,7 @@
     "eslint-plugin-react-hooks": "^4 || ^3 || ^2.3.0 || ^1.7.0"
   },
   "dependencies": {
+    "async": "^3.2.3",
     "bcryptjs": "^2.4.3",
     "bs-platform": "^9.0.2",
     "cloudinary": "^1.29.1",
