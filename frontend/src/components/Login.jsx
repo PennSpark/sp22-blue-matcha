@@ -7,8 +7,8 @@ import axios from 'axios'
 
 import pouring_tea from '../imgs/logowords.png'
 
-const successToast = () => toast.success(`Succesfully Logged In, Ready to Serve Your Matcha`, { icon: '🥳', duration: 4000 })
-const throwError = error => toast.error(`${error.response.data.message}`, { icon: '💀' })
+const successToast = () => toast.success(`Succesfully Logged In, Ready to Serve Your Matcha :P`, { icon: '🍵', duration: 4000 })
+const throwError = error => toast.error(`${error.response.data.message}`, { icon: '🥲' })
 
 const Login = () => {
   const [email, setEmail] = useState('')

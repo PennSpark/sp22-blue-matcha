@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react'
 import NavBar from './NavBar'
 import Answer from './Answer'
 
+import toast from 'react-hot-toast'
+
 import axios from 'axios'
 
 const FORM_NUMBER = 1
+
+const successToast = () => toast.success(`Survey Form Succesfully Submited, Please Wait For Your Matcha :P`, { icon: '🍵', duration: 4000 })
+const throwError = error => toast.error(`${error.message}`, { icon: '🥲' })
+const throwMessage = message => toast.error(`${message}`, { icon: '🙃' })
 
 const Survey = () => {
   const [initialized, setInitialized] = useState(false)
@@ -55,10 +61,11 @@ const Survey = () => {
   const onSubmitForm = async () => {
     await axios.post('/form_submit', { username: user, responses: questions, form_number: FORM_NUMBER })
     .then(res => {
-      console.log(res)
+      successToast()
+      // redirect
     })
     .catch(error => {
-      alert(error.message)
+      throwError(error)
     })
   }
 
@@ -90,7 +97,7 @@ const Survey = () => {
 
   const nextQuestion = () => {
     if (currSelected === -1) {
-      alert('Select a choice first')
+      throwMessage('Select a choice first!!')
       return
     }
     if (currIndex >= questions.length - 1) {

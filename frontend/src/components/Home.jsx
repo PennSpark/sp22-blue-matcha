@@ -5,8 +5,6 @@ import axios from 'axios'
 
 // Components
 import NavBar from './NavBar'
-import Schedule from './Schedule'
-import UserDetails from './UserDetails'
 import ProfileCard from './ProfileCard'
 
 //images
