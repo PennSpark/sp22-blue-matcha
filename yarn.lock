@@ -2929,7 +2929,7 @@
     "core-js" "^2.4.0"
     "regenerator-runtime" "^0.10.0"
 
-"backend@file:C:\\College\\spark\\sp22-blue-matchamaker\\backend":
+"backend@file:/Users/alyssanie/Documents/GitHub/sp22-blue-matchamaker/backend":
   "resolved" "file:backend"
   "version" "0.0.0"
   dependencies:
@@ -5360,7 +5360,7 @@
   "resolved" "https://registry.npmjs.org/fresh/-/fresh-0.5.2.tgz"
   "version" "0.5.2"
 
-"frontend@file:C:\\College\\spark\\sp22-blue-matchamaker\\frontend":
+"frontend@file:/Users/alyssanie/Documents/GitHub/sp22-blue-matchamaker/frontend":
   "resolved" "file:frontend"
   "version" "1.0.0"
   dependencies:
@@ -5422,6 +5422,11 @@
   "integrity" "sha1-FQStJSMVjKpA20onh8sBQRmU6k8="
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
+
+"fsevents@^2.3.2", "fsevents@~2.3.2":
+  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
+  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
+  "version" "2.3.2"
 
 "fstream@^1.0.0", "fstream@^1.0.12":
   "integrity" "sha512-WvJ193OHa0GHPEL+AycEJgxvBEwyfRkN1vhjca23OaPVMCaLCXTd5qAu82AjTcgP1UJmytkOKb63Ypde7raDIg=="
