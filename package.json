@@ -58,5 +58,8 @@
     "passport-local-mongoose": "^7.0.0",
     "path": "^0.12.7",
     "react-hot-toast": "^2.2.0"
+  }, 
+  "engines": {
+    "node": "16.13.0"
   }
 }

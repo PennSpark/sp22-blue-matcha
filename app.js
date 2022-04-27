@@ -6,6 +6,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser')
+var async = require('async')
 
 var apiRouter = require('./routes/api');
 
