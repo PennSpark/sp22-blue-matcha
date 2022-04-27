@@ -7,7 +7,7 @@ import axios from 'axios'
 // logo
 import logo from '../imgs/logo.png'
  
-const NavBar = () => {
+const NavBar = ({ isAdmin }) => {
   const [user, setUser] = useState('')
   const [loggedIn, setLoggedIn] = useState(false)
   const navigate = useNavigate()
@@ -54,9 +54,11 @@ const NavBar = () => {
             <li>
               <Link to="/home" className="hover:bg-matcha hover:shadow-md border-x-4 border-dotted border-matcha py-3 px-8 rounded-xl">Home</Link>
             </li>
-            <li>
-              <Link to="/admin" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Admin</Link>
-            </li>
+            {isAdmin && (
+              <li>
+                <Link to="/admin" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Admin</Link>
+              </li>
+            )}
             <li>
               <Link to="/profile" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Profile</Link>
             </li>
