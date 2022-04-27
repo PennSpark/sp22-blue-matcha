@@ -29,6 +29,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../frontend/public')));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.get("*", function (request, response) {
+    response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
+  });
+}
 
 app.use(session({
   secret: 'keyboard cat',
