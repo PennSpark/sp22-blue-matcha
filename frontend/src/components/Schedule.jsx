@@ -31,28 +31,30 @@ const Schedule = () => {
     }
     const handleChange = newSchedule => setSchedDates(newSchedule)
     return (
-      <div className='flex flex-col items-center flex-align-center w-3/4'>
-        <div className="block justify-center text-dark_matcha font-semibold font-mono text-2xl mt-1 mb-5" >
-          Update your blocked-off times:
+      <div className="flex justify-center bg-dark_matcha w-screen h-screen">
+        <div className='flex overflow-scroll flex-col items-center flex-align-center w-3/4 mt-10 mb-10 p-10 bg-white shadow-xl border-8 border-white border-double rounded-2xl'>
+          <div className="block justify-center text-dark_matcha font-semibold font-mono text-2xl mt-1 mb-5" >
+            Update your blocked-off times:
+          </div>
+          <div className='flex justify-center mb-20'>
+            <button onClick={e => submitTimes()} type="submit" className="shadow appearance-none border rounded-lg bg-light_greentea hover:bg-greentea active:bg-dark_matcha active:text-light_matcha px-4 py-4 mt-2 text-lg font-mono font-medium leading-tight">
+            {`Update Blocked Dates`}</button>
+          </div>
+          <ScheduleSelector
+              selection={schedDates}
+              startDate={DATE}
+              numDays={7}
+              minTime={10}
+              maxTime={22}
+              hourlyChunks={2}
+              timeFormat={'hh:mm A'}
+              dateFormat={'ddd'}
+              selectedColor={SELECTED_COLOR}
+              hoveredColor={HOVERED_COLOR}
+              unselectedColor={UNSELECTED_COLOR}
+              onChange={handleChange}
+            />
         </div>
-        <div className='flex justify-center mb-20'>
-          <button onClick={e => submitTimes()} type="submit" className="shadow appearance-none border rounded-lg py-4 bg-light_matcha px-3 mt-2 text-lg leading-tight">
-          {`Update Blocked Dates`}</button>
-        </div>
-        <ScheduleSelector
-            selection={schedDates}
-            startDate={DATE}
-            numDays={7}
-            minTime={10}
-            maxTime={22}
-            hourlyChunks={2}
-            timeFormat={'hh:mm A'}
-            dateFormat={'ddd'}
-            selectedColor={SELECTED_COLOR}
-            hoveredColor={HOVERED_COLOR}
-            unselectedColor={UNSELECTED_COLOR}
-            onChange={handleChange}
-          />
       </div>
     )
 }
