@@ -35,6 +35,8 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
   });
 }
 
+console.log(__dirname)
+
 app.use(session({
   secret: 'keyboard cat',
   resave: false,

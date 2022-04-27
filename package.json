@@ -2,16 +2,12 @@
   "name": "sp22-blue-matcha",
   "version": "0.1.0",
   "private": true,
-  "workspaces": [
-    "frontend",
-    "backend"
-  ],
   "scripts": {
     "build": "cd frontend && npm run build",
     "install-client": "cd frontend && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
     "start": "node ./bin/www",
-    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"npm run start --workspace frontend\""
+    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"cd frontend && npm run start\""
   },
   "browserslist": {
     "production": [
