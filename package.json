@@ -10,9 +10,8 @@
     "build": "cd frontend && npm run build",
     "install-client": "cd frontend && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "server": "nodemon ./bin/www",
-    "develop": "concurrently --kill-others-on-fail \"npm run start --workspace backend\" \"npm run start --workspace frontend\"",
-    "start": "concurrently --kill-others-on-fail \"npm run start --workspace backend\" \"npm run start --workspace frontend\""
+    "start": "npm run start --workspace backend",
+    "dev": "concurrently --kill-others-on-fail \"npm run start --workspace backend\" \"npm run start --workspace frontend\""
   },
   "browserslist": {
     "production": [
