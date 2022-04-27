@@ -3,10 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
+import toast from 'react-hot-toast'
+
 import coffeecup from '../imgs/coffeecup.gif'
 import pfp from '../imgs/pfp.jpg'
 import ProfileModal from './ProfileModal'
 const pfpPlaceholder = 'http://kmvkf2hvhfn2vj9tl8e6ps7v-wpengine.netdna-ssl.com/wp-content/uploads/2017/10/default-img.png'
+
+const onToast = () => toast.success(`Turned On Coffee Chat Pairing for the Week`, { icon: '🍃', duration: 4000 })
+const offToast = () => toast.success(`Turned Off Coffee Chat Pairing for the Week`, { icon: '🍂', duration: 4000 })
+const throwError = error => toast.error(`${error.response.data.message}`, { icon: '🥲' })
 
 const Profile = () => {
   const [myPfp, setMyPfp] = useState(pfpPlaceholder)
@@ -92,8 +98,18 @@ const Profile = () => {
   }
 
   const changeChatting = async () => {
-      await axios.post('/change_participating_status', {status: !userInformation.chat_participating}).then(setIsChatting(!isChatting))
-      .catch(err => console.log(err))
+      await axios.post('/change_participating_status', {status: !userInformation.chat_participating})
+      .then(() => {
+        if (!isChatting) {
+          onToast()
+        } else {
+          offToast()
+        }
+        setIsChatting(!isChatting)
+      })
+      .catch(
+        err => throwError(err) 
+      )
   }
 
   const changeAbout = event => {

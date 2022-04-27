@@ -1,26 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
+import toast from 'react-hot-toast'
+
 import axios from 'axios'
 
-import NavBar from './NavBar'
-
 import pouring_tea from '../imgs/logowords.png'
+
+const successToast = () => toast.success(`Succesfully Logged In, Ready to Serve Your Matcha :P`, { icon: '🍵', duration: 4000 })
+const throwError = error => toast.error(`${error.response.data.message}`, { icon: '🥲' })
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate()
 
-  const login = async () => {
-    await axios.post('/login', { username: email, password })
-      .then(() => {
-        navigate('/home')
-      })
-      .catch(error => {
-        alert(error.message)
-      })
-  }
   useEffect(() => {
     const getUsername = async () => {
       const { data } = (await axios.get('/username'))
@@ -30,6 +24,24 @@ const Login = () => {
     }
     getUsername()
   }, [])
+
+  const login = async () => {
+    await axios.post('/login', { username: email, password })
+      .then(() => {
+        successToast()
+        navigate('/home')
+      })
+      .catch(error => {
+        throwError(error)
+      })
+  }
+
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      login()
+    }
+  }  
+
   return (
     <div className="flex justify-center items-center w-screen h-screen">
       <div className="flex justify-center items-center">
@@ -41,10 +53,10 @@ const Login = () => {
               <Link to="/signup" className="text-2xl text-black inline"> sign up</Link>
             </h2>
             <div className="mb-4">
-              <input onChange={e => setEmail(e.target.value)} value={email} className="w-80 shadow border rounded-xl py-4 px-3 mt-16 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="email" type="text" placeholder="Username" />
+              <input onChange={e => setEmail(e.target.value)} onKeyDown={handleKeyDown} value={email} className="w-80 shadow border rounded-xl py-4 px-3 mt-16 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="email" type="text" placeholder="Username" />
             </div>
             <div className="mb-4">
-              <input onChange={e => setPassword(e.target.value)} value={password} className="w-80 shadow border rounded-xl py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="password" type="password" placeholder="Password" />
+              <input onChange={e => setPassword(e.target.value)} onKeyDown={handleKeyDown} value={password} className="w-80 shadow border rounded-xl py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="password" type="password" placeholder="Password" />
             </div>
             <button onClick={e => login()} type='submit' className="w-60 shadow appearance-none border rounded-xl py-4 px-3 mt-2 mb-8 text-orange-700 bg-orange-200 text-lg leading-tight">
               login

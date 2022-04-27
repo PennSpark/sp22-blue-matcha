@@ -105,7 +105,7 @@ exports.success_login = function(req, res) {
 }
 
 exports.failure_login = function(req, res) {
-    res.status(401).json({message: "Invalid password or user."});
+    res.status(401).send({message: "Invalid password or user."});
 }
 
 exports.log_out = function(req, res, next) {

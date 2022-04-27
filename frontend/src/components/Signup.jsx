@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
+import toast from 'react-hot-toast'
 import axios from 'axios'
 
 import pouring_tea from '../imgs/logowords.png'
+
+const successToast = () => toast.success(`Succesfully Signed Up, Welcome to Matchamaker :)`, { icon: '🥳', duration: 4000 })
+const throwError = error => toast.error(`${error.response.data.message}`, { icon: '🥲' })
 
 const Signup = () => {
   const [username, setUsername] = useState('')
@@ -16,12 +20,25 @@ const Signup = () => {
   const createUser = async () => {
     await axios.post('/sign-up', { username, password })
       .then(() => {
-        navigate('/')
+        successToast()
+        axios.post('/login', { username, password })
+        .then(() => {
+          navigate('/home')
+        })
+        .catch(error => {
+          throwError(error)
+        })
       })
       .catch(error => {
-        alert(error.message)
+        throwError(error)
       })
   }
+
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      createUser()
+    }
+  }  
 
   return (
     <div className="flex justify-center items-center w-screen h-screen">
@@ -35,13 +52,13 @@ const Signup = () => {
               <Link to="/" className="text-2xl text-black inline"> login</Link>
             </h2>
             <div className="mb-4">
-              <input onChange={e => setUsername(e.target.value)} value={username} className="w-80 shadow border rounded-lg py-4 px-3 mt-16 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="username" type="text" placeholder="Username" />
+              <input onChange={e => setUsername(e.target.value)} onKeyDown={handleKeyDown} value={username} className="w-80 shadow border rounded-lg py-4 px-3 mt-16 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="username" type="text" placeholder="Username" />
             </div>
             <div className="mb-4">
-              <input onChange={e => setEmail(e.target.value)} value={email} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="email" type="text" placeholder="Email" />
+              <input onChange={e => setEmail(e.target.value)} onKeyDown={handleKeyDown} value={email} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="email" type="text" placeholder="Email" />
             </div>
             <div className="mb-4">
-              <input onChange={e => setPassword(e.target.value)} value={password} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="password" type="password" placeholder="Password" />
+              <input onChange={e => setPassword(e.target.value)} onKeyDown={handleKeyDown} value={password} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="password" type="password" placeholder="Password" />
             </div>
             <button onClick={e => createUser()} type="submit" className="w-60 shadow appearance-none border rounded-lg py-4 px-3 mt-2 text-orange-700 bg-orange-200 text-lg leading-tight">
               signup
