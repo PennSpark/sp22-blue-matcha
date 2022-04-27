@@ -2,14 +2,18 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const ProfileModal = ({ oldImage, setPfp, setModalVisible }) => {
-  const [imageLink, setImageLink] = useState(oldImage)
+  //const [imageLink, setImageLink] = useState(oldImage)
+  const [imageFile, setImageFile] = useState(null)
 
   const changeProfile = async () => {
     // TODO: change route to setting the profile picture
-    await axios.post('', { pfp: imageLink })
-      .catch(error => {
-        alert(`${error.response.data}`)
-      })
+    const formData = new FormData()
+    formData.append('image', imageFile)
+    await axios.post('/update_profile_pic', formData, {}).then( res => {
+      if (res) {
+        setPfp(res.data)
+      }
+    }).catch(err => console.log(err))
   }
 
   const submit = async e => {
@@ -17,10 +21,10 @@ const ProfileModal = ({ oldImage, setPfp, setModalVisible }) => {
     // Chanege profile by calling the backend function
     await changeProfile()
     setModalVisible(false)
-    setPfp(oldImage)
   }
 
   const cancel = e => {
+    setImageFile(null)
     e.preventDefault()
     setModalVisible(false)
   }
@@ -49,8 +53,10 @@ const ProfileModal = ({ oldImage, setPfp, setModalVisible }) => {
             {/* body */}
             <div className="relative p-6 flex-auto">
               <div className="mb-4">
-                <label className="ml-1">Profile Picture</label>
-                <input onChange={e => setImageLink(e.target.value)} value={imageLink} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="question" type="text" placeholder="Link for your beautiful pfp!" />
+                <label className="ml-1">Profile Picture (png/jpg only)</label>
+                <input onChange={e => setImageFile(e.target.files[0])} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="image" name='image' type="file">
+                  {/* {image ? 'selected': 'no file uploaded'} */}
+                </input>
               </div>
               <div className="flow-root">
                 <button type="submit" onClick={e => submit(e)} className="bg-chocolate text-white font-normal h-10 py-1 px-4 text-base rounded">
