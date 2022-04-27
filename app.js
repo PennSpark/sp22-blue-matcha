@@ -7,14 +7,13 @@ var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser')
 
-var authRouter = require('./routes/auth');
 var apiRouter = require('./routes/api');
 
 var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://pennspark:team1matchamakers@cluster0.cx4rx.mongodb.net/Cluster0?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGO_CONNECTION_STRING;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -29,7 +28,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../frontend/public')));
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
   app.use(express.static(path.join(__dirname, '../frontend/build')));
   app.get("*", function (request, response) {
     response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
