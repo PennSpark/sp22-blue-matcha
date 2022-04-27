@@ -21,7 +21,13 @@ const Signup = () => {
     await axios.post('/sign-up', { username, password })
       .then(() => {
         successToast()
-        navigate('/')
+        axios.post('/login', { username, password })
+        .then(() => {
+          navigate('/home')
+        })
+        .catch(error => {
+          throwError(error)
+        })
       })
       .catch(error => {
         throwError(error)

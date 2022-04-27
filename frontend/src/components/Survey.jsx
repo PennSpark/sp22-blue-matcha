@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import NavBar from './NavBar'
 import Answer from './Answer'
 
+import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 import axios from 'axios'
@@ -13,6 +13,8 @@ const throwError = error => toast.error(`${error.message}`, { icon: '🥲' })
 const throwMessage = message => toast.error(`${message}`, { icon: '🙃' })
 
 const Survey = () => {
+  const navigate = useNavigate()
+
   const [initialized, setInitialized] = useState(false)
 
   const [user, setUser] = useState('')
@@ -62,7 +64,7 @@ const Survey = () => {
     await axios.post('/form_submit', { username: user, responses: questions, form_number: FORM_NUMBER })
     .then(res => {
       successToast()
-      // redirect
+      navigate('/')
     })
     .catch(error => {
       throwError(error)
