@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 
+import toast from 'react-hot-toast'
 import axios from 'axios'
 
 import pouring_tea from '../imgs/logowords.png'
+
+const successToast = () => toast.success(`Succesfully Signed Up, Welcome :)`, { icon: '🥳', duration: 4000 })
+const throwError = error => toast.error(`${error.response.data.message}`, { icon: '💀' })
 
 const Signup = () => {
   const [username, setUsername] = useState('')
@@ -16,10 +20,11 @@ const Signup = () => {
   const createUser = async () => {
     await axios.post('/sign-up', { username, password })
       .then(() => {
+        successToast()
         navigate('/')
       })
       .catch(error => {
-        alert(error.message)
+        throwError(error)
       })
   }
 

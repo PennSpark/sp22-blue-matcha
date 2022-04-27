@@ -36,6 +36,7 @@
   "dependencies": {
     "concurrently": "^7.1.0",
     "edmonds-blossom": "^1.0.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "react-hot-toast": "^2.2.0"
   }
 }
