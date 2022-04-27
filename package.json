@@ -7,9 +7,12 @@
     "backend"
   ],
   "scripts": {
-    "frontend": "yarn workspace frontend start",
-    "backend": "yarn workspace backend start",
-    "start": "concurrently --kill-others-on-fail \"yarn backend\"  \"yarn frontend\""
+    "build": "cd frontend && npm run build",
+    "install-client": "cd frontend && npm install",
+    "heroku-postbuild": "npm run install-client && npm run build",
+    "server": "nodemon ./bin/www",
+    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix frontend\"",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix frontend\""
   },
   "browserslist": {
     "production": [
