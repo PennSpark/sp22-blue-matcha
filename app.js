@@ -30,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, 'frontend', 'build'), {extensions: ["js"]}));
 app.get("*", function (request, response) {
   response.sendFile(path.join(__dirname, '/frontend/build/index.html'));
+});
 
 app.use(session({
   secret: 'keyboard cat',
