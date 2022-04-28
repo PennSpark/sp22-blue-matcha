@@ -32,7 +32,7 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
     response.sendFile(path.join(__dirname, '/frontend/build/index.html'));
   });
 } else {
-  app.use(express.static(path.join(__dirname, '/frontend/public')));
+  //app.use(express.static(path.join(__dirname, '/frontend/public')));
 }
 app.use(session({
   secret: 'keyboard cat',
