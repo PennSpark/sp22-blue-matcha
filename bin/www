@@ -22,13 +22,24 @@ app.set('port', port);
 
 var server = http.createServer(app);
 
+console.log("Hello 1")
+
 /**
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port);
+
+console.log("Hello 2")
+
 server.on('error', onError);
+
+console.log("Hello 3")
+
 server.on('listening', onListening);
+
+console.log("Hello 4")
+
 
 /**
  * Normalize a port into a number, string, or false.

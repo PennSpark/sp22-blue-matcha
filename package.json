@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "cd frontend && npm run build",
-    "install-client": "cd frontend && npm install && npm install -only=dev",
-    "heroku-postbuild": "npm run install-client && npm run build",
+    "heroku-postbuild": "cd frontend && npm install -only=dev && npm run build",
     "start": "npm install && node ./bin/www",
-    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"cd frontend && npm run start\""
+    "dev": "concurrently --kill-others-on-fail \"npm run start\" \"cd frontend && npm install && npm run start\"",
+    "workspaces": [
+      "frontend"
+    ]
   },
   "browserslist": {
     "production": [
@@ -24,7 +25,8 @@
   "devDependencies": {
     "@babel/preset-react": "^7.16.7",
     "autoprefixer": "^10.4.4",
-    "eslint": "^8.2.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.14.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-jsx-a11y": "^6.3.0",
@@ -56,9 +58,8 @@
     "passport": "^0.5.2",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^7.0.0",
-    "path": "^0.12.7",
-    "react-hot-toast": "^2.2.0"
-  }, 
+    "path": "^0.12.7"
+  },
   "engines": {
     "node": "16.13.0"
   }
