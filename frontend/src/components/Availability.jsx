@@ -4,7 +4,7 @@ import React from 'react'
 import Schedule from './Schedule.jsx'
 
 const Availability = () => (
-  <div className="flex justify-center items-center mt-10">
+  <div className="flex justify-center items-center">
     <Schedule />
   </div>
 )

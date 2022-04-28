@@ -84,8 +84,8 @@ const ProfileCard = ({ user_matched_with }) => {
   // }, [])
   const Details = () => (
     <>
-      <div className="flex flex-col justify-center w-5/12 mt-10 mb-20 p-10 px-16 pb-12 bg-matcha shadow-xl rounded-xl lowercase">
-        <img src={userPfp} alt="" className="object-cover self-center w-52 h-52 mb-4 rounded-full shadow-md hover:shadow-lg" />
+      <div className="flex flex-col justify-center w-1/2 mt-10 mb-20 p-10 px-16 pb-12 bg-matcha shadow-xl rounded-xl lowercase text-3xl text-center border-4 border-greentea border-dashed">
+        <img src={userPfp} alt="" className="object-cover self-center w-52 h-52 mb-4 rounded-full shadow-xl hover:shadow-lg" />
         <div className='mt-8'>
           <h2 className="text-dark_matcha inline font-bold">
             name:&nbsp;
@@ -94,7 +94,7 @@ const ProfileCard = ({ user_matched_with }) => {
             {userRealName}
           </div>
         </div>
-        <div className='mt-5'>
+        <div className='mt-8'>
           <h2 className="text-dark_matcha inline font-bold">
             phone:&nbsp;
           </h2>
@@ -102,7 +102,7 @@ const ProfileCard = ({ user_matched_with }) => {
             {userPhone}
           </div>
         </div>
-        <div className='mt-5'>
+        <div className='mt-8'>
           <h2 className="text-dark_matcha inline font-bold">
             major:&nbsp;
           </h2>
@@ -110,7 +110,7 @@ const ProfileCard = ({ user_matched_with }) => {
             {userMajor}
           </div>
         </div>
-        <div className='mt-5'>
+        <div className='mt-8'>
           <h2 className="text-dark_matcha inline font-bold">
             class:&nbsp;
           </h2>
@@ -118,7 +118,7 @@ const ProfileCard = ({ user_matched_with }) => {
             {userYear}
           </div>
         </div>
-        <div className='mt-5'>
+        <div className='mt-8'>
           <h2 className="text-dark_matcha inline font-bold">
             about:&nbsp;
           </h2>
@@ -126,7 +126,7 @@ const ProfileCard = ({ user_matched_with }) => {
             {userAbout}
           </div>
         </div>
-        <div className='mt-5'>
+        <div className='mt-8'>
           <h2 className="text-dark_matcha inline font-bold">
             times you both are free:&nbsp;
           </h2>
@@ -140,7 +140,7 @@ const ProfileCard = ({ user_matched_with }) => {
             })}
           </div>
         </div>
-        <div className='mt-5'>
+        <div className='mt-8 mb-2'>
           <h2 className="text-dark_matcha inline font-bold">
             preferred locations:&nbsp;
           </h2>
