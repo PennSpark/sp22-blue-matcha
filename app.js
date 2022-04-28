@@ -6,6 +6,7 @@ var logger = require('morgan');
 var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser')
+var cors = require('cors')
 var async = require('async')
 
 var apiRouter = require('./routes/api');
@@ -19,11 +20,8 @@ mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
 app.use(bodyParser.json());
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,17 +33,12 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
     response.sendFile(path.join(__dirname, '/frontend/build/index.html'));
   });
 }
-
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
 }));
 app.use(passport.authenticate('session')); //equivalent to app.use(passport.session())
-
-// //app.use('/', indexRouter);
-// app.use('/', authRouter);
-// app.use('/user/', usersRouter);
 app.use('/api/', apiRouter);
 
 // catch 404 and forward to error handler

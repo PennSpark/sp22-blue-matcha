@@ -42,6 +42,7 @@
     "connect-sqlite3": "^0.9.13",
     "cookie-parser": "^1.4.6",
     "core-js": "^3.22.2",
+    "cors": "^2.8.5",
     "debug": "^4.3.4",
     "dotenv": "^16.0.0",
     "edmonds-blossom": "^1.0.0",

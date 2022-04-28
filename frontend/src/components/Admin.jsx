@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import axios from 'axios'
-import NavBar from './NavBar'
-import Matchings from './Matchings'
+import NavBar from './NavBar.jsx'
+import Matchings from './Matchings.jsx'
 
 
 const Admin = () => {
