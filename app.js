@@ -8,6 +8,8 @@ var session = require('express-session');
 var bodyParser = require('body-parser')
 var cors = require('cors')
 var async = require('async')
+require('dotenv').config()
+
 
 var apiRouter = require('./routes/api');
 
@@ -15,6 +17,7 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require('mongoose');
+
 var mongoDB = process.env.MONGO_CONNECTION_STRING;
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
