@@ -30,9 +30,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/frontend/public')));
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-  app.use(express.static(path.join(__dirname, 'frontend', 'build'), {extensions: ["js"]}));
+  app.use(express.static(path.join(__dirname, '/frontend/build'), {extensions: ["js"]}));
   app.get("*", function (request, response) {
-    response.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    response.sendFile(path.join(__dirname, '/frontend/build/index.html'));
   });
 }
 
@@ -57,10 +57,6 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // // set locals, only providing error in development
-  // res.locals.message = err.message;
-  // res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   // render the error page
   console.log(err)
   res.status(err.status || 500).send(`${err.message}`)
