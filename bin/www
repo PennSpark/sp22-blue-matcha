@@ -30,15 +30,9 @@ console.log("Hello 1")
 
 server.listen(port);
 
-console.log("Hello 2")
-
 server.on('error', onError);
 
-console.log("Hello 3")
-
 server.on('listening', onListening);
-
-console.log("Hello 4")
 
 
 /**
