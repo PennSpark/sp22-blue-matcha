@@ -38,7 +38,7 @@ app.use(session({
   saveUninitialized: false,
 }));
 app.use(passport.authenticate('session')); //equivalent to app.use(passport.session())
-app.use('/api/', apiRouter);
+app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
