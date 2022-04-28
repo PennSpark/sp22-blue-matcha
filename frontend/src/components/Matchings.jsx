@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Dropdown from './Dropdown'
+import Dropdown from './Dropdown.jsx'
 
 const Matchings = ({matchings, participating_users, setMatchings}) => {
     //for each person in participating, populate it with a field 

@@ -9,16 +9,16 @@ import {
 import { Toaster } from 'react-hot-toast'
 
 // Routes
-import Login from './components/Login'
-import Signup from './components/Signup'
-import Survey from './components/Survey'
-import Gallery from './components/Gallery'
-import Schedule from './components/Schedule'
-import Home from './components/Home'
-import UserForm from './components/UserForm'
-import Admin from './components/Admin'
-import Profile from './components/Profile'
-import Availability from './components/Availability'
+import Login from './components/Login.jsx'
+import Signup from './components/Signup.jsx'
+import Survey from './components/Survey.jsx'
+import Gallery from './components/Gallery.jsx'
+import Schedule from './components/Schedule.jsx'
+import Home from './components/Home.jsx'
+import UserForm from './components/UserForm.jsx'
+import Admin from './components/Admin.jsx'
+import Profile from './components/Profile.jsx'
+import Availability from './components/Availability.jsx'
 
 function App() {
   return (

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 // Components
 import NavBar from './NavBar'
-import GalleryCard from './GalleryCard'
-import GalleryModal from './GalleryModal'
+import GalleryCard from './GalleryCard.jsx'
+import GalleryModal from './GalleryModal.jsx'
 
 import axios from 'axios'
 

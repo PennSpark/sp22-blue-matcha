@@ -6,8 +6,8 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 
 // Components
-import NavBar from './NavBar'
-import ProfileCard from './ProfileCard'
+import NavBar from './NavBar.jsx'
+import ProfileCard from './ProfileCard.jsx'
 
 //images
 import angry from '../imgs/angrymatcha.gif'

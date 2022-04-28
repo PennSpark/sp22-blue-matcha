@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router'
 import axios from 'axios'
 
 // components
-import NavBar from './NavBar'
-import Dropdown from './Dropdown'
-import Checkbox from './Checkbox'
-import ProfileModal from './ProfileModal'
+import NavBar from './NavBar.jsx'
+import Dropdown from './Dropdown.jsx'
+import Checkbox from './Checkbox.jsx'
+import ProfileModal from './ProfileModal.jsx'
 
 //import * as yup from 'yup';
 

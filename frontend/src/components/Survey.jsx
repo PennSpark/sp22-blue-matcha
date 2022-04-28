@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Answer from './Answer'
+import Answer from './Answer.jsx'
 
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Submit from './Submit'
+import Submit from './Submit.jsx'
 
 const Answer = ({type, options, markChoice, selected, onSubmitForm}) => {
   const Choice = ({option, index}) => {
