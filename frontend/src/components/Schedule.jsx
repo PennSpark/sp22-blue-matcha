@@ -12,7 +12,7 @@ const Schedule = () => {
     const [receivedDates, setReceivedDates] = useState([])
     useEffect(() => {
       const loadCurrDates = async () => {
-        await axios.get('/datesblocked').then(response => {
+        await axios.get('/api/datesblocked').then(response => {
           if (response.status === 200) {
               setSchedDates(response.data.dates_blocked)
               console.log(response.data.dates_blocked)
@@ -24,7 +24,7 @@ const Schedule = () => {
     }, [])
     const submitTimes = async () => {
       const dates = schedDates
-      await axios.post('updatecalendar', {dates}).then(console.log('success')).catch(error => {
+      await axios.post('/api/updatecalendar', {dates}).then(console.log('success')).catch(error => {
           console.log(error) //test
       })
       //reload to a different window

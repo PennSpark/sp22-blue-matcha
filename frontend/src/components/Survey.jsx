@@ -28,7 +28,7 @@ const Survey = () => {
 
   useEffect(() => {
     const getQuestions = async () => {
-      const { data } = (await axios.get(`/form/${FORM_NUMBER}`))
+      const { data } = (await axios.get(`/api/form/${FORM_NUMBER}`))
       setQuestions(data)
       const { question, options, type, selected } = data[currIndex]
       setCurrType(type)
@@ -41,7 +41,7 @@ const Survey = () => {
     }
 
     const getUsername = async () => {
-      const { data } = (await axios.get('/username'))
+      const { data } = (await axios.get('/api/username'))
       if (data !== 'Not signed in') {
         setUser(data)
       }
@@ -61,7 +61,7 @@ const Survey = () => {
   }, [currIndex])
 
   const onSubmitForm = async () => {
-    await axios.post('/form_submit', { username: user, responses: questions, form_number: FORM_NUMBER })
+    await axios.post('/api/form_submit', { username: user, responses: questions, form_number: FORM_NUMBER })
     .then(res => {
       successToast()
       navigate('/')

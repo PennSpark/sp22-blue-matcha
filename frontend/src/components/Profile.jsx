@@ -34,7 +34,7 @@ const Profile = () => {
 
   useEffect(() => {
     const getFilledForm = async () => {
-      await axios.get('/user_completed_form').then(response => {
+      await axios.get('/api/user_completed_form').then(response => {
         if (response.status===200) {
           const info = response.data
           console.log(info)
@@ -43,7 +43,7 @@ const Profile = () => {
       })
     }
     const getUsers = async () => {
-      await axios.get('/all_users').then(response => {
+      await axios.get('/api/all_users').then(response => {
         if (response.status === 200) {
           setAllUsers(response.data)
           setReceivedUsers(true) 
@@ -51,7 +51,7 @@ const Profile = () => {
       })
     }
     const getPfpImage = async () => {
-      await axios.get('/profilepicture').then(response => {
+      await axios.get('/api/profilepicture').then(response => {
         if (response.status === 200) {
           const profileLink = response.data
           setMyPfp(profileLink)
@@ -59,7 +59,7 @@ const Profile = () => {
       })
     }
     const getMyDetails = async () => {
-      await axios.get('/details').then(response => {
+      await axios.get('/api/details').then(response => {
         if (response.status === 200) {
             const userData = response.data
             setCreatedAccount(true)

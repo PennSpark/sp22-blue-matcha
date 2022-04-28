@@ -9,7 +9,7 @@ const ProfileModal = ({ oldImage, setPfp, setModalVisible }) => {
     // TODO: change route to setting the profile picture
     const formData = new FormData()
     formData.append('image', imageFile)
-    await axios.post('/update_profile_pic', formData, {}).then( res => {
+    await axios.post('/api/update_profile_pic', formData, {}).then( res => {
       if (res) {
         setPfp(res.data)
       }

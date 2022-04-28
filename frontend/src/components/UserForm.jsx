@@ -43,7 +43,7 @@ const UserForm = () => {
         const data = { first_name, last_name, year_of_grad, email, phone_number,
             gender, major, year_joined_spark, spark_role, users_chatted, users_blocked, activities }
         // schema.validate(data).then(data => console.log(data)).catch(err => console.log(err))
-        await (axios.post(created_account ? '/updateaccount' : '/createaccount', data).catch(error => {
+        await (axios.post(created_account ? '/api/updateaccount' : '/api/createaccount', data).catch(error => {
             console.log(data) //test
             console.log(error) //test
         }))
@@ -53,13 +53,13 @@ const UserForm = () => {
     useEffect(() => {
         // get user profile picture and call setUserPfp()
         const getUsers = async () => {
-            const { data } = (await axios.get('/all_users'))
+            const { data } = (await axios.get('/api/all_users'))
             data.map(obj => ({ ...obj, blocked: 'false' }))
             setAll_users(data)
             setRetrieved_users(true)
         }
         const getUserdetails = async () => {
-            const { data } = (await axios.get('/details')
+            const { data } = (await axios.get('/api/details')
               .catch(err => console.log(err)))
             if (data) {
                 setFirst_name(data.first_name)
