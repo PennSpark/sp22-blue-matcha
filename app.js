@@ -8,8 +8,6 @@ var session = require('express-session');
 var bodyParser = require('body-parser')
 var cors = require('cors')
 var async = require('async')
-require('dotenv').config()
-
 
 var apiRouter = require('./routes/api');
 
