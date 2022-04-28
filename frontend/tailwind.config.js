@@ -14,6 +14,7 @@ module.exports = {
         dark_matcha: '#687d63',
         lemon: '#fffab0',
         light_lemon: '#fffcd8',
+        dark_lemon: '#FFF495',
         chocolate: '#a67449',
         darkchoco: '#543D28',
         lightchoco: '#fee7cb',
