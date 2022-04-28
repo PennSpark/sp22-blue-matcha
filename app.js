@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/frontend/public')));
 if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging') {
-  app.use(express.static(path.join(__dirname, 'frontend', 'build')));
+  app.use(express.static(path.join(__dirname, 'frontend', 'build'), {extensions: ["js"]}));
   app.get("*", function (request, response) {
     response.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
   });
