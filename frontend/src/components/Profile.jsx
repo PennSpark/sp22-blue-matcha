@@ -203,10 +203,10 @@ const Profile = () => {
         <img src={stirrer} alt="" className="absolute left-[56%] top-[14%] rotate-[300deg] object-cover w-[300px] h-[300px] mb-4 rounded-full drop-shadow-svg" />  
 
 
-        <div className="basis-1/3 flex justify-center text-center flex-col my-10">
+        <div className="basis-1/3 flex text-center flex-col my-10">
           <PfpModal />
-          <div className="text-darkchoco text-4xl">
-              {myName}
+          <div className="relative top-[220px] text-darkchoco text-4xl">
+            {myName}
           </div>
           <div>
             {myInfo.map(info => {
@@ -224,7 +224,7 @@ const Profile = () => {
           <h3 className="text-darkchoco drop-shadow text-4xl text-center mb-5">
             completed chats
           </h3>
-          <div className="w-full h-full shadow-lg px-5 py-2 bg-white rounded-2xl text-darkchoco mb-14">
+          <div className="w-full h-full shadow-lg px-10 py-8 bg-white rounded-2xl text-darkchoco text-2xl mb-14">
             {completedChats.map(chat => {
               let fullName = chat
               if (receivedUsers) {
@@ -233,7 +233,7 @@ const Profile = () => {
               }
               return (
                 <div>
-                  {fullName}
+                  - {fullName}
                 </div>
               )
             })}
