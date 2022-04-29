@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+import ReactCardFlip from 'react-card-flip'
 import toast from 'react-hot-toast'
 
 // Components
@@ -29,6 +30,8 @@ const Home = () => {
   const [matchedPartner, setMatchedPartner] = useState('')
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
+
+  const [isFlipped, setIsFlipped] = useState(false)
 
   const navigate = useNavigate()
 
@@ -169,8 +172,17 @@ const Home = () => {
       <img src={table} alt="" className="absolute top-[45%] object-cover w-[100%] h-[20%]" />
       <Props />
       <div className="absolute top-[65%] bg-lightchoco w-full">
-        <UserCard />
-      </div>
+        <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal" containerClassName="w-full">
+          <button onClick={e => handleClick(e)} type='button' className='w-full'>
+            <UserCard />
+          </button>
+          
+        <button onClick={e => handleClick(e)} type='button' className='w-full'>
+          <GalleryCardBack pairName={pairName} facts={facts} _id={_id} index={index} deleteCard={deleteCard} />
+        </button>
+      </ReactCardFlip>
+        
+      </div>  
     </div>
   )
 }

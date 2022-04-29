@@ -12,7 +12,6 @@ const throwError = error => toast.error(`${error.response.data.message}`, { icon
 
 const Signup = () => {
   const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
@@ -55,12 +54,9 @@ const Signup = () => {
               <input onChange={e => setUsername(e.target.value)} onKeyDown={handleKeyDown} value={username} className="w-80 shadow border rounded-lg py-4 px-3 mt-16 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="username" type="text" placeholder="Username" />
             </div>
             <div className="mb-4">
-              <input onChange={e => setEmail(e.target.value)} onKeyDown={handleKeyDown} value={email} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="email" type="text" placeholder="Email" />
-            </div>
-            <div className="mb-4">
               <input onChange={e => setPassword(e.target.value)} onKeyDown={handleKeyDown} value={password} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="password" type="password" placeholder="Password" />
             </div>
-            <button onClick={e => createUser()} type="submit" className="w-60 shadow appearance-none border rounded-lg py-4 px-3 mt-2 text-orange-700 bg-orange-200 active:bg-chocolate active:text-orange-200 border-chocolate border-t-0 border-l-1 border-r-4 border-b-4 text-lg leading-tight">
+            <button onClick={e => createUser()} type="submit" className="w-60 shadow appearance-none border rounded-lg py-4 px-3 mt-2 text-orange-700 bg-orange-200 active:text-orange-100 active:bg-orange-300 border-chocolate border-t-0 border-l-1 border-r-4 border-b-4 text-lg leading-tight">
               signup
             </button>
           </div>
