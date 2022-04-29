@@ -20,12 +20,8 @@ const ProfileCard = ({ user_matched_with }) => {
 
   useEffect(() => {
     const getMatched = async () => {
-<<<<<<< HEAD
-      await axios.post('/profilecard', {username: user}).then(response => {
-=======
       await axios.post('/api/profilecard', {username: user}).then(response => {
           console.log(response)
->>>>>>> sadness
           if (response.status === 200) {
             const userdata = response.data
             setUserCard(userdata)
