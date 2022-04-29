@@ -45,7 +45,7 @@ app.use('/api', apiRouter);
 console.log("bruh")
 app.use(express.static(path.join(__dirname, '../frontend/build')));
 app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
+  response.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
 });
 
 // catch 404 and forward to error handler
