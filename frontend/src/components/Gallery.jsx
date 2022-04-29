@@ -55,9 +55,9 @@ const Gallery = () => {
   return (
     <>
       <NavBar />
-      <div className="bg-greentea w-screen h-screen">
+      <div className="bg-table bg-contain bg-repeat w-screen h-screen border-t-8 border-dark_matcha">
         <div className="flex justify-center font-semibold pt-10 capitalize">
-          <h1 className="inline text-5xl mt-10 text-dark_matcha">
+          <h1 className="inline text-5xl mt-10 text-lemon drop-shadow-xl font-mono">
             coffee chat gallery
           </h1>
           <button onClick={e => setModalVisible(true)} button="button" className="relative top-12 inline w-10 h-10 ml-5 rounded-xl text-3xl bg-dark_matcha text-matcha">
@@ -68,7 +68,7 @@ const Gallery = () => {
           <CardModal />
         </div>
 
-        <div className="grid grid-cols-3 justify-items-center justify-start gap-10 p-10 bg-greentea">
+        <div className="grid grid-cols-3 justify-items-center justify-start gap-10 p-10 bg-table">
           {receivedCards && <GalleryModel allCards={cards}/>}
         </div>
       </div>

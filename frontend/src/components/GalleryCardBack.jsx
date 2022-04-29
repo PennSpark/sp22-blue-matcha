@@ -1,7 +1,7 @@
 import React from 'react'
 
 const GalleryCardBack = ({ pairName, facts }) => (
-  <div className="flex flex-col items-center justify-evenly w-full h-[650px] mt-10 p-10 px-8 pb-10 bg-light_matcha shadow-lg hover:shadow-darker rounded-xl text-2xl lowercase">
+  <div className="flex flex-col items-center justify-evenly w-full h-[650px] mt-10 p-10 px-8 pb-10 bg-matcha drop-shadow-svg_lighter hover:shadow-darker rounded-xl text-2xl lowercase">
     <div>
       <h2 className="text-dark_matcha inline font-semibold text-3xl italic capitalize">
         matcha
