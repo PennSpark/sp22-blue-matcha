@@ -146,6 +146,22 @@ const Home = () => {
       )
     }
   }
+
+  const UserCard = () => {
+    if (hasMatched) {
+      return (
+        <div className="">
+          {<ProfileCard user_matched_with={matchedPartner}/>}
+          <div className="flex justify-center bg-lightchoco pt-16 pb-12">
+            <button onClick={e => submitCompletedChat()} className="shadow-sm mb-5 text-3xl text-center px-8 py-6 rounded-2xl bg-dark_greentea border-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 font-regular text-white">
+              completed chat
+            </button>
+          </div>
+        </div>
+      ) 
+    }
+    return <></>
+  }
   
   return (
     <div className="bg-white text-3xl font-mono w-screen h-screen">
@@ -153,17 +169,8 @@ const Home = () => {
       <Board />
       <img src={table} alt="" className="relative object-cover w-[100%] h-[20%]" />
       <Props />
-      <div className="bg-lightchoco h-full">
-        {hasMatched && 
-          <div className="">
-            {<ProfileCard user_matched_with={matchedPartner}/>}
-            <div className="flex justify-center bg-lightchoco pt-16 pb-12">
-              <button onClick={e => submitCompletedChat()} className="shadow-sm mb-5 text-3xl text-center px-8 py-6 rounded-2xl bg-dark_greentea border-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 font-regular text-white">
-                completed chat
-              </button>
-            </div>
-          </div>
-        }
+      <div className="bg-lightchoco h-96">
+        <UserCard />
       </div>
     </div>
   )
