@@ -119,8 +119,8 @@ const Home = () => {
     }
     return (
       <>
-        <div className="flex flex-col w-full"> 
-          <div className="self-center text-center w-1/3 h-60 mt-10 p-20 px-36 drop-shadow shadow-xl rounded-xl mb-10 capitalize font-medium bg-light_matcha text-dark_matcha">
+        <div className="absolute top-[12%] w-full flex flex-col"> 
+          <div className="self-center text-center w-1/3 h-1/3 mt-10 p-20 px-36 drop-shadow shadow-xl rounded-xl mb-10 capitalize font-medium bg-light_matcha text-dark_matcha">
             <h1 className="relative bottom-2 text-4xl">
               Wait to be matcha'd
             </h1>
@@ -167,9 +167,9 @@ const Home = () => {
     <div className="bg-white text-3xl font-mono w-screen h-screen">
       <NavBar isAdmin={isAdmin} />
       <Board />
-      <img src={table} alt="" className="relative object-cover w-[100%] h-[20%]" />
+      <img src={table} alt="" className="absolute top-[45%] object-cover w-[100%] h-[20%]" />
       <Props />
-      <div className="bg-lightchoco h-96">
+      <div className="absolute top-[65%] bg-lightchoco w-full">
         <UserCard />
       </div>
     </div>

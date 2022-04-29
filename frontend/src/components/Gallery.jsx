@@ -40,11 +40,11 @@ const Gallery = () => {
   //   return () => clearInterval(intervalID)
   // }, [])
   
-  const GalleryModel = ({ allCards }) => allCards.map(card => {
+  const GalleryModel = ({ allCards }) => allCards.map((card, index) => {
     const date = new Date(card.date)
     let formatted_date = date.toDateString()
     return (
-      <GalleryCard picture={card.photo ? card.photo.image_url : DEFAULT} pairName={card.people} date={card.date ? formatted_date : ''} facts={card.facts} />
+      <GalleryCard picture={card.photo ? card.photo.image_url : DEFAULT} pairName={card.people} date={card.date ? formatted_date : ''} facts={card.facts} _id={card._id} index={index} deleteCard={deleteCard} />
     )
   })
 
@@ -53,6 +53,12 @@ const Gallery = () => {
       return <GalleryModal setModalVisible={setModalVisible} />
     }
     return <></>
+  }
+
+  const deleteCard = (_id, index) => {
+    setCards(cards.filter((_, i) => i !== index))
+    console.log(cards)
+    // call axios to delete the component
   }
 
   // TODO: uncomment dynamic generation, delete hard coded card
