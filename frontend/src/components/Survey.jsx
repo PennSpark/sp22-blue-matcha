@@ -86,7 +86,7 @@ const Survey = () => {
     } else {
       setCurrIndex(currIndex - 1)
     }
-    if (selected) {
+    if (selected || selected === 0) {
       setCurrSelected(selected)
     } else {
       setCurrSelected(-1)
@@ -122,7 +122,7 @@ const Survey = () => {
 
   const Left = () => {
     return (
-      <button onClick={e => lastQuestion()} type="button" className="mr-10 text-6xl">
+      <button onClick={e => lastQuestion()} type="button" className="mr-10 text-6xl hover:drop-shadow-md hover:text-light_lemon">
         &lt;
       </button>
     )
@@ -130,7 +130,7 @@ const Survey = () => {
 
   const Right = () => {
     return (
-      <button onClick={e => nextQuestion()} type="button" className="ml-10 text-6xl">
+      <button onClick={e => nextQuestion()} type="button" className="ml-10 text-6xl hover:drop-shadow-md hover:text-light_lemon">
         &gt;
       </button>
     )

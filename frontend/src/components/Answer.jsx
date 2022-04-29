@@ -12,14 +12,14 @@ const Answer = ({type, options, markChoice, selected, onSubmitForm}) => {
 
     if (index === selected) {
       return (
-        <button onClick={e => markChoice(index)} type="button" autoFocus className="w-full bg-white rounded-xl py-5 px-12 text-left focus:bg-lemon">
-          &gt; {option}
+        <button onClick={e => markChoice(index)} type="button" autoFocus className="w-full bg-white rounded-xl py-5 px-12 text-left focus:bg-lemon focus:shadow-md">
+          &gt; &nbsp; {option}
         </button>
       )
     } else {
       return (
-        <button onClick={e => markChoice(index)} type="button" className="w-full bg-white rounded-xl py-5 px-12 text-left focus:bg-lemon">
-          &gt; {option}
+        <button onClick={e => markChoice(index)} type="button" className="w-full bg-white rounded-xl py-5 px-12 text-left focus:bg-lemon active:shadow-md">
+          &gt; &nbsp; {option}
         </button>
       )
     }
