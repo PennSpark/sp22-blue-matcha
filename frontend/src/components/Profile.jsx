@@ -127,36 +127,27 @@ const Profile = () => {
       <NavBar />
       <img src={table} alt="" className="object-cover w-full h-[37%] border-b-8 border-b-darkchoco border-t-8 border-t-dark_matcha" />  
       <div className="flex justify-evenly w-screen h-screen bg-lightchoco">
-        <div className="basis-1/3 justify-between flex flex-col ml-20 my-10">
-          <div className="basis-1/2 mb-10">
-            {/* <input className="h-5/6 shadow bg-white rounded-2xl" type="text" value={myAbout} onChange={changeAbout} />
-            <button onClick={e => updateAbout()} className="shadow-sm mb-5 text-2xl text-center px-6 py-4 rounded-2xl bg-dark_matcha font-semibold text-white">
-              update about
-            </button>
-            {/* <div className="h-5/6 shadow bg-white rounded-2xl">
-              {myAbout}
-            </div> */} 
-          </div>
+        <div className="basis-1/3 justify-center flex flex-col ml-20 my-10">
           <div className="basis-1/2 mb-10">
             <h3 className="text-darkchoco drop-shadow text-4xl text-center mb-5">
               manage
             </h3>
             <div className="flex flex-col h-5/6 shadow-lg px-10 py-8 bg-white rounded-2xl">
-              <Link to="/create_user" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-chocolate text-white">
+              <Link to="/create_user" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
                 update info
               </Link> 
-              <Link to="/availability" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-chocolate text-white">
+              <Link to="/availability" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
                 availability
               </Link>
               {
-                filledForm ? <div className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-lightchoco text-white">
+                filledForm ? <div className="mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-lightchoco text-white">
                   survey complete!
                 </div> : 
-                <Link to="/survey" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-chocolate text-white">
+                <Link to="/survey" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
                 take survey
                 </Link>
               }
-              <button onClick={e => changeChatting()} type='submit' className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-2xl bg-chocolate text-white">
+              <button onClick={e => changeChatting()} type='submit' className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
                 {isChatting ? `stop chatting` :  `start chatting` }
               </button>
             </div>
@@ -193,8 +184,7 @@ const Profile = () => {
           </div>
         </div> 
 
-        <div className="basis-1/3 flex flex-col mr-20 my-10">
-          <img src={coffeecup} alt="" className="object-cover self-center w-1/2 h-1/2 mb-2 rounded-2xl" />
+        <div className="basis-1/3 flex flex-col justify-center mr-20 mt-48">
           <h3 className="text-darkchoco drop-shadow text-4xl text-center mb-5">
             completed chats
           </h3>
