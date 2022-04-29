@@ -49,7 +49,7 @@ const Schedule = () => {
             Update your blocked-off times:
           </div>
           <div className='flex justify-center mb-20'>
-            <button onClick={e => submitTimes()} type="submit" className="shadow appearance-none border rounded-lg bg-light_greentea text-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 border-dark_matcha hover:bg-greentea active:bg-dark_greentea active:text-light_matcha px-16 py-5 mt-2 text-xl font-mono font-medium leading-tight">
+            <button onClick={e => submitTimes()} type="submit" className="shadow appearance-none border rounded-lg bg-light_greentea text-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 border-dark_matcha active:bg-dark_matcha active:text-light_matcha px-16 py-5 mt-2 text-xl font-mono font-medium leading-tight">
             {`Update`}</button>
           </div>
           <ScheduleSelector

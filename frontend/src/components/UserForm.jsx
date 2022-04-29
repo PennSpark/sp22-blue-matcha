@@ -184,7 +184,7 @@ const UserForm = () => {
               <RenderUserCheckboxes all_users={all_users} users_selected={users_chatted} setUsers_selected={setUsers_chatted} label={'People you already chatted with:'}/>
               <RenderUserCheckboxes all_users={all_users} users_selected={users_blocked} setUsers_selected={setUsers_blocked} label={'People you do not wish to coffee chat'}/>
               <RenderCheckbox items={ACTIVITIES} item_labels={ACTIVITIES} items_checked={activities} setItems_checked={setActivities} label={'Select fun activities you want to do in your chat!'}/>
-              <button onClick={e => submit()} type="submit" className="w-60 self-center shadow appearance-none border rounded-lg py-5 px-6 mt-2 text-white bg-dark_greentea border-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 text-2xl leading-tight font-medium">
+              <button onClick={e => submit()} type="submit" className="w-60 self-center shadow appearance-none border rounded-lg py-5 px-6 mt-2 text-white bg-dark_greentea border-dark_matcha active:bg-dark_matcha -t-0 border-l-1 border-r-4 border-b-4 text-2xl leading-tight font-medium">
                   {created_account ? `Update!` : `Complete!`}
               </button>
             </div>

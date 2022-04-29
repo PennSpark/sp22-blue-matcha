@@ -60,7 +60,7 @@ const Signup = () => {
             <div className="mb-4">
               <input onChange={e => setPassword(e.target.value)} onKeyDown={handleKeyDown} value={password} className="w-80 shadow border rounded-lg py-4 px-3 mt-2 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" id="password" type="password" placeholder="Password" />
             </div>
-            <button onClick={e => createUser()} type="submit" className="w-60 shadow appearance-none border rounded-lg py-4 px-3 mt-2 text-orange-700 bg-orange-200 border-chocolate border-t-0 border-l-1 border-r-4 border-b-4 text-lg leading-tight">
+            <button onClick={e => createUser()} type="submit" className="w-60 shadow appearance-none border rounded-lg py-4 px-3 mt-2 text-orange-700 bg-orange-200 active:bg-chocolate active:text-orange-200 border-chocolate border-t-0 border-l-1 border-r-4 border-b-4 text-lg leading-tight">
               signup
             </button>
           </div>

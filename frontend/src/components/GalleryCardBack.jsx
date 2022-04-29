@@ -34,7 +34,7 @@ const GalleryCardBack = ({ pairName, facts, _id, index, deleteCard }) => (
         })}
       </div>
     </div>
-    <div onClick={e => deleteCard(_id, index)} type="button" className="w-60 self-center shadow appearance-none border rounded-lg py-5 px-6 mt-2 text-light_matcha bg-dark_greentea border-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 text-2xl leading-tight font-medium cursor-pointer">
+    <div onClick={e => deleteCard(_id, index)} type="button" className="w-60 self-center shadow appearance-none border rounded-lg py-5 px-6 mt-2 text-light_matcha bg-dark_greentea active:bg-dark_matcha border-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 text-2xl leading-tight font-medium cursor-pointer">
       Delete
     </div>
   </div>

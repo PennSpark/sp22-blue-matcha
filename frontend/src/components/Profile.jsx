@@ -133,21 +133,21 @@ const Profile = () => {
               manage
             </h3>
             <div className="flex flex-col h-5/6 shadow-lg px-10 py-8 bg-white rounded-2xl">
-              <Link to="/create_user" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
+              <Link to="/create_user" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco active:bg-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
                 update info
               </Link> 
-              <Link to="/availability" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
+              <Link to="/availability" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco active:bg-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
                 availability
               </Link>
               {
                 filledForm ? <div className="mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-lightchoco text-white">
                   survey complete!
                 </div> : 
-                <Link to="/survey" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
+                <Link to="/survey" className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco active:bg-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
                 take survey
                 </Link>
               }
-              <button onClick={e => changeChatting()} type='submit' className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
+              <button onClick={e => changeChatting()} type='submit' className="shadow-md mb-5 text-3xl text-center px-5 py-4 rounded-xl bg-chocolate border-darkchoco active:bg-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 text-white">
                 {isChatting ? `stop chatting` :  `start chatting` }
               </button>
             </div>
