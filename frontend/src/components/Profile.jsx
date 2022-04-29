@@ -133,9 +133,9 @@ const Profile = () => {
   }
 
   return (
-    <div className="font-mono">
+    <div className="font-mono w-full h-screen">
       <NavBar />
-      <img src={table} alt="" className="object-cover w-full h-[370px] border-b-8 border-darkchoco" />  
+      <img src={table} alt="" className="object-cover w-full h-[37%] border-b-8 border-darkchoco" />  
       <div className="flex justify-evenly w-screen h-screen bg-lightchoco">
         <div className="basis-1/3 justify-between flex flex-col ml-20 my-10">
           <div className="basis-1/2 mb-10">
