@@ -2,6 +2,7 @@ var User = require('../models/user')
 var Gallery = require('../models/gallery')
 var imageMiddleware = require('./imageController.js')
 var Image = require("../models/image")
+var mongoose = require('mongoose');
 
 
 exports.get_gallery_items = function(req, res, next) {
@@ -88,22 +89,25 @@ exports.get_gallery_by_user = function (req, res, next) {
 
 //be able to delete if you're an admin or if you
 exports.delete_chat_card = function (req, res, next) {
-    Gallery.findById(req.body.card_id).exec({
+    //const card_id = new mongoose.Types.ObjectId(req.body.card_id);
+    Gallery.findOne({_id: req.body.chat_id}).exec(
         function (err, chatcard) {
             if (err) { next(err) }
             if (!chatcard) {
                 res.status(404).json({message: 'Chatcard not found.'})
+            } else {
+                User.findOne({userLogin : req.user.username}).exec(
+                    function (err, result) {
+                        if (err) { next(err) }
+                        if (!result.admin && result != chatcard.submitted_by) {
+                            res.status(409).json({message: 'Not authorized to delete chatcard.'})
+                        } else {
+                            Gallery.deleteOne(chatcard, function (err, obj) {
+                                res.status(200).json({message: "Successfully deleted"});
+                            })
+                        }
+                    })
             }
-            User.findOne({userLogin : req.user.username}).exec(
-            function (err, result) {
-                if (err) { next(err) }
-                if (!result.admin && result != chatcard.submitted_by) {
-                    res.status(409).json({message: 'Not authorized to delete chatcard.'})
-                } else {
-                    chatcard.remove().exec()
-                    res.status(200).json({message: "Successfully deleted"});
-                }
-            })
         }
-    })
+    )
 }

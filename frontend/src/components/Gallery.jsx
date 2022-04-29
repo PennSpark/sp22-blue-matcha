@@ -55,8 +55,20 @@ const Gallery = () => {
     return <></>
   }
 
-  const deleteCard = (_id, index) => {
-    setCards(cards.filter((_, i) => i !== index))
+  const deleteCard = async (_id, index) => {
+    const chat_id = _id
+    console.log(chat_id)
+    await (axios.post('/api/deletechatcard', {chat_id: chat_id})
+      .then(res => {
+        if (res.status === 200) {
+          setCards(cards.filter((_, i) => i !== index))
+        } else if (res.status === 409) {
+          console.log('not auth')
+          //you're not authoritzed to delete this (be admin or creator)
+        } else {
+          console.log(res)
+        }
+      })).catch(err => console.log(err))
     console.log(cards)
     // call axios to delete the component
   }

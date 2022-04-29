@@ -15,7 +15,7 @@ var userSchema = new Schema(
         date_created_account: {type: Date}, 
         userLogin: {type: String, required: true}, 
         phone_number: {type: Number}, 
-        gender: {type: String, required: true, enum: ['Female', 'Male', 'Other']}, 
+        gender: {type: String, enum: ['Female', 'Male', 'Other']}, 
         major: {type: String}, 
         about: {type: String},
         year_joined_spark: {type: String}, 

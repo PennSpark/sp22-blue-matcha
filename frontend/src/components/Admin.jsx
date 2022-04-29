@@ -161,7 +161,7 @@ const Admin = () => {
     }
     const savePendingMatches = async () => {
         const dataToPush = pendingMatches 
-        await (axios.post('updatepending', dataToPush).catch(error => {
+        await (axios.post('/api/updatepending', dataToPush).catch(error => {
             //console.log(data) //test
             console.log(error) //test
         }))
@@ -170,12 +170,12 @@ const Admin = () => {
         const dataToPush = pendingMatches 
         const matches = pendingMatches.matches_generated 
         if (checkPendingMatchValidity(matches)) {
-            await (axios.post('push_matches', dataToPush).catch(error => {
+            await (axios.post('/api/push_matches', dataToPush).catch(error => {
                 //console.log(data) //test
                 console.log(error) //test
             }))
             setError('')
-            window.location.reload(false)
+            //window.location.reload(false)
         } else {
             //update error messages 
             setError('invalid matchings!')
