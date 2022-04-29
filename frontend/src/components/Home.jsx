@@ -24,8 +24,8 @@ const throwError = error => toast.error(`${error.response.data.message}`, { icon
 
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(true)
-  const [surveyed, setSurveyed] = useState(true) 
-  const [hasMatched, setHasMatched] = useState(true)
+  const [surveyed, setSurveyed] = useState(true)
+  const [hasMatched, setHasMatched] = useState(false)
   const [matchedPartner, setMatchedPartner] = useState('')
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
@@ -121,7 +121,7 @@ const Home = () => {
       <>
         <div className="flex flex-col w-full"> 
           <div className="self-center text-center w-1/3 h-60 mt-10 p-20 px-36 drop-shadow shadow-xl rounded-xl mb-10 capitalize font-medium bg-light_matcha text-dark_matcha">
-            <h1 className="relative bottom-6 text-4xl">
+            <h1 className="relative bottom-2 text-4xl">
               Wait to be matcha'd
             </h1>
           </div>
@@ -134,15 +134,14 @@ const Home = () => {
     if (hasMatched) {
       return (
         <>
-          <img src={animatedcup} alt="" className="relative bottom-[40%] left-[20%] object-contain w-[36%] h-[36%]" />
-          <img src={cubetea} alt="" className="relative bottom-[75%] left-[50%] object-contain w-[32%] h-[32%]" />
-          {<ProfileCard user_matched_with={matchedPartner}/>}
+          <img src={animatedcup} alt="" className="absolute bottom-[38%] left-[18%] object-contain w-[36%] h-[36%]" />
+          <img src={cubetea} alt="" className="absolute bottom-[40%] left-[50%] object-contain w-[32%] h-[32%]" />
         </>
       )
     } else {
       return (
         <>
-          <img src={closed} alt="" className="relative bottom-[32%] left-[10%] object-cover w-[35%] h-[30%]" />
+          <img src={closed} alt="" className="absolute bottom-[40%] left-[10%] object-cover w-[35%] h-[30%]" />
         </>
       )
     }
@@ -152,15 +151,20 @@ const Home = () => {
     <div className="bg-white text-3xl font-mono w-screen h-screen">
       <NavBar isAdmin={isAdmin} />
       <Board />
-      <img src={table} alt="" className="relative object-cover w-[100%] h-[20%]" />  
+      <img src={table} alt="" className="relative object-cover w-[100%] h-[20%]" />
       <Props />
-      {hasMatched && 
-        <div className="flex justify-center mb-16">
-          <button onClick={e => submitCompletedChat()} className="shadow-sm mb-5 text-3xl text-center px-8 py-6 rounded-2xl bg-dark_matcha font-regular text-white">
-            completed chat
-          </button>
-        </div>
-      }
+      <div className="bg-lightchoco h-full">
+        {hasMatched && 
+          <div className="">
+            {<ProfileCard user_matched_with={matchedPartner}/>}
+            <div className="flex justify-center bg-lightchoco pt-16 pb-12">
+              <button onClick={e => submitCompletedChat()} className="shadow-sm mb-5 text-3xl text-center px-8 py-6 rounded-2xl bg-dark_greentea border-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 font-regular text-white">
+                completed chat
+              </button>
+            </div>
+          </div>
+        }
+      </div>
     </div>
   )
 }

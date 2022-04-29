@@ -21,7 +21,6 @@ const ProfileCard = ({ user_matched_with }) => {
   useEffect(() => {
     const getMatched = async () => {
       await axios.post('/profilecard', {username: user}).then(response => {
-          console.log(response)
           if (response.status === 200) {
             const userdata = response.data
             setUserCard(userdata)
@@ -84,8 +83,8 @@ const ProfileCard = ({ user_matched_with }) => {
   //   getProfileInfo()
   // }, [])
   const Details = () => (
-    <>
-      <div className="flex flex-col justify-center w-1/2 mt-10 mb-20 p-10 px-16 pb-12 bg-matcha shadow-xl rounded-xl lowercase text-3xl text-center border-4 border-greentea border-dashed">
+    <div className="flex justify-center pt-20 bg-lightchoco">
+      <div className="flex flex-col justify-center w-1/2 p-10 px-16 pb-12 bg-matcha drop-shadow-svg_lighter rounded-xl lowercase text-3xl text-center border-4 border-greentea border-dotted">
         <img src={userPfp} alt="" className="object-cover self-center w-52 h-52 mb-4 rounded-full shadow-xl hover:shadow-lg" />
         <div className='mt-8'>
           <h2 className="text-dark_matcha inline font-bold">
@@ -156,12 +155,12 @@ const ProfileCard = ({ user_matched_with }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
 
   )
   return (
     <>
-      {receivedCard && <Details />}
+      <Details />
     </>
   )
 }
