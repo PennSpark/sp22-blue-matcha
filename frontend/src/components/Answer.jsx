@@ -18,7 +18,7 @@ const Answer = ({type, options, markChoice, selected, onSubmitForm}) => {
       )
     } else {
       return (
-        <button onClick={e => markChoice(index)} type="button" className="w-full bg-white rounded-xl py-5 px-12 text-left focus:bg-lemon active:shadow-md">
+        <button onClick={e => markChoice(index)} type="button" className="w-full bg-white rounded-xl py-5 px-12 text-left active:shadow-md">
           &gt; &nbsp; {option}
         </button>
       )
