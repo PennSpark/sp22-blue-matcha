@@ -31,14 +31,14 @@ const Schedule = () => {
     }
     const handleChange = newSchedule => setSchedDates(newSchedule)
     return (
-      <div className="flex justify-center bg-dark_matcha w-screen h-screen">
+      <div className="flex justify-center bg-dark_matcha w-screen h-screen font-mono">
         <div className='flex overflow-scroll flex-col items-center flex-align-center w-3/4 mt-10 mb-10 p-10 bg-white shadow-xl border-8 border-white border-double rounded-2xl'>
-          <div className="block justify-center text-dark_matcha font-semibold font-mono text-2xl mt-1 mb-5" >
+          <div className="block justify-center text-dark_matcha font-semibold font-mono text-3xl mt-1 mb-5" >
             Update your blocked-off times:
           </div>
           <div className='flex justify-center mb-20'>
-            <button onClick={e => submitTimes()} type="submit" className="shadow appearance-none border rounded-lg bg-light_greentea hover:bg-greentea active:bg-dark_matcha active:text-light_matcha px-4 py-4 mt-2 text-lg font-mono font-medium leading-tight">
-            {`Update Blocked Dates`}</button>
+            <button onClick={e => submitTimes()} type="submit" className="shadow appearance-none border rounded-lg bg-light_greentea text-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 border-dark_matcha hover:bg-greentea active:bg-dark_greentea active:text-light_matcha px-16 py-5 mt-2 text-xl font-mono font-medium leading-tight">
+            {`Update`}</button>
           </div>
           <ScheduleSelector
               selection={schedDates}

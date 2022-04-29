@@ -32,6 +32,8 @@ const UserForm = () => {
     const [retrieved_users, setRetrieved_users] = useState(false)
     const [created_account, setCreated_account] = useState(false)
 
+    const [myAbout, setMyAbout] = useState('')
+
     const navigate = useNavigate()
     const submit = async () => {
         // const schema = yup.object().shape({
@@ -60,26 +62,39 @@ const UserForm = () => {
         }
         const getUserdetails = async () => {
             const { data } = (await axios.get('/details')
-              .catch(err => console.log(err)))
+            .catch(err => console.log(err)))
             if (data) {
-                setFirst_name(data.first_name)
-                setLast_name(data.last_name)
-                setYear_of_grad(data.year_of_grad)
-                setEmail(data.email)
-                setPhone_number(data.phone_number)
-                setGender(data.gender)
-                setMajor(data.major)
-                setSpark_role(data.spark_role)
-                setYear_joined_spark(data.year_joined_spark)
-                setUsers_chatted(data.users_chatted)
-                setUsers_blocked(data.users_blocked)
-                setCreated_account(true)
-                setActivities(data.activities)
+              setFirst_name(data.first_name)
+              setLast_name(data.last_name)
+              setYear_of_grad(data.year_of_grad)
+              setEmail(data.email)
+              setPhone_number(data.phone_number)
+              setGender(data.gender)
+              setMajor(data.major)
+              setSpark_role(data.spark_role)
+              setYear_joined_spark(data.year_joined_spark)
+              setUsers_chatted(data.users_chatted)
+              setUsers_blocked(data.users_blocked)
+              setCreated_account(true)
+              setActivities(data.activities)
+              setMyAbout(data.about)
             }
           }
         getUsers()
         getUserdetails()
     }, [])
+
+    const changeAbout = event => {
+      setMyAbout(event.target.value)
+    }
+  
+    // Upload the about information to backend 
+    const updateAbout = async () => {
+      const about = myAbout
+        await axios.post('updateabout', {about}).then(console.log('success')).catch(error => {
+            console.log(error) //test
+        })
+    }
 
     const RenderShortAnswer = ({value, setValue, placeholder, label}) => (
       <div className="mb-4">
@@ -152,6 +167,17 @@ const UserForm = () => {
                   <RenderDropdown items={SPARK_ROLES} value={spark_role} setValue={setSpark_role} placeholder={'Spark Role'} label={'spark role:'} />
                   <RenderDropdown items={Array.from(new Array(5), (x, i) => i - 4 + CURR_YEAR)} value={year_joined_spark} setValue={setYear_joined_spark} placeholder={'Year Joined'} label={'year joined:'} />
                 </div>
+                <h3 className="text-darkchoco drop-shadow text-4xl text-center mb-5">
+                  about
+                </h3>
+                <form onSubmit={e => updateAbout()} className="flex flex-col">
+                  <div className="shadow bg-white rounded-2xl mb-4">
+                    <label>
+                      <textarea value={myAbout} onChange={e => changeAbout(e)} className="p-6 w-full h-60 text-2xl rounded-2xl" />
+                    </label>
+                  </div>
+                  <input className="shadow-md mb-5 text-3xl text-center px-10 py-4 rounded-2xl bg-chocolate text-white cursor-pointer" type="submit" value="submit" />
+                </form>
               </div>
             </div>
 
@@ -159,7 +185,7 @@ const UserForm = () => {
               <RenderUserCheckboxes all_users={all_users} users_selected={users_chatted} setUsers_selected={setUsers_chatted} label={'People you already chatted with:'}/>
               <RenderUserCheckboxes all_users={all_users} users_selected={users_blocked} setUsers_selected={setUsers_blocked} label={'People you do not wish to coffee chat'}/>
               <RenderCheckbox items={ACTIVITIES} item_labels={ACTIVITIES} items_checked={activities} setItems_checked={setActivities} label={'Select fun activities you want to do in your chat!'}/>
-              <button onClick={e => submit()} type="submit" className="w-60 self-center shadow appearance-none border rounded-lg py-5 px-6 mt-2 text-orange-700 bg-orange-200 text-xl leading-tight font-medium">
+              <button onClick={e => submit()} type="submit" className="w-60 self-center shadow appearance-none border rounded-lg py-5 px-6 mt-2 text-chocolate bg-lightchoco border-t-0 border-l-1 border-r-4 border-b-4 border-chocolate text-2xl leading-tight font-medium">
                   {created_account ? `Update!` : `Complete!`}
               </button>
             </div>
