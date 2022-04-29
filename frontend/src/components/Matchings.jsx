@@ -31,7 +31,7 @@ const Matchings = ({matchings, participating_users, setMatchings}) => {
         )
         return (
             <div>
-                <div>{name}</div>
+                <div className="text-white text-xl mt-3">{name}</div>
                 <Dropdown items={participants} selected={selected} setSelected={setSelectedModified} fieldName={'matched with:'} />
             </div>
         )
