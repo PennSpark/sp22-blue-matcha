@@ -82,24 +82,24 @@ const UserForm = () => {
     }, [])
 
     const RenderShortAnswer = ({value, setValue, placeholder, label}) => (
-        <div className="mb-4">
-            <label className="block text-dark_matcha text-2xl mt-1"> {label} </label>
-            <input onChange={e => setValue(e.target.value)} value={value} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={placeholder} />
-        </div>
+      <div className="mb-4">
+        <label className="block text-dark_matcha text-2xl mt-1"> {label} </label>
+        <input onChange={e => setValue(e.target.value)} value={value} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={placeholder} />
+      </div>
     )
 
     const RenderDropdown = ({items, value, setValue, placeholder, label}) => (
-        <div className="mb-4">
-            <label className="block text-dark_matcha text-2xl mt-1"> {label} </label>
-            <Dropdown items={items} setSelected={setValue} selected={value} fieldName={placeholder} />
-        </div>
+      <div className="mb-4">
+        <label className="block text-dark_matcha text-2xl mt-1"> {label} </label>
+        <Dropdown items={items} setSelected={setValue} selected={value} fieldName={placeholder} />
+      </div>
     )
 
     const RenderCheckbox = ({items, item_labels, items_checked, setItems_checked, label}) => (
-        <div className="mb-10" >
-            <label className="block text-dark_matcha text-2xl p-8 border-t-4 border-dotted border-dark_matcha">{label}</label>
-            {retrieved_users && <Checkbox items={items} item_labels={item_labels} items_checked={items_checked} setItems_checked={setItems_checked} />}
-        </div>
+      <div className="mb-10" >
+        <label className="block text-dark_matcha text-2xl py-8 border-t-4 border-double border-dark_greentea">{label}</label>
+        {retrieved_users && <Checkbox items={items} item_labels={item_labels} items_checked={items_checked} setItems_checked={setItems_checked} />}
+      </div>
     )
 
     const RenderUserCheckboxes = ({all_users, users_selected, setUsers_selected, label}) => {
@@ -110,49 +110,56 @@ const UserForm = () => {
         labels.push(`${u.first_name} ${u.last_name}`)
       })
       return (
-      <div className="mb-10" >
-        <label className="block text-dark_matcha text-2xl p-8 border-t-4 border-dotted border-dark_matcha">{label}</label>
-        {retrieved_users && <Checkbox items={userLogins} item_labels={labels} items_checked={users_selected} setItems_checked={setUsers_selected}/>}
-      </div>
+        <div className="mb-10" >
+          <label className="block text-dark_matcha text-2xl py-8 border-t-4 border-double border-dark_greentea">{label}</label>
+          {retrieved_users && <Checkbox items={userLogins} item_labels={labels} items_checked={users_selected} setItems_checked={setUsers_selected}/>}
+        </div>
       )
     }
   
     return (
-      <div>
-        <div className="flex justify-center mt-20 mb-20 font-mono">
-          <div className="grid grid-cols-5 bg-light_matcha w-3/4 h-5/6 p-20 rounded-3xl shadow-lg">
-            <div className="col-span-full flex flex-col justify-center items-center">
-              <h1 className="text-dark_matcha font-semibold text-6xl mb-8 mt-8">Update Your User Info</h1>
-              <div className = "grid grid-cols-2 place-items-center font-medium gap-x-12 mb-12">
-                <div className="mb-4">
-                  <label className="block text-dark_matcha text-2xl mt-1"> {'first name:'} </label>
-                  <input onChange={e => setFirst_name(e.target.value)} value={first_name} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'first name'} />
+      <div className="font-mono bg-light_greentea w-screen">
+        <h1 className="text-dark_matcha font-semibold text-6xl text-center pt-20 drop-shadow hover:text-dark_greentea">
+          &gt; Update Your User Info &lt;
+        </h1>
+        <div className="flex justify-center mt-4 font-mono">
+          <div className="grid grid-cols-7">
+            <div className="col-span-3 bg-light_matcha m-10 p-16 rounded-3xl shadow-xl">
+              <div className="col-span-full flex flex-col justify-center place-items-center">
+                <div className = "grid grid-cols-2 font-medium gap-x-12 mb-12">
+                  <div className="mb-4">
+                    <label className="block text-dark_matcha text-2xl mt-1"> {'first name:'} </label>
+                    <input onChange={e => setFirst_name(e.target.value)} value={first_name} className="w-full mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'first name'} />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-dark_matcha text-2xl mt-1"> {'last name:'} </label>
+                    <input onChange={e => setLast_name(e.target.value)} value={last_name} className="w-full mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'last name'} />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-dark_matcha text-2xl mt-1"> {'phone number:'} </label>
+                    <input onChange={e => setPhone_number(e.target.value)} value={phone_number} className="w-full mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'phone number'} />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-dark_matcha text-2xl mt-1"> {'email:'} </label>
+                    <input onChange={e => setEmail(e.target.value)} value={email} className="w-full mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'email'} />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-dark_matcha  text-2xl mt-1"> {'major:'} </label>
+                    <input onChange={e => setMajor(e.target.value)} value={major} className="w-full mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'major'} />
+                  </div>
+                  <RenderDropdown items={['Female', 'Male', 'Other']} value={gender} setValue={setGender} placeholder={'Gender'} label={'gender:'} />
+                  <RenderDropdown items={Array.from(new Array(7), (x, i) => i + CURR_YEAR)} value={year_of_grad} setValue={setYear_of_grad} placeholder={'Grad Year'} label={'graduating year:'} />
+                  <RenderDropdown items={SPARK_ROLES} value={spark_role} setValue={setSpark_role} placeholder={'Spark Role'} label={'spark role:'} />
+                  <RenderDropdown items={Array.from(new Array(5), (x, i) => i - 4 + CURR_YEAR)} value={year_joined_spark} setValue={setYear_joined_spark} placeholder={'Year Joined'} label={'year joined:'} />
                 </div>
-                <div className="mb-4">
-                  <label className="block text-dark_matcha text-2xl mt-1"> {'last name:'} </label>
-                  <input onChange={e => setLast_name(e.target.value)} value={last_name} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'last name'} />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-dark_matcha text-2xl mt-1"> {'phone number:'} </label>
-                  <input onChange={e => setPhone_number(e.target.value)} value={phone_number} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'phone number'} />
-                </div>
-                <div className="mb-4">
-                  <label className="block text-dark_matcha text-2xl mt-1"> {'email:'} </label>
-                  <input onChange={e => setEmail(e.target.value)} value={email} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'email'} />
-                </div>
-                <RenderDropdown items={['Female', 'Male', 'Other']} value={gender} setValue={setGender} placeholder={'Gender'} label={'gender:'} />
-                <RenderDropdown items={Array.from(new Array(7), (x, i) => i + CURR_YEAR)} value={year_of_grad} setValue={setYear_of_grad} placeholder={'Graduating Year'} label={'graduating year:'} />
-                <div className="mb-4">
-                  <label className="block text-dark_matcha  text-2xl mt-1"> {'major:'} </label>
-                  <input onChange={e => setMajor(e.target.value)} value={major} className="w-80 mt-2 shadow border rounded-lg py-4 px-3 text-center text-black text-lg leading-tight focus:outline-none focus:shadow-outline focus:border-lemon" type="text" placeholder={'major'} />
-                </div>
-                <RenderDropdown items={SPARK_ROLES} value={spark_role} setValue={setSpark_role} placeholder={'Spark Role'} label={'spark role:'} />
-                <RenderDropdown items={Array.from(new Array(5), (x, i) => i - 4 + CURR_YEAR)} value={year_joined_spark} setValue={setYear_joined_spark} placeholder={'Year Joined Spark'} label={'year joined spark:'} />
               </div>
+            </div>
+
+            <div className="flex flex-col col-span-4 bg-light_matcha my-10 mr-10 px-16 pt-16 pb-14 rounded-3xl shadow-xl">
               <RenderUserCheckboxes all_users={all_users} users_selected={users_chatted} setUsers_selected={setUsers_chatted} label={'People you already chatted with:'}/>
               <RenderUserCheckboxes all_users={all_users} users_selected={users_blocked} setUsers_selected={setUsers_blocked} label={'People you do not wish to coffee chat'}/>
-              <RenderCheckbox items={ACTIVITIES} item_labels={ACTIVITIES} items_checked={activities} setItems_checked={setActivities} label={'select fun activities you want to do in your chat!'}/>
-              <button onClick={e => submit()} type="submit" className="w-60 shadow appearance-none border rounded-lg py-4 px-3 mt-2 text-orange-700 bg-orange-200 text-lg leading-tight">
+              <RenderCheckbox items={ACTIVITIES} item_labels={ACTIVITIES} items_checked={activities} setItems_checked={setActivities} label={'Select fun activities you want to do in your chat!'}/>
+              <button onClick={e => submit()} type="submit" className="w-60 self-center shadow appearance-none border rounded-lg py-5 px-6 mt-2 text-orange-700 bg-orange-200 text-xl leading-tight font-medium">
                   {created_account ? `Update!` : `Complete!`}
               </button>
             </div>

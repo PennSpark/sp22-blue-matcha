@@ -51,6 +51,7 @@ const Profile = () => {
         }
       })
     }
+
     const getUsers = async () => {
       await axios.get('/all_users').then(response => {
         if (response.status === 200) {
@@ -59,6 +60,7 @@ const Profile = () => {
         }
       })
     }
+
     const getPfpImage = async () => {
       await axios.get('/profilepicture').then(response => {
         if (response.status === 200) {
@@ -67,6 +69,7 @@ const Profile = () => {
         }
       })
     }
+    
     const getMyDetails = async () => {
       await axios.get('/details').then(response => {
         if (response.status === 200) {
@@ -83,6 +86,7 @@ const Profile = () => {
         } 
       })
     }
+
     getPfpImage()
     getUsers()
     getMyDetails()
