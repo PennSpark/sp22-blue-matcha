@@ -6,7 +6,6 @@ import axios from 'axios'
 import NavBar from './NavBar'
 import Dropdown from './Dropdown'
 import Checkbox from './Checkbox'
-import ProfileModal from './ProfileModal'
 
 //import * as yup from 'yup';
 
