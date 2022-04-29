@@ -5,6 +5,8 @@ import NavBar from './NavBar'
 import GalleryCard from './GalleryCard'
 import GalleryModal from './GalleryModal'
 
+import toast from 'react-hot-toast'
+
 import axios from 'axios'
 
 // imgs
@@ -12,6 +14,8 @@ import left from '../imgs/sleepmatcha.gif'
 import right from '../imgs/matcha.gif'
 
 const DEFAULT = 'https://ca.slack-edge.com/T02BG31SB7H-U02G075615F-93330ae64fe8-512'
+
+const throwError = error => toast.error(`${error.response.data.message} Need Admin Access`, { icon: '🥲' })
 
 const Gallery = () => {
   const [cards, setCards] = useState([])
@@ -68,7 +72,7 @@ const Gallery = () => {
         } else {
           console.log(res)
         }
-      })).catch(err => console.log(err))
+      })).catch(err => throwError(err))
     console.log(cards)
     // call axios to delete the component
   }
