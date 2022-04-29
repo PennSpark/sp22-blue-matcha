@@ -53,11 +53,11 @@ const GalleryModal = ({ setModalVisible }) => {
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none font-mono">
         <div className="relative w-auto my-6 mx-auto max-w-3xl">
           {/* content */}
-          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white p-2 outline-none focus:outline-none">
             {/* header */}
             <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-              <h3 className="w-full text-xl font-semibold">
-                Change Your Profile Picture
+              <h3 className="w-full text-2xl font-semibold">
+                Share Your Coffee Chat Memory
               </h3>
               <button type="button" onClick={() => setModalVisible(false)} className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-300 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
@@ -85,11 +85,11 @@ const GalleryModal = ({ setModalVisible }) => {
                 <input onChange={e => updateFactValue(3, e.target.value)} value={facts[3]} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="question" type="text" placeholder="Fact 4" />
                 <input onChange={e => updateFactValue(4, e.target.value)} value={facts[4]} onKeyDown={handleKeyDown} className="shadow appearance-none border rounded w-full py-2 px-3 mt-1 text-gray-700 text-base mb-3 leading-tight focus:outline-none focus:shadow-outline focus:border-orange-200" id="question" type="text" placeholder="Fact 5" />
               </div>
-              <div className="flow-root">
-                <button type="submit" onClick={e => submit(e)} className="bg-light_greentea text-white font-normal h-10 py-1 px-4 text-base rounded">
+              <div className="mt-5 flex">
+                <button type="submit" onClick={e => submit(e)} className="bg-light_greentea basis-1/2 w-full border-t-0 border-l-1 border-r-4 border-b-4 border-dark_matcha active:bg-dark_matcha text-dark_matcha active:text-white font-normal h-10 py-1 px-4 text-base rounded-lg">
                   Submit
                 </button>
-                <button type="submit" onClick={e => cancel(e)} className="bg-matcha text-white font-normal h-10 py-1 px-4 ml-5 text-base rounded">
+                <button type="submit" onClick={e => cancel(e)} className="bg-matcha basis-1/2 w-full border-t-0 border-l-1 border-r-4 border-b-4 border-dark_matcha active:bg-dark_matcha text-dark_matcha active:text-white font-normal h-10 py-1 px-4 ml-5 text-base rounded-lg">
                   Cancel
                 </button>
               </div>
