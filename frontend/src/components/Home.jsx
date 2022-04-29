@@ -25,11 +25,12 @@ const throwError = error => toast.error(`${error.response.data.message}`, { icon
 const Home = () => {
   const [loggedIn, setLoggedIn] = useState(true)
   const [surveyed, setSurveyed] = useState(true) 
-  const [hasMatched, setHasMatched] = useState(false)
+  const [hasMatched, setHasMatched] = useState(true)
   const [matchedPartner, setMatchedPartner] = useState('')
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
   const [isAdmin, setIsAdmin] = useState(false)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -105,23 +106,24 @@ const Home = () => {
     } else if (hasMatched) {
       return (
         <>
-          <img src={words} className="relative top-16 w-1/2" />
           <div className="flex justify-center mb-10">
-            <img src={left} className="w-60 h-60 rounded-3xl" />
-            <h2 className='relative top-32 mx-10 text-5xl capitalize'>
-              {`> ${matchedPartner} <` /*make this part of the profile card*/}
-            </h2>
-            <img src={right} className="w-60 h-60 rounded-3xl"/>
+            <div className="self-end text-center w-1/3 h-60 mt-10 p-20 px-36 text-2xl drop-shadow-xl rounded-xl capitalize font-semibold bg-light_matcha text-dark_matcha">
+              <h1 className="relative top-20 italic">
+                {`> ${matchedPartner} <` /*make this part of the profile card*/}
+              </h1>
+            </div>
           </div>
-          {<ProfileCard user_matched_with={matchedPartner}/>}
+          <img src={words} className="absolute top-52 left-[35%] w-[30%]" />
         </>
       )
     }
     return (
       <>
         <div className="flex flex-col w-full"> 
-          <div className="self-end text-right w-1/3 h-60 mt-16 p-20 px-36 text-5xl drop-shadow shadow-xl rounded capitalize font-semibold bg-light_matcha text-dark_matcha">
-            Wait to be matcha'd
+          <div className="self-center text-center w-1/3 h-60 mt-10 p-20 px-36 drop-shadow shadow-xl rounded-xl mb-10 capitalize font-medium bg-light_matcha text-dark_matcha">
+            <h1 className="relative bottom-6 text-4xl">
+              Wait to be matcha'd
+            </h1>
           </div>
         </div>
       </>
@@ -132,13 +134,16 @@ const Home = () => {
     if (hasMatched) {
       return (
         <>
-          <img src={animatedcup} alt="" className="relative left-[10%] bottom-14 object-cover w-[35%] h-[30%]" />
-          <img src={cubetea} alt="" className="relative left-[10%] bottom-14 object-cover w-[35%] h-[30%]" />
+          <img src={animatedcup} alt="" className="relative bottom-[40%] left-[20%] object-contain w-[36%] h-[36%]" />
+          <img src={cubetea} alt="" className="relative bottom-[75%] left-[50%] object-contain w-[32%] h-[32%]" />
+          {<ProfileCard user_matched_with={matchedPartner}/>}
         </>
       )
     } else {
       return (
-        <img src={closed} alt="" className="relative left-[10%] bottom-14 object-cover w-[35%] h-[30%]" />
+        <>
+          <img src={closed} alt="" className="relative bottom-[32%] left-[10%] object-cover w-[35%] h-[30%]" />
+        </>
       )
     }
   }
@@ -147,7 +152,7 @@ const Home = () => {
     <div className="bg-white text-3xl font-mono w-screen h-screen">
       <NavBar isAdmin={isAdmin} />
       <Board />
-      <img src={table} alt="" className="relative top-[30%] object-cover w-[100%] h-[20%]" />  
+      <img src={table} alt="" className="relative object-cover w-[100%] h-[20%]" />  
       <Props />
       {hasMatched && 
         <div className="flex justify-center mb-16">
