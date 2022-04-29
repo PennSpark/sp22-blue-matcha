@@ -97,7 +97,7 @@ const Admin = () => {
             <div className='bg-matcha hover:shadow-lg py-3 px-8 w-1/3 rounded-xl mb-3 shadow-md'>{user}</div>
         )
         return (
-            <div className="flex flex-col w-1/3 justify-center items-center p-5 m-20 bg-dark_matcha rounded-3xl drop-shadow-svg_lighter">
+            <div className="flex flex-col w-1/3 justify-center items-center p-5 m-20 bg-dark_matcha rounded-3xl drop-shadow-svg_darker">
               <div className="mb-7 text-matcha mt-3 text-3xl">
                 All members!
               </div>
@@ -122,7 +122,7 @@ const Admin = () => {
             </div>
         )
         return (
-            <div className="flex flex-col justify-center items-center p-5 m-20 bg-light_matcha rounded-3xl drop-shadow-svg_darker">
+            <div className="flex flex-col justify-center items-center p-5 m-20 bg-light_matcha rounded-3xl drop-shadow-svg_lighter">
                 <div className="text-dark_matcha text-3xl mt-3 mb-5"> {title} </div>
                 {matchings.map(m => m.received_match ? <MatchedTrue user={m.user} matched_with={m.matched_with}/> : <MatchedFalse user={m.user}/> )}
             </div>
