@@ -1,15 +1,22 @@
 import ScheduleSelector from 'react-schedule-selector'
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import toast from 'react-hot-toast'
 
 const SELECTED_COLOR = '#687d63' //dark matcha
 const HOVERED_COLOR = '#ACD1A3' //green tea
 const UNSELECTED_COLOR = '#C6E4BE' //light green tea
 const DATE = new Date('2022-04-19T00:00:00.000+00:00')
 
+const throwError = error => toast.error(`${error.response.data.message}`, { icon: '🥲' })
+
 const Schedule = () => {
     const [schedDates, setSchedDates] = useState([])
     const [receivedDates, setReceivedDates] = useState([])
+
+    const navigate = useNavigate()
+
     useEffect(() => {
       const loadCurrDates = async () => {
         await axios.get('/datesblocked').then(response => {
@@ -22,13 +29,18 @@ const Schedule = () => {
       }
       loadCurrDates()
     }, [])
+
     const submitTimes = async () => {
       const dates = schedDates
-      await axios.post('updatecalendar', {dates}).then(console.log('success')).catch(error => {
-          console.log(error) //test
+      await axios.post('updatecalendar', {dates})
+      .then(
+        navigate('/profile')
+      )
+      .catch(error => {
+        throwError()
       })
-      //reload to a different window
     }
+
     const handleChange = newSchedule => setSchedDates(newSchedule)
     return (
       <div className="flex justify-center bg-dark_matcha w-screen h-screen font-mono">

@@ -6,7 +6,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 
 // transparent placeholder
-import placeholder from '../imgs/placeholder.png'
+import placeholder from '../imgs/propic.png'
 
 // svgs
 import coffeecup from '../imgs/coffeecup.gif'
@@ -158,7 +158,7 @@ const Profile = () => {
         <button onClick={e => setPfpModalVisible(true)} type="button" className="absolute top-1/3 self-center">
           {myPfp ? 
             <img src={myPfp} alt="" className="relative top-6 self-center object-cover w-[258px] h-[258px] mb-4 border-dark_greentea border-8 border-double rounded-full" /> : 
-            <img src={placeholder} alt="" className="relative top-6 self-center object-cover w-[258px] h-[258px] mb-4 border-dark_greentea border-8 border-double rounded-full" />        
+            <img src={placeholder} alt="" className="relative top-6 self-center object-cover w-[258px] h-[258px] mb-4 rounded-full" />        
           }
         </button>
 
