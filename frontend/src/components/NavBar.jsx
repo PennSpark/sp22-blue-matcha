@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
- 
 import axios from 'axios'
  
 // logo
 import logo from '../imgs/logo.png'
  
-const NavBar = ({ isAdmin }) => {
+const NavBar = () => {
   const [user, setUser] = useState('')
   const [loggedIn, setLoggedIn] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
+
   const navigate = useNavigate()
 
   const logout = async () => {
@@ -22,11 +23,11 @@ const NavBar = ({ isAdmin }) => {
         alert(`${error.response.data}`)
       })
   }
+
   useEffect(() => {
     const getUsername = async () => {
       const {data} = (await axios.get('/api/username').catch(err => {
         if (err.response) {
-          console.log(err.response)
           if (err.response.status === 406) {
             navigate('/') //user not logged in
           } 
@@ -37,7 +38,14 @@ const NavBar = ({ isAdmin }) => {
         setUser(data) 
       } 
     }
+
+    const getUserdetails = async () => {
+      const {data} = await axios.get('/api/details')
+      setIsAdmin(data.admin)
+    }
+
     getUsername()
+    getUserdetails()
   }, [])
 
   return (

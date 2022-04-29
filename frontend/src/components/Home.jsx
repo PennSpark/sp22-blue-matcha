@@ -29,7 +29,6 @@ const Home = () => {
   const [matchedPartner, setMatchedPartner] = useState('')
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
-  const [isAdmin, setIsAdmin] = useState(false)
 
   const navigate = useNavigate()
 
@@ -165,7 +164,7 @@ const Home = () => {
   
   return (
     <div className="bg-white text-3xl font-mono w-screen h-screen">
-      <NavBar isAdmin={isAdmin} />
+      <NavBar />
       <Board />
       <img src={table} alt="" className="absolute top-[45%] object-cover w-[100%] h-[20%]" />
       <Props />
