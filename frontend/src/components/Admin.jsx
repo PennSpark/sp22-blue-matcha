@@ -175,7 +175,7 @@ const Admin = () => {
                 console.log(error) //test
             }))
             setError('')
-            //window.location.reload(false)
+            window.location.reload(false)
         } else {
             //update error messages 
             setError('invalid matchings!')
