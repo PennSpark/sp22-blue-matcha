@@ -15,14 +15,14 @@ const GalleryModal = ({ setModalVisible }) => {
     //   .then(res => {
     const formData = new FormData()
     formData.append('image', image)
-    const response = await axios.post('/uploadphoto', formData, {})
+    const response = await axios.post('/api/uploadphoto', formData, {})
     .catch(err => console.log(err))
     const submitData = { date, people, facts }
     if (response.status === 200) {
       const photo = response.data
       submitData.photo = photo
     }
-    const formID = await axios.post('/uploadchatcard', submitData, {})
+    const formID = await axios.post('/api/uploadchatcard', submitData, {})
       .catch(err => console.log(err))
     setModalVisible(false)
     window.location.reload(false)

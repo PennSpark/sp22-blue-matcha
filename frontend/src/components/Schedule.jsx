@@ -12,7 +12,7 @@ const Schedule = () => {
     const [receivedDates, setReceivedDates] = useState([])
     useEffect(() => {
       const loadCurrDates = async () => {
-        await axios.get('/datesblocked').then(response => {
+        await axios.get('/api/datesblocked').then(response => {
           if (response.status === 200) {
               setSchedDates(response.data.dates_blocked)
               console.log(response.data.dates_blocked)

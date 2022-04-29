@@ -31,14 +31,14 @@ const Home = () => {
   useEffect(() => {
     setLoggedIn(true)
     // const getUsername = async () => {
-    //   const { data } = (await axios.get('/username'))
+    //   const { data } = (await axios.get('/api/username'))
     //   if (data !== 'Not signed in') {
     //     setLoggedIn(true)
     //   }
     // }
     // getUsername()
     const getUsermatching = async () => {
-      await axios.get('/matchedwith').then(response => {
+      await axios.get('/api/matchedwith').then(response => {
         if (response.status === 200) {
           const data = response.data
           if (data.received_match) {
@@ -55,7 +55,7 @@ const Home = () => {
       })
     }
     const getUserdetails = async () => {
-      const {data} = await axios.get('/details')
+      const {data} = await axios.get('/api/details')
         .catch(err => {
           if (err.response) {
             console.log(err.response.status)

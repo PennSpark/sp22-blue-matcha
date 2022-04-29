@@ -16,7 +16,7 @@ const Gallery = () => {
 
   useEffect(() => {
     const getAllCards = async () => {
-      const response = (await axios.get('/gallery'))
+      const response = (await axios.get('/api/gallery'))
       console.log(response.status)
       if (response.status === 200) {
         console.log(response.data)
