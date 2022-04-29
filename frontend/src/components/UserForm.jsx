@@ -49,7 +49,8 @@ const UserForm = () => {
             console.log(data) //test
             console.log(error) //test
         }))
-        navigate('/home')
+        updateAbout()
+        navigate('/profile')
     }
 
     useEffect(() => {
@@ -134,7 +135,7 @@ const UserForm = () => {
   
     return (
       <div className="font-mono bg-light_greentea w-screen">
-        <h1 className="text-dark_matcha font-semibold text-6xl text-center pt-20 drop-shadow hover:text-dark_greentea">
+        <h1 className="text-dark_matcha font-semibold text-6xl text-center pt-20 hover:drop-shadow-xl">
           &gt; Update Your User Info &lt;
         </h1>
         <div className="flex justify-center mt-4 font-mono">
@@ -167,16 +168,15 @@ const UserForm = () => {
                   <RenderDropdown items={SPARK_ROLES} value={spark_role} setValue={setSpark_role} placeholder={'Spark Role'} label={'spark role:'} />
                   <RenderDropdown items={Array.from(new Array(5), (x, i) => i - 4 + CURR_YEAR)} value={year_joined_spark} setValue={setYear_joined_spark} placeholder={'Year Joined'} label={'year joined:'} />
                 </div>
-                <h3 className="text-darkchoco drop-shadow text-4xl text-center mb-5">
+                <h3 className="text-dark_matcha text-3xl text-center mb-5">
                   about
                 </h3>
-                <form onSubmit={e => updateAbout()} className="flex flex-col">
-                  <div className="shadow bg-white rounded-2xl mb-4">
+                <form className="flex flex-col w-full">
+                  <div className="shadow bg-white rounded-lg mb-4">
                     <label>
-                      <textarea value={myAbout} onChange={e => changeAbout(e)} className="p-6 w-full h-60 text-2xl rounded-2xl" />
+                      <textarea value={myAbout} onChange={e => changeAbout(e)} className="p-6 w-full h-80 text-2xl rounded-2xl" />
                     </label>
                   </div>
-                  <input className="shadow-md mb-5 text-3xl text-center px-10 py-4 rounded-2xl bg-chocolate text-white cursor-pointer" type="submit" value="submit" />
                 </form>
               </div>
             </div>
@@ -185,7 +185,7 @@ const UserForm = () => {
               <RenderUserCheckboxes all_users={all_users} users_selected={users_chatted} setUsers_selected={setUsers_chatted} label={'People you already chatted with:'}/>
               <RenderUserCheckboxes all_users={all_users} users_selected={users_blocked} setUsers_selected={setUsers_blocked} label={'People you do not wish to coffee chat'}/>
               <RenderCheckbox items={ACTIVITIES} item_labels={ACTIVITIES} items_checked={activities} setItems_checked={setActivities} label={'Select fun activities you want to do in your chat!'}/>
-              <button onClick={e => submit()} type="submit" className="w-60 self-center shadow appearance-none border rounded-lg py-5 px-6 mt-2 text-chocolate bg-lightchoco border-t-0 border-l-1 border-r-4 border-b-4 border-chocolate text-2xl leading-tight font-medium">
+              <button onClick={e => submit()} type="submit" className="w-60 self-center shadow appearance-none border rounded-lg py-5 px-6 mt-2 text-white bg-dark_greentea border-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 text-2xl leading-tight font-medium">
                   {created_account ? `Update!` : `Complete!`}
               </button>
             </div>
