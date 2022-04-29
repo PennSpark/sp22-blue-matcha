@@ -26,7 +26,6 @@ const throwError = error => toast.error(`${error.response.data.message}`, { icon
 const Profile = () => {
   const [myPfp, setMyPfp] = useState('')
   const [myName, setMyName] = useState('')
-  const [myAbout, setMyAbout] = useState('')
   const [myInfo, setMyInfo] = useState([])
   const [completedChats, setCompletedChats] = useState([])
   const [filledForm, setFilledForm] = useState(false)
@@ -77,7 +76,6 @@ const Profile = () => {
             setCreatedAccount(true)
             setUserInformation(userData)
             setReceivedRequest(true)
-            setMyAbout(userData.about)
             setMyName(`${userData.first_name} ${userData.last_name}`)
             setIsChatting(userData.chat_participating)
             setCompletedChats(userData.users_chatted) //this is all user logins. need to deal w later
@@ -92,14 +90,6 @@ const Profile = () => {
     getMyDetails()
     getFilledForm()
   }, [])
-
-  // Upload the about information to backend 
-  const updateAbout = async () => {
-    const about = myAbout
-      await axios.post('updateabout', {about}).then(console.log('success')).catch(error => {
-          console.log(error) //test
-      })
-  }
 
   // TODO: more axios to get user information
 
@@ -125,10 +115,6 @@ const Profile = () => {
       )
   }
 
-  const changeAbout = event => {
-    setMyAbout(event.target.value)
-  }
-
   const PfpModal = () => {
     if (pfpModalVisible) {
       return <ProfileModal setModalVisible={setPfpModalVisible} setPfp={setMyPfp} oldImage={myPfp} />
@@ -139,22 +125,10 @@ const Profile = () => {
   return (
     <div className="font-mono w-full h-screen">
       <NavBar />
-      <img src={table} alt="" className="object-cover w-full h-[37%] border-b-8 border-darkchoco" />  
+      <img src={table} alt="" className="object-cover w-full h-[37%] border-b-8 border-b-darkchoco border-t-8 border-t-dark_matcha" />  
       <div className="flex justify-evenly w-screen h-screen bg-lightchoco">
         <div className="basis-1/3 justify-between flex flex-col ml-20 my-10">
           <div className="basis-1/2 mb-10">
-            <h3 className="text-darkchoco drop-shadow text-4xl text-center mb-5">
-              about
-            </h3>
-            <form onSubmit={e => updateAbout()} className="flex flex-col">
-              <div className="shadow bg-white rounded-2xl mb-4">
-                <label>
-                  <textarea value={myAbout} onChange={e => changeAbout(e)} className="p-6 w-full h-60 text-2xl rounded-2xl" />
-                </label>
-              </div>
-              <input className="shadow-md mb-5 text-3xl text-center px-10 py-4 rounded-2xl bg-chocolate text-white cursor-pointer" type="submit" value="submit" />
-            </form>
-
             {/* <input className="h-5/6 shadow bg-white rounded-2xl" type="text" value={myAbout} onChange={changeAbout} />
             <button onClick={e => updateAbout()} className="shadow-sm mb-5 text-2xl text-center px-6 py-4 rounded-2xl bg-dark_matcha font-semibold text-white">
               update about

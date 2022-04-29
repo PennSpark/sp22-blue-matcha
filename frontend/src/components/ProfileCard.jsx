@@ -56,6 +56,7 @@ const ProfileCard = ({ user_matched_with }) => {
     getMatched()
     getSchedule()
   }, [])
+
   // useEffect(() => {
   //   const getProfileInfo = async () => {
   //     const { data } = (await axios.post('/', { username }))

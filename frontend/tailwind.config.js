@@ -15,7 +15,7 @@ module.exports = {
         lemon: '#fffab0',
         light_lemon: '#fffcd8',
         dark_lemon: '#FFF495',
-        chocolate: '#a67449',
+        chocolate: '#A98B6F',
         darkchoco: '#543D28',
         lightchoco: '#fee7cb',
       },
@@ -35,5 +35,4 @@ module.exports = {
       },
     },
   },
-  // plugins: [require("@tailwindcss/forms")],
 }
