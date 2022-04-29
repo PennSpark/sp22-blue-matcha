@@ -9,6 +9,8 @@ import toast from 'react-hot-toast'
 // Components
 import NavBar from './NavBar'
 import ProfileCard from './ProfileCard'
+import ProfileCardFront from './ProfileCardFront'
+import ProfileCardBack from './ProfileCardBack'
 
 // svgs
 import closed from '../imgs/svg/cardontable.svg'
@@ -116,7 +118,7 @@ const Home = () => {
               </h1>
             </div>
           </div>
-          <img src={words} className="absolute top-[24%] left-[35%] w-[30%]" />
+          <img src={words} className="absolute top-[22%] left-[35%] w-[30%]" />
         </>
       )
     }
@@ -150,16 +152,23 @@ const Home = () => {
     }
   }
 
-  const UserCard = () => {
+  const handleClick = e => {
+    e.preventDefault()
+    setIsFlipped(!isFlipped)
+  }  
+
+  const UserCard = isFlipped => {
     if (hasMatched) {
+      if (!(isFlipped.isFlipped)) {
+        return (
+          <div className="">
+            {<ProfileCardFront user_matched_with={matchedPartner} />}
+          </div>
+        )
+      }
       return (
         <div className="">
-          {<ProfileCard user_matched_with={matchedPartner}/>}
-          <div className="flex justify-center bg-lightchoco pt-16 pb-12">
-            <button onClick={e => submitCompletedChat()} className="shadow-sm mb-5 text-3xl text-center px-8 py-6 rounded-2xl bg-dark_greentea border-dark_matcha active:bg-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 font-regular text-white">
-              completed chat
-            </button>
-          </div>
+          {<ProfileCardBack user_matched_with={matchedPartner} />}
         </div>
       ) 
     }
@@ -172,18 +181,25 @@ const Home = () => {
       <Board />
       <img src={table} alt="" className="absolute top-[45%] object-cover w-[100%] h-[20%]" />
       <Props />
-      <div className="absolute top-[65%] bg-lightchoco w-full h-96">
+      <div className="absolute top-[65%] bg-lightchoco w-full h-screen">
         <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal" containerClassName="w-full">
           <button onClick={e => handleClick(e)} type='button' className='w-full'>
-            <UserCard />
+            <UserCard isFlipped={isFlipped} />
           </button>
           
-        <button onClick={e => handleClick(e)} type='button' className='w-full'>
-          <UserCard />
-        </button>
-      </ReactCardFlip>
-        
-      </div>  
+          <button onClick={e => handleClick(e)} type='button' className='w-full'>
+            <UserCard isFlipped={isFlipped} />
+          </button>
+        </ReactCardFlip> 
+        {hasMatched && (
+          <div className="flex justify-center pt-20 pb-12 bg-lightchoco">
+            <button onClick={e => submitCompletedChat()} className="shadow-sm mb-5 text-3xl text-center px-8 py-6 rounded-2xl bg-dark_greentea border-dark_matcha active:bg-dark_matcha border-t-0 border-l-1 border-r-4 border-b-4 font-regular text-white">
+              completed chat
+            </button>
+          </div>
+        )}
+      </div>
+      
     </div>
   )
 }

@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import NavBar from './NavBar'
+import React, { useState, useEffect }  from 'react'
 
 import axios from 'axios'
 const DEFAULT_PROPIC = 'https://64.media.tumblr.com/f0d2656c72487c49a86f98a3233aaebc/261af0ebd07e5fd1-8a/s500x750/e7fffcbdb0c21fbcdea53730a364e63fb142cec7.jpg'
 
-const ProfileCard = ({ user_matched_with }) => {
+const ProfileCardFront = ({ user_matched_with }) => {
   const user = user_matched_with
   // TODO: set the states in use effect by axios pulling actual user data based on the username?
   const [userCard, setUserCard] = useState(null)
@@ -83,93 +82,53 @@ const ProfileCard = ({ user_matched_with }) => {
 
   //   getProfileInfo()
   // }, [])
-  const Details = () => {
-    if (isFlipped.isFlipped) {
-      console.log('front')
-      return (
-        <div className="flex justify-center pt-20 bg-lightchoco">
-          <div className="flex flex-col justify-center w-1/2 p-10 px-16 pb-12 bg-matcha drop-shadow-svg_lighter rounded-xl lowercase text-3xl text-center border-4 border-greentea border-dotted">
-            <img src={userPfp} alt="" className="object-cover self-center w-52 h-52 mb-4 rounded-full shadow-xl hover:shadow-lg" />
-            <div className='mt-8'>
-              <h2 className="text-dark_matcha inline font-bold">
-                name:&nbsp;
-              </h2>
-              <div className="text-dark_greentea inline">
-                {userRealName}
-              </div>
-            </div>
-            <div className='mt-8'>
-              <h2 className="text-dark_matcha inline font-bold">
-                phone:&nbsp;
-              </h2>
-              <div className="text-dark_greentea inline">
-                {userPhone}
-              </div>
-            </div>
-            <div className='mt-8'>
-              <h2 className="text-dark_matcha inline font-bold">
-                major:&nbsp;
-              </h2>
-              <div className="text-dark_greentea inline">
-                {userMajor}
-              </div>
-            </div>
-            <div className='mt-8'>
-              <h2 className="text-dark_matcha inline font-bold">
-                class:&nbsp;
-              </h2>
-              <div className="text-dark_greentea inline">
-                {userYear}
-              </div>
-            </div>
-            <div className='mt-8'>
-              <h2 className="text-dark_matcha inline font-bold">
-                about:&nbsp;
-              </h2>
-              <div className="text-dark_greentea inline">
-                {userAbout}
-              </div>
-            </div>
-          </div>
-        </div>
-      )
-    }
-    return (
-      <div className="flex justify-center pt-20">
+  const Details = () => (
+    <div className="flex justify-center pt-20 h-screen bg-lightchoco">
       <div className="flex flex-col justify-center w-1/2 p-10 px-16 pb-12 bg-matcha drop-shadow-svg_lighter rounded-xl lowercase text-3xl text-center border-4 border-greentea border-dotted">
-        <img src={userPfp} alt="" className="object-cover self-center w-52 h-52 mb-20 rounded-full shadow-xl hover:shadow-lg" />
+        <img src={userPfp} alt="" className="object-cover self-center w-1/3 h-1/3 mb-20 rounded-full shadow-xl hover:shadow-lg" />
         <div className='mt-8'>
           <h2 className="text-dark_matcha inline font-bold">
-            times you both are free:&nbsp;
-          </h2>
-          <div className="flex flex-col text-dark_greentea">
-            {userAvailabilities.map((availability, index) => {
-              return (
-                <div>
-                  &gt; {availability}
-                </div>
-              )
-            })}
-          </div>
-        </div>
-        <div className='mt-8 mb-2'>
-          <h2 className="text-dark_matcha inline font-bold">
-            preferred locations:&nbsp;
+            name:&nbsp;
           </h2>
           <div className="text-dark_greentea inline">
-            {userPreferredLocations.map((location, index) => {
-              return (
-                <div>
-                  &gt; {location}
-                </div>
-              )
-            })}
+            {userRealName}
+          </div>
+        </div>
+        <div className='mt-8'>
+          <h2 className="text-dark_matcha inline font-bold">
+            phone:&nbsp;
+          </h2>
+          <div className="text-dark_greentea inline">
+            {userPhone}
+          </div>
+        </div>
+        <div className='mt-8'>
+          <h2 className="text-dark_matcha inline font-bold">
+            major:&nbsp;
+          </h2>
+          <div className="text-dark_greentea inline">
+            {userMajor}
+          </div>
+        </div>
+        <div className='mt-8'>
+          <h2 className="text-dark_matcha inline font-bold">
+            class:&nbsp;
+          </h2>
+          <div className="text-dark_greentea inline">
+            {userYear}
+          </div>
+        </div>
+        <div className='mt-8'>
+          <h2 className="text-dark_matcha inline font-bold">
+            about:&nbsp;
+          </h2>
+          <div className="text-dark_greentea inline">
+            {userAbout}
           </div>
         </div>
       </div>
     </div>
-    )
-  }
+  )
 
   return (
     <>
@@ -177,4 +136,5 @@ const ProfileCard = ({ user_matched_with }) => {
     </>
   )
 }
-export default ProfileCard
+
+export default ProfileCardFront
