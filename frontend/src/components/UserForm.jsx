@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import axios from 'axios'
+import validator from 'validator'
 
 // components
 import NavBar from './NavBar'
@@ -34,6 +35,20 @@ const UserForm = () => {
     const [myAbout, setMyAbout] = useState('')
 
     const navigate = useNavigate()
+
+    const validateInfo = () => {
+      if (first_name.length < 1) {
+        //errMessage = 'You must enter a first name.'
+        return false
+      } else if (last_name.length < 1) {
+        //errMessage = 'You must enter a last name.'
+        return false
+      } else if (!validator.isEmail(email)) {
+        //errMessage = 'You must enter a valid email.'
+        return false
+      }
+      return true
+    }
     const submit = async () => {
         // const schema = yup.object().shape({
         //     first_name: yup.string().required().min(1, 'Please enter a name.'), 
@@ -41,15 +56,17 @@ const UserForm = () => {
         //     year_of_grad: yup.required().min(1, 'Please enter your grad year.'),
         //     email: yup.string().required()
         // })
-        const data = { first_name, last_name, year_of_grad, email, phone_number,
+        if (validateInfo()) {
+          const data = { first_name, last_name, year_of_grad, email, phone_number,
             gender, major, year_joined_spark, spark_role, users_chatted, users_blocked, activities }
-        // schema.validate(data).then(data => console.log(data)).catch(err => console.log(err))
-        await (axios.post(created_account ? '/updateaccount' : '/createaccount', data).catch(error => {
-            console.log(data) //test
-            console.log(error) //test
-        }))
-        updateAbout()
-        navigate('/profile')
+          // schema.validate(data).then(data => console.log(data)).catch(err => console.log(err))
+          await (axios.post(created_account ? '/updateaccount' : '/createaccount', data).catch(error => {
+              console.log(data) //test
+              console.log(error) //test
+          }))
+          updateAbout()
+          navigate('/profile')
+        }
     }
 
     useEffect(() => {
@@ -87,6 +104,8 @@ const UserForm = () => {
     const changeAbout = event => {
       setMyAbout(event.target.value)
     }
+
+
   
     // Upload the about information to backend 
     const updateAbout = async () => {
