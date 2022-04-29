@@ -97,15 +97,15 @@
 ]
 >
 <!-- Created with Vectornator (http://vectornator.io/) -->
-<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 500 280" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 500 280" width="100%" xmlns="http://www.w3.org/2000/svg">
 <defs/>
-<g id="Layer-2" vectornator:layerName="Layer 2">
+<g id="Layer-2">
 <path d="M99.2107 44.0958L396.154 43.4171L420.928 208.687L122.966 203.597L99.2107 44.0958Z" fill="#d5c7b0" fill-rule="evenodd" opacity="0.96436" stroke="#614e39" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.4754"/>
 </g>
-<g id="Layer-1" vectornator:layerName="Layer 1">
+<g id="Layer-1">
 <path d="M99.8894 42.399L396.154 42.7384L372.738 222.941L71.4236 222.988L99.8894 42.399Z" fill="#fff7d6" fill-rule="evenodd" opacity="0.96436" stroke="#614e39" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.4754"/>
 </g>
-<g id="Layer-3" vectornator:layerName="Layer 3">
+<g id="Layer-3">
 <path d="M145.985 86.5825C143.55 83.6909 140.575 87.5185 141.464 90.3002C142.109 92.3202 144.656 93.179 145.913 94.7389C148.593 98.0619 149.745 103.139 147.798 107.12C146.97 108.813 145.441 110.997 143.277 110.838C141.244 110.688 137.357 107.54 138.203 105.235" fill="none" fill-rule="evenodd" opacity="0.96436" stroke="#614e39" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.66736"/>
 <path d="M165.169 85.9093C165.84 91.8842 166.514 97.8003 166.193 103.82C166.109 105.391 166.05 106.963 165.982 108.535C165.904 110.334 165.274 114.923 165.987 112.979" fill="none" fill-rule="evenodd" opacity="0.96436" stroke="#614e39" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.66736"/>
 <path d="M165.53 93.5233C165.421 92.5456 171.145 92.0965 171.925 93.2989" fill="none" fill-rule="evenodd" opacity="0.96436" stroke="#614e39" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.66736"/>

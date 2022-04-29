@@ -9,11 +9,16 @@ import toast from 'react-hot-toast'
 import NavBar from './NavBar'
 import ProfileCard from './ProfileCard'
 
-//images
+// svgs
+import table from '../imgs/svg/cardontable.svg'
+
+// images
 import angry from '../imgs/angrymatcha.gif'
 import left from '../imgs/sleepmatcha.gif'
 import right from '../imgs/matcha.gif'
 import words from '../imgs/words.gif'
+import cubetea from '../imgs/cubetea.png'
+import animatedcup from '../imgs/matchaAnimated.png'
 
 const completedChatToast = () => toast.success(`Thank you for completing the coffee chat! Now tell us about your experience!`, { icon: '🥰', duration: 4000 })
 const throwError = error => toast.error(`${error.response.data.message}`, { icon: '🥲' })
