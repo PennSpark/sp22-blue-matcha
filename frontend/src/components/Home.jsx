@@ -10,12 +10,11 @@ import NavBar from './NavBar'
 import ProfileCard from './ProfileCard'
 
 // svgs
-import table from '../imgs/svg/cardontable.svg'
+import closed from '../imgs/svg/cardontable.svg'
+import table from '../imgs/svg/tabletop.svg'
 
 // images
 import angry from '../imgs/angrymatcha.gif'
-import left from '../imgs/sleepmatcha.gif'
-import right from '../imgs/matcha.gif'
 import words from '../imgs/words.gif'
 import cubetea from '../imgs/cubetea.png'
 import animatedcup from '../imgs/matchaAnimated.png'
@@ -55,7 +54,7 @@ const Home = () => {
         } else if (response.status === 400) {
           //they didn't have a matching this week (they didn't opt in for a coffee chat)
         } else {
-          //there are no current matchings out. 
+          //there are no current matchings out.
         }
       })
     }
@@ -95,61 +94,61 @@ const Home = () => {
     // throwError()
   }
 
-  const Display = () => {
-    if (!loggedIn) {
-      return (
-        <div className="flex flex-col justify-center items-center mb-40">
-          <img src={angry} className="h-56 w-56 rounded-2xl" />
-          <Link to="/login" className="text-2xl">Go login!</Link>
-        </div>
-      )
-    } else if (!surveyed) {
+  const Board = () => {
+    if (!surveyed) {
       return (
         <div className="flex flex-col justify-center items-center mb-40">
           <img src={angry} className="h-56 w-56 rounded-2xl" />
           <Link to="/survey" className="text-2xl">Ok..hurry and go take the survey mf!</Link>
-          
         </div>
       )
-    } else {
-      if (hasMatched) {
-        return (
-          <>
-            <img src={words} className="relative top-16 w-1/2" />
-            <div className="flex justify-center mb-10">
-              <img src={left} className="w-60 h-60 rounded-3xl" />
-              <h2 className='relative top-32 mx-10 text-5xl capitalize'>
-                {`> ${matchedPartner} <` /*make this part of the profile card*/}
-              </h2>
-              <img src={right} className="w-60 h-60 rounded-3xl"/>
-            </div>
-            {<ProfileCard user_matched_with={matchedPartner}/>}
-          </>
-        )
-      }
+    } else if (hasMatched) {
       return (
         <>
-          <h1 className="relative top-6 mt-40 text-5xl drop-shadow capitalize font-semibold text-dark_matcha">
-            Wait to be match-d :)
-          </h1>
+          <img src={words} className="relative top-16 w-1/2" />
           <div className="flex justify-center mb-10">
             <img src={left} className="w-60 h-60 rounded-3xl" />
-            <h2 className='relative top-36 mx-10'>
-              Patience!
+            <h2 className='relative top-32 mx-10 text-5xl capitalize'>
+              {`> ${matchedPartner} <` /*make this part of the profile card*/}
             </h2>
             <img src={right} className="w-60 h-60 rounded-3xl"/>
           </div>
+          {<ProfileCard user_matched_with={matchedPartner}/>}
         </>
+      )
+    }
+    return (
+      <>
+        <div className="flex flex-col w-full"> 
+          <div className="self-end text-right w-1/3 h-60 mt-16 p-20 px-36 text-5xl drop-shadow shadow-xl rounded capitalize font-semibold bg-light_matcha text-dark_matcha">
+            Wait to be matcha'd
+          </div>
+        </div>
+      </>
+    )
+  }
+
+  const Props = () => {
+    if (hasMatched) {
+      return (
+        <>
+          <img src={animatedcup} alt="" className="relative left-[10%] bottom-14 object-cover w-[35%] h-[30%]" />
+          <img src={cubetea} alt="" className="relative left-[10%] bottom-14 object-cover w-[35%] h-[30%]" />
+        </>
+      )
+    } else {
+      return (
+        <img src={closed} alt="" className="relative left-[10%] bottom-14 object-cover w-[35%] h-[30%]" />
       )
     }
   }
   
   return (
-    <div className="bg-white text-3xl font-mono">
+    <div className="bg-white text-3xl font-mono w-screen h-screen">
       <NavBar isAdmin={isAdmin} />
-      <div className="flex flex-col justify-center items-center pt-20">
-        <Display />
-      </div>
+      <Board />
+      <img src={table} alt="" className="relative top-[30%] object-cover w-[100%] h-[20%]" />  
+      <Props />
       {hasMatched && 
         <div className="flex justify-center mb-16">
           <button onClick={e => submitCompletedChat()} className="shadow-sm mb-5 text-3xl text-center px-8 py-6 rounded-2xl bg-dark_matcha font-regular text-white">
