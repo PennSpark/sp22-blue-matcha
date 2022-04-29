@@ -40,10 +40,10 @@ const ProfileModal = ({ oldImage, setPfp, setModalVisible }) => {
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none font-mono">
         <div className="relative w-auto my-6 mx-auto max-w-3xl">
           {/* content */}
-          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full p-2 bg-white outline-none focus:outline-none">
             {/* header */}
             <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
-              <h3 className="w-full text-xl font-semibold">
+              <h3 className="w-full text-2xl font-semibold">
                 Change Your Profile Picture
               </h3>
               <button type="button" onClick={() => setModalVisible(false)} className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-300 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
@@ -58,11 +58,11 @@ const ProfileModal = ({ oldImage, setPfp, setModalVisible }) => {
                   {/* {image ? 'selected': 'no file uploaded'} */}
                 </input>
               </div>
-              <div className="flow-root">
-                <button type="submit" onClick={e => submit(e)} className="bg-chocolate text-white font-normal h-10 py-1 px-4 text-base rounded">
+              <div className="flex">
+                <button type="submit" onClick={e => submit(e)} className="w-full bg-chocolate text-white border-darkchoco active:bg-darkchoco border-t-0 border-l-1 border-r-4 border-b-4 font-normal h-10 py-1 px-4 text-base rounded">
                   Submit
                 </button>
-                <button type="submit" onClick={e => cancel(e)} className="bg-lightchoco text-white font-normal h-10 py-1 px-4 ml-5 text-base rounded">
+                <button type="submit" onClick={e => cancel(e)} className="w-full bg-lightchoco text-white border-chocolate active:bg-chocolate border-t-0 border-l-1 border-r-4 border-b-4 font-normal h-10 py-1 px-4 ml-5 text-base rounded">
                   Cancel
                 </button>
               </div>
