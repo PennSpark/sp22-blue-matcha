@@ -28,13 +28,6 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, '../frontend/public')));
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../frontend/build')));
-//   app.get("*", function (request, response) {
-//     response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
-//   });
-// }
 
 app.use(session({
   secret: 'keyboard cat',
@@ -47,6 +40,13 @@ app.use(passport.authenticate('session')); //equivalent to app.use(passport.sess
 // app.use('/', authRouter);
 // app.use('/user/', usersRouter);
 app.use('/api', apiRouter);
+
+//if (process.env.NODE_ENV === 'production') {
+console.log("bruh")
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./frontend/build", "index.html"));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

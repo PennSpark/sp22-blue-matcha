@@ -95,8 +95,8 @@ exports.get_username = function(req, res) {
 };
 
 exports.password_authenticate = passport.authenticate('local', {
-    successRedirect: '/login/success',
-    failureRedirect: '/login/failure',
+    successRedirect: '/api/login/success',
+    failureRedirect: '/api/login/failure',
     failureMessage: false
 });
 
