@@ -10,7 +10,7 @@ const UserDetails = ({data}) => {
     }
 
     const login = async () => {
-        await axios.post('/login', { username: email, password })
+        await axios.post('/api/login', { username: email, password })
           .then(() => {
             navigate('/home')
           })
@@ -20,7 +20,7 @@ const UserDetails = ({data}) => {
       }
 
     const changeChatting = async () => {
-        await axios.post('/change_participating_status', {status: !data.chat_participating}).then(setIsChatting(!isChatting))
+        await axios.post('/api/change_participating_status', {status: !data.chat_participating}).then(setIsChatting(!isChatting))
         .catch(err => console.log(err))
     }
     

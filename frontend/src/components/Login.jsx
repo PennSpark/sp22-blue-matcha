@@ -17,7 +17,7 @@ const Login = () => {
 
   useEffect(() => {
     const getUsername = async () => {
-      const { data } = (await axios.get('/username'))
+      const { data } = (await axios.get('/api/username'))
       if (data !== 'Not signed in') {
         navigate('/home')
       }
@@ -26,7 +26,7 @@ const Login = () => {
   }, [])
 
   const login = async () => {
-    await axios.post('/login', { username: email, password })
+    await axios.post('/api/login', { username: email, password })
       .then(() => {
         successToast()
         navigate('/home')

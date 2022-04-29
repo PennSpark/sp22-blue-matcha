@@ -18,10 +18,10 @@ const Signup = () => {
   const navigate = useNavigate()
 
   const createUser = async () => {
-    await axios.post('/sign-up', { username, password })
+    await axios.post('/api/sign-up', { username, password })
       .then(() => {
         successToast()
-        axios.post('/login', { username, password })
+        axios.post('/api/login', { username, password })
         .then(() => {
           navigate('/home')
         })
