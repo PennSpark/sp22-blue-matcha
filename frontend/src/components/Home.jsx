@@ -25,6 +25,7 @@ const Home = () => {
   const [matchedPartner, setMatchedPartner] = useState('')
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
+  const [isAdmin, setIsAdmin] = useState(false)
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -67,6 +68,12 @@ const Home = () => {
        })
       if (data) {
         setUserInformation(data)
+        const { admin } = data
+        if (admin) {
+          setIsAdmin(true)
+        } else {
+          setIsAdmin(false)
+        }
         setCreatedAccount(true)
       }
       console.log(data)
@@ -134,7 +141,7 @@ const Home = () => {
   
   return (
     <div className="bg-white text-3xl font-mono">
-      <NavBar />
+      <NavBar isAdmin={isAdmin} />
       <div className="flex flex-col justify-center items-center pt-20">
         <Display />
       </div>
