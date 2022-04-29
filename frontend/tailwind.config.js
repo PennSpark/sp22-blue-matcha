@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         white: '#ffffff',
         light_matcha: '#DDEDDA',
+        darker_light_matcha: '#D2E7CE',
         matcha: '#DAF5D6',
         light_greentea: '#C6E4BE',
         greentea: '#ACD1A3',
