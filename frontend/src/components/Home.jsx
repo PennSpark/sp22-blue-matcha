@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+import ReactCardFlip from 'react-card-flip'
 import toast from 'react-hot-toast'
 
 // Components
@@ -16,6 +17,7 @@ import table from '../imgs/svg/tabletop.svg'
 // images
 import angry from '../imgs/angrymatcha.gif'
 import words from '../imgs/words.gif'
+import words2 from '../imgs/words2.gif'
 import cubetea from '../imgs/cubetea.png'
 import animatedcup from '../imgs/matchaAnimated.png'
 
@@ -29,6 +31,8 @@ const Home = () => {
   const [matchedPartner, setMatchedPartner] = useState('')
   const [createdAccount, setCreatedAccount] = useState(false)
   const [userInformation, setUserInformation] = useState(null)
+
+  const [isFlipped, setIsFlipped] = useState(false)
 
   const navigate = useNavigate()
 
@@ -112,19 +116,19 @@ const Home = () => {
               </h1>
             </div>
           </div>
-          <img src={words} className="absolute top-52 left-[35%] w-[30%]" />
+          <img src={words} className="absolute top-[24%] left-[35%] w-[30%]" />
         </>
       )
     }
     return (
       <>
-        <div className="absolute top-[12%] w-full flex flex-col"> 
-          <div className="self-center text-center w-1/3 h-1/3 mt-10 p-20 px-36 drop-shadow shadow-xl rounded-xl mb-10 capitalize font-medium bg-light_matcha text-dark_matcha">
-            <h1 className="relative bottom-2 text-4xl">
-              Wait to be matcha'd
+        <div className="flex justify-center mb-10">
+          <div className="self-end text-center w-1/3 h-60 mt-10 p-20 px-36 text-2xl drop-shadow-xl rounded-xl capitalize font-semibold bg-light_matcha text-dark_matcha">
+            <h1 className="relative top-20 italic">
             </h1>
           </div>
         </div>
+        <img src={words2} className="absolute top-[21%] left-[40.5%] w-[19%]" />
       </>
     )
   }
@@ -168,9 +172,18 @@ const Home = () => {
       <Board />
       <img src={table} alt="" className="absolute top-[45%] object-cover w-[100%] h-[20%]" />
       <Props />
-      <div className="absolute top-[65%] bg-lightchoco w-full">
-        <UserCard />
-      </div>
+      <div className="absolute top-[65%] bg-lightchoco w-full h-96">
+        <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal" containerClassName="w-full">
+          <button onClick={e => handleClick(e)} type='button' className='w-full'>
+            <UserCard />
+          </button>
+          
+        <button onClick={e => handleClick(e)} type='button' className='w-full'>
+          <UserCard />
+        </button>
+      </ReactCardFlip>
+        
+      </div>  
     </div>
   )
 }
