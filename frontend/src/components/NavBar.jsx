@@ -13,7 +13,7 @@ const NavBar = ({ isAdmin }) => {
   const navigate = useNavigate()
 
   const logout = async () => {
-    await axios.post('/logout')
+    await axios.post('/api/logout')
       .then(() => {
         setLoggedIn(false)
         navigate('/')
@@ -24,7 +24,7 @@ const NavBar = ({ isAdmin }) => {
   }
   useEffect(() => {
     const getUsername = async () => {
-      const {data} = (await axios.get('/username').catch(err => {
+      const {data} = (await axios.get('/api/username').catch(err => {
         if (err.response) {
           console.log(err.response)
           if (err.response.status === 406) {

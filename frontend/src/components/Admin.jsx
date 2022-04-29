@@ -18,7 +18,7 @@ const Admin = () => {
 
     useEffect(() => {
         const getCurrMatches = async () => {
-            await axios.get('/allmatches').then(response => {
+            await axios.get('/api/allmatches').then(response => {
                 if (response.status === 200) {
                     setCurrMatchings(response.data)
                     setReceivedMatches(true)
@@ -26,7 +26,7 @@ const Admin = () => {
             })
         }
         const getPendingMatches = async () => {
-            await axios.get('/pendingmatches').then(response => {
+            await axios.get('/api/pendingmatches').then(response => {
                 if (response.status === 200) {
                     setPendingMatches(response.data)
                     setRetrievedPending(true)
@@ -36,7 +36,7 @@ const Admin = () => {
             )
         }
         const grabAllUsers = async () => {
-            let { data }  = (await axios.get('/all_users_participating'))
+            let { data }  = (await axios.get('/api/all_users_participating'))
             const participating = []
             data = data.map(obj => ({ ...obj, fullname: `${obj.first_name} ${obj.last_name}` }))
             data.map(o => o.chat_participating && participating.push(o.fullname))
@@ -80,7 +80,7 @@ const Admin = () => {
         })
     }
     const generateMatchings = async () => {
-        await axios.post('/generatematches').then(response => {
+        await axios.post('/api/generatematches').then(response => {
             if (response.status === 200) {
                 setPendingMatches(response.data)
                 setRetrievedPending(true)

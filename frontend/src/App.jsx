@@ -19,6 +19,7 @@ import UserForm from './components/UserForm'
 import Admin from './components/Admin'
 import Profile from './components/Profile'
 import Availability from './components/Availability'
+import './styles/index.css'
 
 function App() {
   return (

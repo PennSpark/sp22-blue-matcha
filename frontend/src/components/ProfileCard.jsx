@@ -20,7 +20,12 @@ const ProfileCard = ({ user_matched_with }) => {
 
   useEffect(() => {
     const getMatched = async () => {
+<<<<<<< HEAD
       await axios.post('/profilecard', {username: user}).then(response => {
+=======
+      await axios.post('/api/profilecard', {username: user}).then(response => {
+          console.log(response)
+>>>>>>> sadness
           if (response.status === 200) {
             const userdata = response.data
             setUserCard(userdata)
@@ -42,7 +47,7 @@ const ProfileCard = ({ user_matched_with }) => {
       )
     }
     const getSchedule = async () => {
-      await axios.post('/paircalendar', {requested_user: user}).then(response => {
+      await axios.post('/api/paircalendar', {requested_user: user}).then(response => {
         console.log(response)
         if (response.status === 200) {
           const availability = response.data
@@ -58,7 +63,7 @@ const ProfileCard = ({ user_matched_with }) => {
 
   // useEffect(() => {
   //   const getProfileInfo = async () => {
-  //     const { data } = (await axios.post('/', { username }))
+  //     const { data } = (await axios.post('/api/', { username }))
   //     // get the currently loggedinuser
   //     const { username: loggedInUser } = userData
   //     const {
