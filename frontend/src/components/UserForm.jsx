@@ -3,12 +3,16 @@ import { useNavigate } from 'react-router'
 import axios from 'axios'
 import validator from 'validator'
 
+import toast from 'react-hot-toast'
+
 // components
 import NavBar from './NavBar'
 import Dropdown from './Dropdown'
 import Checkbox from './Checkbox'
 
 //import * as yup from 'yup';
+
+const throwError = message => toast.error(`${message}`, { icon: '🥲' })
 
 const CURR_YEAR = 2022
 const SPARK_ROLES = ['Red Developer', 'Red Designer', 'Blue Developer', 'Blue Designer', 'Blue Instructor', 'Executive Board']
@@ -39,12 +43,18 @@ const UserForm = () => {
     const validateInfo = () => {
       if (first_name.length < 1) {
         //errMessage = 'You must enter a first name.'
+        throwError('You must enter a first name.')
         return false
       } else if (last_name.length < 1) {
         //errMessage = 'You must enter a last name.'
+        throwError('You must enter a last name.')
         return false
       } else if (!validator.isEmail(email)) {
         //errMessage = 'You must enter a valid email.'
+        throwError('You must enter a valid email.')
+        return false
+      } else if (gender.length <= 1) {
+        throwError('You must select gender.')
         return false
       }
       return true
@@ -60,7 +70,7 @@ const UserForm = () => {
           const data = { first_name, last_name, year_of_grad, email, phone_number,
             gender, major, year_joined_spark, spark_role, users_chatted, users_blocked, activities }
           // schema.validate(data).then(data => console.log(data)).catch(err => console.log(err))
-          await (axios.post(created_account ? '/updateaccount' : '/createaccount', data).catch(error => {
+          await (axios.post(created_account ? '/api/updateaccount' : '/api/createaccount', data).catch(error => {
               console.log(data) //test
               console.log(error) //test
           }))
@@ -110,7 +120,7 @@ const UserForm = () => {
     // Upload the about information to backend 
     const updateAbout = async () => {
       const about = myAbout
-        await axios.post('updateabout', {about}).then(console.log('success')).catch(error => {
+        await axios.post('/api/updateabout', {about}).then(console.log('success')).catch(error => {
             console.log(error) //test
         })
     }
