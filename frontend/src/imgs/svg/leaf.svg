@@ -2,29 +2,12 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 
 <!-- Created with Vectornator (http://vectornator.io/) -->
-<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 1024 1024" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
-<metadata>
-<vectornator:setting key="IsTimeLapseWatermarkDisabled" value="false"/>
-<vectornator:setting key="UndoHistoryDisabled" value="true"/>
-<vectornator:setting key="VNDimensionsVisible" value="true"/>
-<vectornator:setting key="VNSnapToGuides" value="true"/>
-<vectornator:setting key="WDCMYKEnabledKey" value="false"/>
-<vectornator:setting key="WDDisplayWhiteBackground" value="false"/>
-<vectornator:setting key="WDDynamicGuides" value="false"/>
-<vectornator:setting key="WDGuidesVisible" value="true"/>
-<vectornator:setting key="WDIsolateActiveLayer" value="false"/>
-<vectornator:setting key="WDOutlineMode" value="false"/>
-<vectornator:setting key="WDRulersVisible" value="true"/>
-<vectornator:setting key="WDSnapToEdges" value="false"/>
-<vectornator:setting key="WDSnapToGrid" value="false"/>
-<vectornator:setting key="WDSnapToPoints" value="false"/>
-<vectornator:setting key="WDUnits" value="Pixels"/>
-</metadata>
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="0 0 1024 1024" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
 <defs/>
 <clipPath id="ArtboardFrame">
 <rect height="1024" width="1024" x="0" y="0"/>
 </clipPath>
-<g clip-path="url(#ArtboardFrame)" id="Layer-1" vectornator:layerName="Layer 1">
+<g clip-path="url(#ArtboardFrame)" id="Layer-1">
 <path d="M-95.1559 592.422C-95.1559 582.729-97.1811 571.021-93.9281 561.727C-91.5898 555.046-88.0266 548.577-84.1055 542.695C-81.3566 538.572-76.3391 534.093-74.8969 529.189C-74.1404 526.618-74.283 521.63-74.283 518.753C-74.283 516.502-73.6116 514.149-74.283 512C-74.7146 510.619-76.6234 510.18-77.3525 508.93C-78.6969 506.626-79.5664 503.844-81.6499 502.177" fill="#f6ffbc" fill-rule="evenodd" opacity="0.992248" stroke="#697447" stroke-linecap="round" stroke-linejoin="round" stroke-width="8.60389"/>
 <path d="M279.682 787.004C280.023 788.367 281.162 790.951 281.162 790.951C281.162 790.951 279.035 787.837 277.709 786.511C277.051 785.853 276.354 785.233 275.736 784.538C272.642 781.058 269.383 777.724 266.363 774.179C260.508 767.305 253.798 758.94 250.085 750.501C245.417 739.892 241.621 728.992 236.766 718.437C233.275 710.847 228.495 703.552 225.42 695.745C219.43 680.54 214.89 664.643 210.621 648.882C200.182 610.339 195.177 571.801 193.849 531.972C193.5 521.501 194.102 511.216 195.822 500.894C196.15 498.928 196.215 493.595 197.795 492.015C198.876 490.934 200.53 491.937 201.742 491.028C205.491 488.216 204.732 484.424 210.621 485.602C216.155 486.709 220.645 496 227.393 493.001C230.265 491.725 229.681 488.404 232.326 487.082C232.932 486.779 233.778 488.009 234.299 487.575C235.098 486.909 234.821 485.546 235.286 484.615C239.954 475.28 242.257 466.2 246.138 456.498C248.482 450.639 251.792 444.925 254.524 439.232C261.468 424.767 268.674 410.912 276.229 396.809C279.517 390.672 282.313 384.148 286.588 378.557C289.665 374.534 294.402 371.757 297.441 367.705C301.942 361.703 309.987 349.391 319.146 351.426C327.264 353.23 334.243 362.231 341.344 366.225C348.094 370.022 353.658 374.52 359.596 379.544C361.792 381.402 364.576 382.428 366.995 383.983C374.307 388.684 381.966 397.56 386.727 404.702C397.941 421.524 404.791 440.417 412.378 458.964C415.958 467.714 420.032 476.007 422.737 485.109C426.368 497.32 428.192 510.132 432.603 522.106C436.818 533.545 440.294 545.364 444.936 556.636C449.52 567.769 454.083 578.337 456.775 590.18C469.543 646.362 456.827 709.816 422.244 755.927C409.557 772.843 394.69 791.162 375.381 800.817C365.006 806.004 354.432 807.118 343.317 809.203C332.144 811.297 323.034 813.647 312.24 809.203C304.969 806.209 296.811 805.145 289.055 803.776C285.708 803.186 281.162 802.978 281.162 798.35" fill="#f6ffbc" fill-rule="evenodd" opacity="0.992248" stroke="#697447" stroke-linecap="round" stroke-linejoin="round" stroke-width="8.60389"/>
 <path d="M469.996 629.81C473.958 614.757 473.247 597.684 476.074 582.2C482.924 544.687 497.401 509.225 502.051 471.257C502.961 463.825 501.363 455.97 502.33 448.742C503.229 442.023 505.577 435.518 505.984 428.73C506.58 418.807 504.62 408.061 505.232 397.876C506.752 372.565 515.318 347.533 519.413 322.55C522.195 305.574 521.889 288.322 524.022 271.327C526.482 251.725 530.115 232.858 535.144 213.751C543.704 181.232 561.977 146.927 581.728 119.526C585.539 114.238 600.391 96.2031 609.049 98.4821C616.24 100.375 629.512 124.269 632.117 130.369C634.964 137.034 637.503 144.277 638.668 151.455C642.993 178.117 640.541 206.688 637.273 233.373C626.961 317.574 596.952 396.714 557.682 471.38C546.976 491.736 534.49 515.9 517.573 531.813C509.731 539.189 500.061 543.727 491.801 550.038C490.944 550.692 486.983 556.988 486.598 557.542C478.05 569.874 470.944 583.917 473.214 599.195" fill="#f6ffbc" fill-rule="evenodd" opacity="0.992248" stroke="#697447" stroke-linecap="round" stroke-linejoin="round" stroke-width="8.60389"/>
