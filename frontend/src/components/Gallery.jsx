@@ -57,7 +57,7 @@ const Gallery = () => {
       <NavBar />
       <div className="bg-table bg-contain bg-repeat w-screen h-screen border-t-8 border-dark_matcha">
         <div className="flex justify-center font-semibold pt-10 capitalize">
-          <h1 className="inline text-5xl mt-10 text-lemon drop-shadow-xl font-mono">
+          <h1 className="inline text-5xl mt-10 text-matcha drop-shadow-title font-mono">
             coffee chat gallery
           </h1>
           <button onClick={e => setModalVisible(true)} button="button" className="relative top-12 inline w-10 h-10 ml-5 rounded-xl text-3xl bg-dark_matcha text-matcha">
