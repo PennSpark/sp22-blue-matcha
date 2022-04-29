@@ -42,7 +42,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className="shadow-sm bg-light_greentea rounded-b-2xl font-mono">
+      <nav className="shadow-sm bg-light_greentea font-mono">
         <div className="flex flex-row justify-between align-center py-4 px-4">
           <div className="basis-1/3 flex">
             <img src={logo} alt="" className="justify-self-start w-20 h-20 py-1 ml-3 rounded-full shadow-md hover:shadow-xl bg-light_lemon" />

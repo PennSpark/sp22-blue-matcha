@@ -25,6 +25,9 @@ module.exports = {
         'svg': '0 15px 10px rgba(56, 43, 23, 0.7)',
         'svg_darker': '0 15px 10px rgba(56, 43, 23, 0.85)',
       },
+      boxShadow: {
+        'darker': '0 10px 25px rgba(0, 0, 0, 0.25)',
+      },
     },
   },
   // plugins: [require("@tailwindcss/forms")],
