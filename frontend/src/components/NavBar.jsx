@@ -9,7 +9,7 @@ import logo from '../imgs/logo.png'
 const NavBar = () => {
   const [user, setUser] = useState('')
   const [loggedIn, setLoggedIn] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
+  // const [isAdmin, setIsAdmin] = useState(false)
 
   const navigate = useNavigate()
 
@@ -39,13 +39,13 @@ const NavBar = () => {
       } 
     }
 
-    const getUserdetails = async () => {
-      const {data} = await axios.get('/api/details')
-      setIsAdmin(data.admin)
-    }
+    // const getUserdetails = async () => {
+    //   const {data} = await axios.get('/api/details')
+    //   setIsAdmin(data.admin)
+    // }
 
     getUsername()
-    getUserdetails()
+    // getUserdetails()
   }, [])
 
   return (
@@ -62,11 +62,11 @@ const NavBar = () => {
             <li>
               <Link to="/home" className="hover:bg-matcha hover:shadow-md border-x-4 border-dotted border-matcha py-3 px-8 rounded-xl">Home</Link>
             </li>
-            {isAdmin && (
+            {/* {isAdmin && (
               <li>
                 <Link to="/admin" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Admin</Link>
               </li>
-            )}
+            )} */}
             <li>
               <Link to="/profile" className="hover:bg-matcha hover:shadow-md py-3 px-8 rounded-xl">Profile</Link>
             </li>
