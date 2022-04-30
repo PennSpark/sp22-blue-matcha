@@ -32,7 +32,7 @@ const Schedule = () => {
 
     const submitTimes = async () => {
       const dates = schedDates
-      await axios.post('updatecalendar', {dates})
+      await axios.post('/api/updatecalendar', {dates})
       .then(
         navigate('/profile')
       )
