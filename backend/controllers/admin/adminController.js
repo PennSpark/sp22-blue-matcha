@@ -1,8 +1,34 @@
-var User = require('../models/user');
-var FormResponses = require('../models/formResponses')
-var Matches = require('../models/matches')
-var algorithmController = require('./edmonds');
-var galleryController = require('./galleryController')
+const User = require('../../models/user');
+const Matches = require('../../models/matches')
+const algorithmController = require('./edmonds')
+const FormSend = require('../../models/formSend')
+
+exports.check_admin = function(req, res, next) {
+    User.findOne({'userLogin': req.user.username}).exec(
+        function (err, account) {
+            if (err) { return next(err) }
+            if (!account.admin) {
+                res.status(403).json({message: 'Not an admin'})
+            } else {
+                next()
+            }
+        }
+    )
+}
+
+exports.get_profile_card = function (req, res, next) {
+    User.findOne({'userLogin': req.body.username}).populate('profile_picture', { image_url: 1 }).select({first_name: 1, last_name: 1, phone_number: 1, 
+        major: 1, year_of_grad: 1, about: 1, profile_picture: 1, activities: 1, _id: 0}).exec(
+        function(err, result) {
+            if (err) {return next(err) }
+            if (result) { 
+                res.status(200).json(result)
+            } else {
+                res.status(400)
+            }
+        }
+    )
+}
 
 exports.get_receive_matchings = function(req, res, next) {
     Matches.findOne({'currently_on': true}).exec(
@@ -80,46 +106,30 @@ exports.get_pending_pairing = function (req, res, next) {
 
 //gets a generated amount of matchings 
 exports.post_run_algorithm = function (req, res, next) {
-    if (!req.user) {
-        return res.status(400).json({message: 'please sign in.'})
-    } else {
-        User.findOne({'userLogin': req.user.username}).exec(
-            function (err, account) {
-                if (err) { return next(err) }
-                if (!account.admin) {
-                    res.status(400).json({message: 'Not an admin'})
-                } else {
-                    algorithmController.edmonds_algorithm(req, res, next)
-                }
-            }
-        )
-    }
+    algorithmController.edmonds_algorithm(req, res, next)
 }
 
-/* you will have to disable 1) current matchings selected. 2) update the new matchings
- */
 exports.post_push_matchings = function (req, res, next) {
-    User.findOne({'userLogin': req.user.username}).exec(
-        function (err, account) {
+    var updated_match = req.body
+    updated_match.currently_on = true
+    Matches.findOneAndUpdate({'currently_on': true}, {'currently_on': false, 'pushed_in_past': true}, function (err, docs) {
+        if (err) {return next(err)}
+        Matches.findOneAndUpdate({'_id': updated_match._id}, updated_match, function (err, doc) {
             if (err) { return next(err) }
-            if (!account.admin) {
-                res.status(400).json({message: 'Not an admin'})
-            } else {
-                var updated_match = req.body
-                updated_match.currently_on = true
-                Matches.findOneAndUpdate({'currently_on': true}, {'currently_on': false, 'pushed_in_past': true}, function (err, docs) {
-                    if (err) {return next(err)}
-                    Matches.findOneAndUpdate({'_id': updated_match._id}, updated_match, function (err, doc) {
-                        if (err) { return next(err) }
-                        res.status(200).json(doc)
-                    })
-                })
-            }
+            res.status(200).json(doc)
+        })
     })
 }
 
-//implement this later 
-// makesyre 
-const matchVerification = match => {
-    //for each item in match, make sure that the person that a user is matched to is also matched to them. 
+exports.post_form = function(req, res, next) {
+    const formQuestion = new FormSend({
+        question: req.body.question, 
+        type: req.body.type, 
+        options: req.body.options, 
+        form_number: req.body.form_number,
+    })
+    formQuestion.save(function (err) {
+        if (err) { return next(err) }
+        res.status(200).json(formQuestion)
+    })
 }

@@ -1,0 +1,4 @@
+ERROR CODES: 
+
+403: Not Authorized - User shouldn't be allowed at this route. 
+401: Needs to Login

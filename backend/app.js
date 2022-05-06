@@ -7,7 +7,6 @@ var passport = require('passport');
 var session = require('express-session');
 var bodyParser = require('body-parser')
 
-var authRouter = require('./routes/auth');
 var apiRouter = require('./routes/api');
 
 var app = express();
@@ -18,10 +17,6 @@ var mongoDB = 'mongodb+srv://pennspark:team1matchamakers@cluster0.cx4rx.mongodb.
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true});
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 app.use(logger('dev'));

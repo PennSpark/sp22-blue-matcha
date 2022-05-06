@@ -1,73 +1,64 @@
-var express = require('express');
-var router = express.Router();
-var apiController = require('../controllers/apiController');
-var adminController = require('../controllers/adminController')
-var galleryController = require('../controllers/galleryController')
-var imageController = require('../controllers/imageController')
+const express = require('express')
+const router = express.Router()
 
-//sign up for an account - return 200 if successful, 406 if not
-router.post('/sign-up', apiController.post_sign_up);
+//import controllers
+const apiController = require('../controllers/apiController')
+const adminController = require('../controllers/admin/adminController')
+const galleryController = require('../controllers/galleryController')
+const loginController = require('../controllers/loginController')
+const userController = require('../controllers/userController')
 
-//login: checks if logged in. returns userDetails + user if user accoutn created + logged in
-router.get('/user', apiController.get_log_in);
-router.get('/username', apiController.get_username);
+//login-controller
+router.get('/login/success', loginController.success_login)
+router.get('/login/failure', loginController.failure_login)
+router.get('/user', loginController.confirm_logged_in, loginController.get_log_in)
 
-//this is what is called when "login" is pressed
-// --> post password stuff. returns status 200 if success + 400 if fail
-router.post('/login', apiController.password_authenticate);
-router.get('/login/success', apiController.success_login); 
-router.get('/login/failure', apiController.failure_login); 
+router.post('/login', loginController.password_authenticate)
+router.post('/sign-up', loginController.post_sign_up)
+router.post('/logout', loginController.log_out)
 
-//log out button 
-router.post('/logout', apiController.log_out); 
+//user-controller/
+router.get('/username', loginController.confirm_logged_in, userController.get_username)
+router.get('/user/:id', loginController.confirm_logged_in, userController.get_user_by_link)
+router.get('/details', userController.account_created, userController.get_user_by_username)
+router.get('/profilepicture', userController.account_created, userController.get_profile_picture)
+router.get('/user_completed_form', userController.account_created, userController.get_survey_complete)
+router.get('/datesblocked', userController.account_created, userController.get_dates_blocked)
 
-//create user 
-router.post('/createaccount', apiController.post_create_user); 
-router.post('/updateaccount', apiController.post_update_user); 
-router.post('/deleteuser', apiController.post_delete_user); 
+router.post('/createaccount', loginController.confirm_logged_in, userController.post_create_user)
+router.post('/updateaccount', userController.account_created, userController.post_update_user)
+router.post('/deleteuser', loginController.confirm_logged_in, userController.post_delete_user) 
+router.post('/update_profile_pic', userController.account_created, userController.post_update_propic)
+router.post('/updatecalendar', userController.account_created, userController.post_update_dates_blocked)
+router.post('/change_participating_status', userController.account_created, userController.change_chat_status); 
+router.post('/updateabout', userController.account_created, userController.post_update_about)
+router.post('/form_submit', userController.account_created, userController.post_form_response)
+router.post('/paircalendar', userController.account_created, userController.post_generate_schedule)
 
-//if success (status 200) returns an object with user details. 
-router.get('/user/:id', apiController.get_user_by_link); 
-router.get('/details', apiController.get_user_by_username); 
-
-//get form 
-router.post('/form_submit', apiController.post_form_response);
-router.post('/addform', apiController.post_form);
+//general information getting 
 router.get('/form/:form_number', apiController.get_form);
-router.get('/user_completed_form', apiController.get_survey_complete)
-
-//coffee chat participating status 
-router.post('/change_participating_status', apiController.change_chat_status); 
 router.get('/all_users', apiController.get_all_users); 
 router.get('/all_users_participating', apiController.get_all_users_with_participating)
-
-//admin routes 
-router.post('/generatematches', adminController.post_run_algorithm)
-router.post('/push_matches', adminController.post_push_matchings)
-router.get('/matchedwith', adminController.get_receive_matchings)
-router.get('/allmatches',  adminController.get_all_pairings)
-router.get('/pendingmatches', adminController.get_pending_pairing)
-router.get('/pastmatches', adminController.get_past_matchings)
-router.post('/updatepending', adminController.save_pending_pairing)
-
 router.post('/profilecard', apiController.get_profile_card)
-router.post('/updatecalendar', apiController.post_update_dates_blocked)
-router.get('/datesblocked', apiController.get_dates_blocked)
 
-router.post('/updateabout', apiController.post_update_about)
-//called w/ two users to look for overlapping schedules 
-router.post('/paircalendar', apiController.post_generate_schedule)
+//admin-routes
+router.get('/matchedwith', adminController.check_admin, adminController.get_receive_matchings)
+router.get('/allmatches',  adminController.check_admin, adminController.get_all_pairings)
+router.get('/pendingmatches', adminController.check_admin, adminController.get_pending_pairing)
+router.get('/pastmatches', adminController.check_admin, adminController.get_past_matchings)
 
-//upload images 
-router.post('/update_profile_pic', apiController.post_update_propic)
-router.get('/profilepicture', apiController.get_profile_picture)
+router.post('/updatepending', adminController.check_admin, adminController.save_pending_pairing)
+router.post('/addform', adminController.check_admin, adminController.post_form)
+router.post('/generatematches', adminController.check_admin, adminController.post_run_algorithm)
+router.post('/push_matches', adminController.check_admin, adminController.post_push_matchings)
 
-//gallery controller items 
+//gallery-controller
+router.get('/usergallery', galleryController.get_gallery_by_user)
+router.get('/gallery', galleryController.get_gallery_items)
+
 router.post('/uploadchatcard', galleryController.post_chat_card)
 router.post('/uploadphoto', galleryController.post_picture_without_linking)
 router.post('/updatechatcard', galleryController.update_chat_card)
-router.get('/usergallery', galleryController.get_gallery_by_user)
 router.post('/deletechatcard', galleryController.delete_chat_card)
-router.get('/gallery', galleryController.get_gallery_items)
 
-module.exports = router;
+module.exports = router
