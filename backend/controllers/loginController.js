@@ -10,7 +10,7 @@ passport.use(new LocalStrategy(function verify(username, password, done) {
             return done(err)
         }
         if (!user) {
-            return done(null, false, { message: "Incorrect username" })
+            return done(null, false, { message: 'Incorrect username' })
         }
         bcrypt.compare(password, user.password, (err, res) => {
             if (res) {
@@ -18,7 +18,7 @@ passport.use(new LocalStrategy(function verify(username, password, done) {
                 return done(null, user)
             } else {
                 // passwords do not match!
-                return done(null, false, { message: "Incorrect password" })
+                return done(null, false, { message: 'Incorrect password' })
             }
             })
         })
@@ -37,20 +37,22 @@ passport.use(new LocalStrategy(function verify(username, password, done) {
 exports.post_sign_up = function(req, res, next) {
     Login.find({username : req.body.username})
     .exec(function (err, u_list) {
-      if (err) { return next(err); }
+      if (err) {
+ return next(err) 
+}
       if (u_list.length > 0) {
-        res.status(406).json({message: "User already exists. You cannot create an account!"})
+        res.status(406).json({message: 'User already exists. You cannot create an account!'})
       } else { 
-        const user = new Login();
-        user.username = req.body.username;
+        const user = new Login()
+        user.username = req.body.username
         bcrypt.hash(req.body.password, 10, (err, hash) => {
-            user.password = hash;
+            user.password = hash
             user.save(err => {
               if (err) { 
                 return next(err)
               }
-              res.status(200).json({message: "Success. User created."})
-            });
+              res.status(200).json({message: 'Success. User created.'})
+            })
         })
       }
     })
@@ -65,13 +67,15 @@ exports.confirm_logged_in = (req, res, next) => {
 }
 
 exports.get_log_in = function(req, res, next) {
-    User.findOne({'userLogin': req.user.username}).exec(function (err, user_list) {
-        if (err) { return next(err); }
+    User.findOne({userLogin: req.user.username}).exec(function (err, user_list) {
+        if (err) {
+ return next(err) 
+}
         //Successful, so render
         if (user_list) {
-            res.status(200).json({ user: req.user, userDetail: user_list});
+            res.status(200).json({ user: req.user, userDetail: user_list})
         } else {
-            res.status(200).json({ user: req.user });
+            res.status(200).json({ user: req.user })
         }
     })
 }
@@ -83,14 +87,14 @@ exports.password_authenticate = passport.authenticate('local', {
 })
 
 exports.success_login = function(req, res) {
-    res.status(200).json({message: "Success! You're logged in."});
+    res.status(200).json({message: "Success! You're logged in."})
 }
 
 exports.failure_login = function(req, res) {
-    res.status(401).send({message: "Invalid password or user."});
+    res.status(401).send({message: 'Invalid password or user.'})
 }
 
 exports.log_out = function(req, res, next) {
-    req.logout();
-    res.status(200).json({message: "Successfully logged out."});
+    req.logout()
+    res.status(200).json({message: 'Successfully logged out.'})
 }

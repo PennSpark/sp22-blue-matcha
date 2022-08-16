@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose')
 
-var Schema = mongoose.Schema; 
+var Schema = mongoose.Schema 
 
 var chatcardSchema = new Schema(
     {
@@ -15,6 +15,6 @@ var chatcardSchema = new Schema(
             contentType: String
         }
     }
-);
+)
 
-module.exports = mongoose.model('Chatcard', chatcardSchema); 
+module.exports = mongoose.model('Chatcard', chatcardSchema) 

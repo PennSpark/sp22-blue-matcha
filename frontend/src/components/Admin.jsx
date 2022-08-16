@@ -15,6 +15,7 @@ const Admin = () => {
     const [usersOptedIn, setUsersOptedIn] = useState([])
     const [allUsers, setAllUsers] = useState([])
     const [onView, setOnView] = useState('Current')
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getCurrMatches = async () => {
@@ -22,8 +23,10 @@ const Admin = () => {
                 if (response.status === 200) {
                     setCurrMatchings(response.data)
                     setReceivedMatches(true)
+                    console.log(response)
                 }
-            })
+            }).catch( err =>
+                navigate('/home'))
         }
         const getPendingMatches = async () => {
             await axios.get('/api/pendingmatches').then(response => {

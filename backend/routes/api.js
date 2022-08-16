@@ -30,19 +30,19 @@ router.post('/updateaccount', userController.account_created, userController.pos
 router.post('/deleteuser', loginController.confirm_logged_in, userController.post_delete_user) 
 router.post('/update_profile_pic', userController.account_created, userController.post_update_propic)
 router.post('/updatecalendar', userController.account_created, userController.post_update_dates_blocked)
-router.post('/change_participating_status', userController.account_created, userController.change_chat_status); 
+router.post('/change_participating_status', userController.account_created, userController.change_chat_status) 
 router.post('/updateabout', userController.account_created, userController.post_update_about)
 router.post('/form_submit', userController.account_created, userController.post_form_response)
 router.post('/paircalendar', userController.account_created, userController.post_generate_schedule)
 
 //general information getting 
-router.get('/form/:form_number', apiController.get_form);
-router.get('/all_users', apiController.get_all_users); 
+router.get('/form/:form_number', apiController.get_form)
+router.get('/all_users', apiController.get_all_users) 
 router.get('/all_users_participating', apiController.get_all_users_with_participating)
 router.post('/profilecard', apiController.get_profile_card)
 
 //admin-routes
-router.get('/matchedwith', adminController.check_admin, adminController.get_receive_matchings)
+router.get('/matchedwith', adminController.get_receive_matchings)
 router.get('/allmatches',  adminController.check_admin, adminController.get_all_pairings)
 router.get('/pendingmatches', adminController.check_admin, adminController.get_pending_pairing)
 router.get('/pastmatches', adminController.check_admin, adminController.get_past_matchings)

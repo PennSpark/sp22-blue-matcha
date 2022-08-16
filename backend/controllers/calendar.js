@@ -1,4 +1,4 @@
-const times = require('./calendar.json');
+const times = require('./calendar.json')
 
 const ALLTIMES = times.dates_blocked 
 const DAYSOFWEEK = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -30,7 +30,7 @@ exports.generateAvailability = (personA, personB) => {
     }
     allTimeBlocks.push(block)
     const sortedTimeBlocks = allTimeBlocks.sort((a, b) => b.length - a.length)
-    const slicedArray = sortedTimeBlocks.slice(0, 5);
+    const slicedArray = sortedTimeBlocks.slice(0, 5)
     return timesToString(slicedArray)
 }
 

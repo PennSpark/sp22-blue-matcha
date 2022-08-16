@@ -1,7 +1,7 @@
-var mongoose = require("mongoose");
-const { DateTime } = require("luxon");
+var mongoose = require('mongoose')
+const { DateTime } = require('luxon')
 
-var Schema = mongoose.Schema; 
+var Schema = mongoose.Schema 
 
 var formresponsesSchema = new Schema(
     {
@@ -18,7 +18,7 @@ var formresponsesSchema = new Schema(
             selected: {type: Number}
         }]
     }
-);
+)
 
 //export model 
-module.exports = mongoose.model('FormResponses', formresponsesSchema); 
+module.exports = mongoose.model('FormResponses', formresponsesSchema) 

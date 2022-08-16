@@ -1,10 +1,10 @@
-var User = require('../../models/user');
+var User = require('../../models/user')
 var FormResponses = require('../../models/formResponses')
 var Matches = require('../../models/matches')
-var async = require('async');
-var blossom = require("edmonds-blossom");
-const FORM_NUMBER = 1; 
-const STARTING_UTILITY_POINTS = 5; 
+var async = require('async')
+var blossom = require('edmonds-blossom')
+const FORM_NUMBER = 1 
+const STARTING_UTILITY_POINTS = 5 
 
 /**
  * todo: specific a param for req.body.number for which form to run 
@@ -16,7 +16,7 @@ exports.edmonds_algorithm = function(req, res, next) {
   //Matches.find() if there exists a match alr generated for that week. 
   async.waterfall([
     function(callback) {
-      User.find({"chat_participating": true}).exec(
+      User.find({chat_participating: true}).exec(
         function(err, user_list) {
           callback(null, user_list)
         }
@@ -27,7 +27,7 @@ exports.edmonds_algorithm = function(req, res, next) {
       // arg1 now equals 'one' and arg2 now equals 'two'
       callback(null, user_list, username_list)
     }, function(user_list, username_list, callback) {
-      FormResponses.find({"username": username_list}).exec(
+      FormResponses.find({username: username_list}).exec(
         function (err, form_list) {
           callback(null, user_list, form_list)
         }
@@ -46,10 +46,10 @@ exports.edmonds_algorithm = function(req, res, next) {
     })
     let userQueue = user_list
     let edmondArray = []
-    user_list.forEach((user) => {
+    user_list.forEach(user => {
       //run a BFS search to construct edges. 
-      userQueue = userQueue.filter(e => e.userLogin != user.userLogin)
-      userQueue.forEach( (other) => {
+      userQueue = userQueue.filter(e => e.userLogin !== user.userLogin)
+      userQueue.forEach( other => {
         if (!user.blockList.includes(other.userLogin) && 
         !other.blockList.includes(user.userLogin)) {
           let weight = compatibilityScore(user.responses, other.responses)
@@ -58,17 +58,17 @@ exports.edmonds_algorithm = function(req, res, next) {
         }
       })
     })
-    var results = blossom(edmondArray);
+    var results = blossom(edmondArray)
     //save the results into a schema 
     var translatedResults = []
     results.forEach((x, index) => {
       const item = {
-        "user": user_list[index].userLogin
+        user: user_list[index].userLogin
       }
       let matched = null
       let got_match = false
-      if (x != -1) {
-        matched = user_list.find(e => e.index == x)
+      if (x !== -1) {
+        matched = user_list.find(e => e.index === x)
         got_match = true
         item.matched_with = matched.userLogin
       }
@@ -83,9 +83,11 @@ exports.edmonds_algorithm = function(req, res, next) {
         pushed_in_past: false
       })
     match.save(function (err) {
-      if (err) { return next(err);}
+      if (err) {
+ return next(err)
+}
       // Successful - redirect to new author record.
-      res.status(200).json(match);
+      res.status(200).json(match)
     })
   })
 }
@@ -97,15 +99,15 @@ exports.edmonds_algorithm = function(req, res, next) {
  * @returns Compability score of two users based on equality of forms. 
  */
 function compatibilityScore(user1_res, user2_res) {
-  let score = STARTING_UTILITY_POINTS; 
+  let score = STARTING_UTILITY_POINTS 
   if (!user1_res || !user2_res) {
-    return score; 
+    return score 
   }
   user1_res.forEach(user => {
     const found = user2_res.find(e => e.question === user.question)
     if (found) {
-      if (user.selected == found.selected) {
-        score++;
+      if (user.selected === found.selected) {
+        score++
       }
     } 
   })

@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const matchSchema = new Schema({
   date: {type: Date, required: true},
@@ -13,6 +13,6 @@ const matchSchema = new Schema({
   ],
   pushed_in_past: {type: Boolean},
   currently_on: {type: Boolean, required: true}
-});
+})
 
-module.exports = mongoose.model('Matches', matchSchema); 
+module.exports = mongoose.model('Matches', matchSchema) 

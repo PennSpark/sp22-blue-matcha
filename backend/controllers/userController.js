@@ -12,7 +12,7 @@ exports.get_username = function(req, res) {
 }
 
 exports.account_created = [loginController.confirm_logged_in, (req, res, next) => {
-    User.findOne({'userLogin': req.user.username}).exec((err, user) => {
+    User.findOne({userLogin: req.user.username}).exec((err, user) => {
         if (user) {
             next()
         } else {
@@ -22,11 +22,13 @@ exports.account_created = [loginController.confirm_logged_in, (req, res, next) =
 }]
 
 exports.post_create_user = (req, res, next) => {
-    User.find({'userLogin': req.user.username})
+    User.find({userLogin: req.user.username})
     .exec(function (err, user_list) {
-        if (err) { return next(err); }
+        if (err) {
+ return next(err) 
+}
         if (user_list.length > 0) {
-            res.status(409).json({message: "User already created."})
+            res.status(409).json({message: 'User already created.'})
             return
         }
         const user = new User({
@@ -49,14 +51,16 @@ exports.post_create_user = (req, res, next) => {
             about: ''
         })
         user.save(function (err) {
-            if (err) { return next(err); }
-            res.status(200).json(user);
+            if (err) {
+                return next(err) 
+            }
+            res.status(200).json(user)
         })
     })
 }
 
 exports.get_dates_blocked = function(req, res, next) {
-    User.findOne({"userLogin": req.user.username}).select({dates_blocked: 1, _id: 0})
+    User.findOne({userLogin: req.user.username}).select({dates_blocked: 1, _id: 0})
     .exec(
         function (err, results) {
             res.status(200).json(results)
@@ -65,17 +69,21 @@ exports.get_dates_blocked = function(req, res, next) {
 }
 
 exports.post_update_about = function(req, res, next) {
-    User.findOneAndUpdate({"userLogin": req.user.username}, {'about': req.body.about}, {}, 
+    User.findOneAndUpdate({userLogin: req.user.username}, {about: req.body.about}, {}, 
     function (err, user) {
-        if (err) { return next (err) }
+        if (err) {
+ return next (err) 
+}
         res.status(200)
     })
 }
 
 exports.post_update_dates_blocked = function(req, res, next) {
-    User.findOneAndUpdate({"userLogin": req.user.username}, {'dates_blocked': req.body.dates}, {}, 
+    User.findOneAndUpdate({userLogin: req.user.username}, {dates_blocked: req.body.dates}, {}, 
     (err, user) => {
-        if (err) { return next(err) }
+        if (err) {
+ return next(err) 
+}
         res.status(200)
     })
 }
@@ -89,12 +97,14 @@ exports.post_update_user = [
     // Process request after validation and sanitization.
     (req, res, next) => {
         // Extract the validation errors from a request.
-        const errors = validationResult(req);
+        const errors = validationResult(req)
         // Create a Book object with escaped/trimmed data and old id.
-        User.findOne({"userLogin": req.user.username}).exec(
+        User.findOne({userLogin: req.user.username}).exec(
             function (err, results) {
-                if (err) {return next(err); }
-                const oldID = results._id;
+                if (err) {
+return next(err) 
+}
+                const oldID = results._id
                 var updated_user = new User(
                     { first_name: req.body.first_name,
                       last_name: req.body.last_name, 
@@ -109,19 +119,21 @@ exports.post_update_user = [
                       users_blocked: req.body.users_blocked,
                       activities: req.body.activities,
                       _id: oldID //This is required, or a new ID will be assigned!
-                     });
+                     })
                 if (!errors.isEmpty()) {
                         // There are errors. Render form again with sanitized values/error messages.
                         // Get all authors and genres for form.
-                        res.status(400).json(errors);
-                        return;
+                        res.status(400).json(errors)
+                        return
                     } else {
                         // Data from form is valid. Update the record.
-                        User.findOneAndUpdate({"userLogin": req.user.username}, updated_user, {}, function (err, user) {
-                            if (err) { return next(err); }
+                        User.findOneAndUpdate({userLogin: req.user.username}, updated_user, {}, function (err, user) {
+                            if (err) {
+ return next(err) 
+}
                                // Successful - redirect to book detail page.
-                               res.status(200).json(user);
-                            });
+                               res.status(200).json(user)
+                            })
                     }  
             }
         )
@@ -130,20 +142,22 @@ exports.post_update_user = [
 
 //delete your own account by user 
 exports.post_delete_user = function (req, res, next) {
-    let user_name = req.user.username; 
-    req.logout(); 
-    Login.find({'username': user_name}).remove().exec(); 
-    User.find({'userLogin': user_name}).remove().exec();
-    res.status(200).json({message: "Successfully deleted"});
+    let user_name = req.user.username 
+    req.logout() 
+    Login.find({username: user_name}).remove().exec() 
+    User.find({userLogin: user_name}).remove().exec()
+    res.status(200).json({message: 'Successfully deleted'})
 }
 
 exports.change_chat_status = function(req, res, next) {
-    var update = { 'chat_participating': req.body.status}
-    User.findOneAndUpdate({'userLogin': req.user.username}, update, {}, 
+    var update = { chat_participating: req.body.status}
+    User.findOneAndUpdate({userLogin: req.user.username}, update, {}, 
     function (err, account) {
-        if (err) { return next(err); }
+        if (err) {
+ return next(err) 
+}
             res.status(200).json({ 
-                message: "success!"});
+                message: 'success!'})
         }
     )
 }
@@ -152,35 +166,41 @@ exports.change_chat_status = function(req, res, next) {
 exports.get_user_by_link = function(req, res, next) {
     User.findById(req.params.id)
         .exec(function (err, result) {
-            if (err) { return next(err); }
+            if (err) {
+ return next(err) 
+}
             if (result==null) { // No results.
-                res.status(400).json({message: "User not found."})
+                res.status(400).json({message: 'User not found.'})
             }
             if (result.userLogin !== req.user.username) {
-                res.status(400).json({message: "Invalid credentials to view user details."})
+                res.status(400).json({message: 'Invalid credentials to view user details.'})
             } else {
-                res.status(200).json(result);
+                res.status(200).json(result)
             }
-    });
+    })
 }
 
 //view user information in dashboard 
 exports.get_user_by_username = function(req, res, next) {
-    User.findOne({'userLogin': req.user.username})
+    User.findOne({userLogin: req.user.username})
     .exec((err, result) => {
-        if (err) { return next(err) }
+        if (err) {
+            return next(err) 
+        }
         res.status(200).json(result)
     })
 }
 
 exports.get_survey_complete = function(req, res, next) {
-    FormResponses.findOne({'username': req.user.username}).exec(
+    FormResponses.findOne({username: req.user.username}).exec(
         function(err, found_response) {
-            if (err) { return next(err); }
+            if (err) {
+ return next(err) 
+}
             if (found_response) {
-                res.status(200).json({'filled_form': true})
+                res.status(200).json({filled_form: true})
             } else {
-                res.status(200).json({'filled_form': false})
+                res.status(200).json({filled_form: false})
             }
         }
     )
@@ -192,16 +212,20 @@ exports.post_form_response = function(req, res, next) {
         form_number: req.body.form_number,
         responses: req.body.responses,
     })
-    FormResponses.findOne({'username': req.body.username}).exec(
+    FormResponses.findOne({username: req.body.username}).exec(
         function(err, found_response) {
-            if (err) { return next(err); }
+            if (err) {
+ return next(err) 
+}
             if (found_response) {
                 res.status(400).json({message: 'Already filled out form.'})
             } else {
                 formResponse.save(function (err) {
-                    if (err) { return next(err); }
-                    res.status(200).json(formResponse);
-                });
+                    if (err) {
+ return next(err) 
+}
+                    res.status(200).json(formResponse)
+                })
             }
         }
     )
@@ -209,30 +233,36 @@ exports.post_form_response = function(req, res, next) {
 
 exports.get_form = function(req, res, next) {
     var formNum = req.params.form_number
-    FormSend.find({'form_number': formNum}).exec(
+    FormSend.find({form_number: formNum}).exec(
         function (err, result) {
-            if (err) {return next(err); }
+            if (err) {
+return next(err) 
+}
             if (result == null) {
                 res.status(400).json({message: "Form doesn't exist."})
             } else {
-                res.status(200).json(result); 
+                res.status(200).json(result) 
             }
         }
     )
 }
 
 exports.update_user_chatted = function (req, res, next) {
-    User.findOne({"userLogin": req.user.username}).exec(
+    User.findOne({userLogin: req.user.username}).exec(
         (err, result) => {
-            if (err) {return next(err); }
+            if (err) {
+return next(err) 
+}
             var usersChatted = result.usersChatted
             usersChatted.push(req.body.chattedUser)
             const update = { users_chatted: usersChatted }
-            User.findOneAndUpdate({'userLogin': req.user.username}, update, {}, 
+            User.findOneAndUpdate({userLogin: req.user.username}, update, {}, 
             (err, result) => {
-                if (err) { return next(err); }
+                if (err) {
+ return next(err) 
+}
                    res.status(200).json({ 
-                       message: "successfully updated user chatted!"});
+                       message: 'successfully updated user chatted!'})
                 }
             )
         }
@@ -241,7 +271,7 @@ exports.update_user_chatted = function (req, res, next) {
 
 //finds profile picture + adds id to request
 const getPictureID = (req, res, next) => {
-    User.findOne({'userLogin': req.user.username}).exec(
+    User.findOne({userLogin: req.user.username}).exec(
         function (err, result) {
             if (err) {
                 next (err)
@@ -260,9 +290,11 @@ exports.post_update_propic = [imageMiddleware.post_upload_image, getPictureID,
     imageMiddleware.delete_image, (req, res, next) => {
     if (req.uploaded_image) {
         const img = req.stored_image
-        User.findOneAndUpdate({"userLogin": req.user.username}, {'profile_picture': img._id}, {}, 
+        User.findOneAndUpdate({userLogin: req.user.username}, {profile_picture: img._id}, {}, 
         (err, user) => {
-            if (err) { return next(err); }
+            if (err) {
+ return next(err) 
+}
             res.status(200).json(img.image_url)
         })
     } else {
@@ -279,14 +311,16 @@ exports.get_profile_picture = [getPictureID, imageMiddleware.get_picture, (req, 
 }]
 
 exports.post_generate_schedule = function (req, res, next) {
-    User.findOne({'userLogin': req.user.username}).select({dates_blocked: 1, _id: 0}).exec(
+    User.findOne({userLogin: req.user.username}).select({dates_blocked: 1, _id: 0}).exec(
         function (err, result) {
             let times_a = []
-            if (err) { return next(err)}
+            if (err) {
+ return next(err)
+}
             if (result) {
                 times_a = result.dates_blocked
             }
-            User.findOne({'userLogin': req.body.requested_user}).select({dates_blocked: 1, _id: 0}).exec(
+            User.findOne({userLogin: req.body.requested_user}).select({dates_blocked: 1, _id: 0}).exec(
                 function (err, result2) {
                     let times_b = []
                     if (result2) {

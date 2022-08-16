@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
-var Image = require("../models/image")
-const { DateTime } = require("luxon");
+var mongoose = require('mongoose')
+var Image = require('../models/image')
+const { DateTime } = require('luxon')
 
-var Schema = mongoose.Schema; 
+var Schema = mongoose.Schema 
 
 var userSchema = new Schema(
     {
@@ -28,16 +28,16 @@ var userSchema = new Schema(
         dates_blocked: [Date], 
         profile_picture: {type: Schema.Types.ObjectId, ref: 'Image'}
     }
-);
+)
 
 userSchema.virtual('clean_date_created').get(function() {
-    return DateTime.fromJSDate(this.date_created_account).toLocaleString(DateTime.DATE_MED);
-});
+    return DateTime.fromJSDate(this.date_created_account).toLocaleString(DateTime.DATE_MED)
+})
 
 //virtual for author's URL 
 userSchema.virtual('url').get(function() {
-    return '/user/account/' + this._id;
-});
+    return `/user/account/${  this._id}`
+})
 
 //export model 
-module.exports = mongoose.model('User', userSchema); 
+module.exports = mongoose.model('User', userSchema) 

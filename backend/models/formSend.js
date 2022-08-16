@@ -1,6 +1,6 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose')
 
-var Schema = mongoose.Schema; 
+var Schema = mongoose.Schema 
 
 var formsendSchema = new Schema(
     {
@@ -13,6 +13,6 @@ var formsendSchema = new Schema(
         form_number: {type: Number, required: true}, 
         selected: {type: Number}
     }
-);
+)
 
-module.exports = mongoose.model('FormSend', formsendSchema); 
+module.exports = mongoose.model('FormSend', formsendSchema) 

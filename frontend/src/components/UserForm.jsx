@@ -56,6 +56,9 @@ const UserForm = () => {
       } else if (gender.length <= 1) {
         throwError('You must select gender.')
         return false
+      } else if (!validator.isMobilePhone(phone_number)) {
+        throwError('You must enter a valid phone number.')
+        return false
       }
       return true
     }
