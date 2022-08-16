@@ -59,6 +59,6 @@ router.get('/gallery', galleryController.get_gallery_items)
 router.post('/uploadchatcard', galleryController.post_chat_card)
 router.post('/uploadphoto', galleryController.post_picture_without_linking)
 router.post('/updatechatcard', galleryController.update_chat_card)
-router.post('/deletechatcard', galleryController.delete_chat_card)
+router.post('/deletechatcard', adminController.check_admin, galleryController.delete_chat_card)
 
 module.exports = router

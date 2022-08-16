@@ -61,7 +61,6 @@ const Gallery = () => {
 
   const deleteCard = async (_id, index) => {
     const chat_id = _id
-    console.log(chat_id)
     await (axios.post('/api/deletechatcard', {chat_id: chat_id})
       .then(res => {
         if (res.status === 200) {
@@ -73,7 +72,6 @@ const Gallery = () => {
           console.log(res)
         }
       })).catch(err => throwError(err))
-    console.log(cards)
     // call axios to delete the component
   }
 
